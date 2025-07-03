@@ -1,0 +1,21 @@
+/* Light green color for the app */
+:root {
+  --light-green: #e6f9ec;
+  --light-green-text: #218a5a;
+}
+
+.bg-light-green {
+  background-color: var(--light-green) !important;
+}
+
+.text-light-green {
+  color: var(--light-green-text) !important;
+}
+
+/* Example usage: add bg-light-green or text-light-green to any element */
+
+section, .main-section {
+  margin-top: 3.5rem;
+}
+
+/* If using Tailwind, you can also add mt-16 or similar to section classes in JSX */
