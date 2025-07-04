@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:5000/api'; // Adjust if backend runs on a different port
+const API_BASE = 'https://paypass-backend-five.vercel.app/api'; // Backend API base URL
 
 export const api = axios.create({
   baseURL: API_BASE,
