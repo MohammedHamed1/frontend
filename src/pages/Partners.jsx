@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
 import { motion } from 'framer-motion';
-import { FaHandshake, FaGlobe, FaAward, FaRocket, FaUsers, FaChartLine, FaLightbulb, FaShieldAlt, FaArrowRight, FaSearch, FaFilter } from 'react-icons/fa';
+import { FaHandshake, FaGlobe, FaAward, FaRocket, FaUsers, FaChartLine, FaLightbulb, FaShieldAlt, FaArrowRight, FaSearch, FaFilter, FaExternalLinkAlt, FaCrown } from 'react-icons/fa';
 import PageHeader from '../components/common/PageHeader';
+import miskLogo from '../assets/misk.jpeg';
+import alahliLogo from '../assets/alahli.jpeg';
+import codLogo from '../assets/cod.jpeg';
 
 const Partners = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -10,9 +12,6 @@ const Partners = () => {
   const [selectedPartner, setSelectedPartner] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [clickedItem, setClickedItem] = useState(null);
-
-  // استخدام hook مخصص للتمرير التلقائي
-
 
   const categories = [
     { id: 'all', name: 'جميع الشركاء' },
@@ -26,9 +25,28 @@ const Partners = () => {
   const partners = [
     {
       id: 1,
+      name: 'مؤسسة محمد بن سلمان (مسك)',
+      category: 'government',
+      logo: miskLogo,
+      description: 'مؤسسة محمد بن سلمان الخيرية، شريكنا الاستراتيجي في تطوير ريادة الأعمال والابتكار.',
+      partnership: 'شراكة استراتيجية في تطوير ريادة الأعمال والابتكار',
+      achievements: [
+        'تطوير برامج ريادة الأعمال',
+        'دعم المشاريع الابتكارية',
+        'تعزيز ثقافة الابتكار'
+      ],
+      website: 'https://hub.misk.org.sa/ar/misk-entrepreneurship/',
+      location: 'الرياض، المملكة العربية السعودية',
+      established: '2011',
+      employees: '500+',
+      revenue: 'مؤسسة خيرية',
+      priority: true
+    },
+    {
+      id: 2,
       name: 'البنك الأهلي السعودي',
       category: 'banks',
-      logo: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=200&h=100&fit=crop',
+      logo: alahliLogo,
       description: 'أكبر بنك في المملكة العربية السعودية، نتعاون معه لتطوير حلول دفع إلكتروني متقدمة.',
       partnership: 'شراكة استراتيجية لتطوير البنية التحتية للدفع الإلكتروني',
       achievements: [
@@ -36,14 +54,34 @@ const Partners = () => {
         'تحسين تجربة العملاء',
         'زيادة الأمان في المعاملات'
       ],
-      website: 'https://www.alahli.com',
+      website: 'https://www.alahli.com/en/pages/personal-banking',
       location: 'الرياض، المملكة العربية السعودية',
       established: '1953',
       employees: '5000+',
-      revenue: '50+ مليار ريال'
+      revenue: '50+ مليار ريال',
+      priority: true
     },
     {
-      id: 2,
+      id: 3,
+      name: 'CODE - وزارة الاتصالات وتقنية المعلومات',
+      category: 'government',
+      logo: codLogo,
+      description: 'مركز التميز للابتكار الرقمي، شريكنا في تطوير التقنيات الرقمية والحلول المبتكرة.',
+      partnership: 'شراكة في تطوير التقنيات الرقمية والحلول المبتكرة',
+      achievements: [
+        'تطوير حلول رقمية متقدمة',
+        'تعزيز الابتكار التقني',
+        'دعم التحول الرقمي'
+      ],
+      website: 'https://code.mcit.gov.sa/ar',
+      location: 'الرياض، المملكة العربية السعودية',
+      established: '2020',
+      employees: '200+',
+      revenue: 'ميزانية حكومية',
+      priority: true
+    },
+    {
+      id: 4,
       name: 'STC',
       category: 'telecom',
       logo: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=200&h=100&fit=crop',
@@ -61,7 +99,7 @@ const Partners = () => {
       revenue: '60+ مليار ريال'
     },
     {
-      id: 3,
+      id: 5,
       name: 'Microsoft',
       category: 'technology',
       logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop',
@@ -79,7 +117,7 @@ const Partners = () => {
       revenue: '200+ مليار دولار'
     },
     {
-      id: 4,
+      id: 6,
       name: 'Jarir Bookstore',
       category: 'retail',
       logo: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200&h=100&fit=crop',
@@ -97,7 +135,7 @@ const Partners = () => {
       revenue: '5+ مليار ريال'
     },
     {
-      id: 5,
+      id: 7,
       name: 'وزارة التجارة',
       category: 'government',
       logo: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=100&fit=crop',
@@ -115,7 +153,7 @@ const Partners = () => {
       revenue: 'ميزانية حكومية'
     },
     {
-      id: 6,
+      id: 8,
       name: 'Amazon Web Services',
       category: 'technology',
       logo: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=200&h=100&fit=crop',
@@ -133,7 +171,7 @@ const Partners = () => {
       revenue: '80+ مليار دولار'
     },
     {
-      id: 7,
+      id: 9,
       name: 'البنك السعودي الفرنسي',
       category: 'banks',
       logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=100&fit=crop',
@@ -151,7 +189,7 @@ const Partners = () => {
       revenue: '15+ مليار ريال'
     },
     {
-      id: 8,
+      id: 10,
       name: 'Mobily',
       category: 'telecom',
       logo: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=200&h=100&fit=crop',
@@ -175,6 +213,11 @@ const Partners = () => {
     const matchesSearch = partner.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          partner.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
+  }).sort((a, b) => {
+    // الشركاء ذوي الأولوية أولاً
+    if (a.priority && !b.priority) return -1;
+    if (!a.priority && b.priority) return 1;
+    return 0;
   });
 
   const stats = [
@@ -198,11 +241,11 @@ const Partners = () => {
     {
       icon: FaChartLine,
       title: 'النمو المستمر',
-      description: 'نساعد شركائنا على تحقيق النمو المستمر والتوسع'
+      description: 'نساعد شركائنا على تحقيق النمو المستمر والتوسع في الأسواق'
     },
     {
       icon: FaAward,
-      title: 'التميز في الخدمة',
+      title: 'الجودة العالية',
       description: 'نقدم خدمات متميزة تساعد شركائنا على التفوق في السوق'
     }
   ];
@@ -211,16 +254,6 @@ const Partners = () => {
     setClickedItem(itemName);
     // إعادة تعيين العنصر المحدد بعد ثانية
     setTimeout(() => setClickedItem(null), 1000);
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
   };
 
   const itemVariants = {
@@ -313,11 +346,81 @@ const Partners = () => {
               ))}
             </motion.div>
 
-            {/* Search and Filter Section */}
+            {/* Priority Partners Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
+              className="mb-16"
+            >
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-2">
+                  <FaCrown className="text-yellow-500" />
+                  شركاؤنا الاستراتيجيون
+                </h2>
+                <p className="text-gray-600">شركاؤنا الأوائل في تطوير حلول مبتكرة</p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-8 mb-12">
+                {filteredPartners.filter(partner => partner.priority).map((partner, index) => (
+                  <motion.div
+                    key={partner.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="group bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-8 shadow-xl border-2 border-green-200 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden"
+                  >
+                    {/* خلفية زخرفية */}
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-green-200 to-transparent rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-all duration-500"></div>
+                    
+                    {/* شارة الأولوية */}
+                    <div className="absolute top-4 left-4">
+                      <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                        <FaCrown className="w-3 h-3" />
+                        شريك استراتيجي
+                      </div>
+                    </div>
+
+                    <div className="relative z-10">
+                      {/* الشعار */}
+                      <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                        <img 
+                          src={partner.logo} 
+                          alt={partner.name}
+                          className="w-12 h-12 object-contain"
+                          onError={(e) => {
+                            e.target.src = 'https://via.placeholder.com/80x80/10B981/FFFFFF?text=' + partner.name.charAt(0);
+                          }}
+                        />
+                      </div>
+
+                      {/* المعلومات */}
+                      <div className="text-center">
+                        <h4 className="text-xl font-bold text-gray-800 mb-2">{partner.name}</h4>
+                        <p className="text-gray-600 text-sm leading-relaxed mb-6">{partner.description}</p>
+                        
+                        {/* زر الموقع */}
+                        <a
+                          href={partner.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-2xl font-bold text-sm hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                        >
+                          <FaExternalLinkAlt className="w-3 h-3" />
+                          زيارة الموقع
+                        </a>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Search and Filter Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
               className="bg-white rounded-3xl p-8 shadow-lg mb-12"
             >
               <div className="flex flex-col lg:flex-row gap-6">
@@ -366,81 +469,90 @@ const Partners = () => {
               </div>
             </motion.div>
 
-            {/* Partners Grid */}
+            {/* Other Partners Section */}
             <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="mb-12"
             >
-              {filteredPartners.map((partner, index) => (
-                <motion.div
-                  key={partner.id}
-                  variants={itemVariants}
-                  className={`bg-white rounded-3xl p-6 shadow-lg cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 hover:shadow-xl hover:shadow-green-200 ${
-                    hoveredItem === `partner-${partner.id}` ? 'shadow-2xl shadow-green-300' : ''
-                  }`}
-                  onClick={() => {
-                    setSelectedPartner(partner);
-                    handleItemClick(`شريك ${partner.name}`);
-                  }}
-                  onMouseEnter={() => setHoveredItem(`partner-${partner.id}`)}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
-                  <div className="text-center mb-6">
-                    <div className={`w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden transition-all duration-300 ${
-                      hoveredItem === `partner-${partner.id}` ? 'scale-110' : ''
-                    }`}>
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className="w-full h-full object-cover"
-                      />
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-800 mb-4">جميع شركائنا</h2>
+                <p className="text-gray-600">تعرف على جميع شركائنا المتميزين</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredPartners.map((partner, index) => (
+                  <motion.div
+                    key={partner.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className={`bg-white rounded-3xl p-6 shadow-lg cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 hover:shadow-xl hover:shadow-green-200 ${
+                      hoveredItem === `partner-${partner.id}` ? 'shadow-2xl shadow-green-300' : ''
+                    }`}
+                    onClick={() => {
+                      setSelectedPartner(partner);
+                      handleItemClick(`شريك ${partner.name}`);
+                    }}
+                    onMouseEnter={() => setHoveredItem(`partner-${partner.id}`)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    <div className="text-center mb-6">
+                      <div className={`w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden transition-all duration-300 ${
+                        hoveredItem === `partner-${partner.id}` ? 'scale-110' : ''
+                      }`}>
+                        <img
+                          src={partner.logo}
+                          alt={partner.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <h3 
+                        className={`text-xl font-bold text-gray-900 mb-2 transition-all duration-300 ${
+                          hoveredItem === `partner-${partner.id}` ? 'text-[#00916E]' : ''
+                        }`}
+                      >
+                        {partner.name}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-4">{partner.description}</p>
                     </div>
-                    <h3 
-                      className={`text-xl font-bold text-gray-900 mb-2 transition-all duration-300 ${
-                        hoveredItem === `partner-${partner.id}` ? 'text-[#00916E]' : ''
+
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <FaGlobe className="text-[#00916E]" />
+                        <span>{partner.location}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <FaUsers className="text-[#16c47a]" />
+                        <span>{partner.employees} موظف</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <FaChartLine className="text-[#00916E]" />
+                        <span>{partner.revenue}</span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedPartner(partner);
+                        handleItemClick(`تفاصيل ${partner.name}`);
+                      }}
+                      onMouseEnter={() => setHoveredItem(`details-${partner.id}`)}
+                      onMouseLeave={() => setHoveredItem(null)}
+                      className={`w-full bg-[#00916E] text-white py-3 rounded-xl font-semibold hover:bg-[#16c47a] transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 ${
+                        hoveredItem === `details-${partner.id}` ? 'bg-[#16c47a] scale-105' : ''
                       }`}
                     >
-                      {partner.name}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-4">{partner.description}</p>
-                  </div>
-
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <FaGlobe className="text-[#00916E]" />
-                      <span>{partner.location}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <FaUsers className="text-[#16c47a]" />
-                      <span>{partner.employees} موظف</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <FaChartLine className="text-[#00916E]" />
-                      <span>{partner.revenue}</span>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedPartner(partner);
-                      handleItemClick(`تفاصيل ${partner.name}`);
-                    }}
-                    onMouseEnter={() => setHoveredItem(`details-${partner.id}`)}
-                    onMouseLeave={() => setHoveredItem(null)}
-                    className={`w-full bg-[#00916E] text-white py-3 rounded-xl font-semibold hover:bg-[#16c47a] transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 ${
-                      hoveredItem === `details-${partner.id}` ? 'bg-[#16c47a] scale-105' : ''
-                    }`}
-                  >
-                    تفاصيل الشراكة
-                    <FaArrowRight className={`text-sm transition-all duration-300 ${
-                      hoveredItem === `details-${partner.id}` ? 'translate-x-1' : ''
-                    }`} />
-                  </button>
-                </motion.div>
-              ))}
+                      تفاصيل الشراكة
+                      <FaArrowRight className={`text-sm transition-all duration-300 ${
+                        hoveredItem === `details-${partner.id}` ? 'translate-x-1' : ''
+                      }`} />
+                    </button>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
           </div>
         </section>

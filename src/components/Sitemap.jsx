@@ -184,7 +184,7 @@ const Sitemap = () => {
               <div className="text-green-100">رابط</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold mb-2">100%</div>
+              <div className="text-3xl font-bold mb-2">مضمون</div>
               <div className="text-green-100">متوافق مع الأجهزة</div>
             </div>
           </div>

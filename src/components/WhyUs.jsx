@@ -1,30 +1,31 @@
 import React from 'react';
 import { Users, Clock, Shield, Award } from 'lucide-react';
+import GreenIcon from './common/GreenIcon';
 
 const features = [
   {
-    icon: <Users className="w-8 h-8 text-white" />, // فريق محترف
+    icon: Users,
     title: 'فريق محترف',
     desc: 'فريق مدرب ومحترف يضمن لك أفضل النتائج.',
-    color: 'bg-purple-500'
+    variant: 'default'
   },
   {
-    icon: <Clock className="w-8 h-8 text-white" />, // سرعة في الأداء
+    icon: Clock,
     title: 'سرعة في الأداء',
     desc: 'نحن الأسرع دائماً دون المساس بالجودة.',
-    color: 'bg-green-400'
+    variant: 'light'
   },
   {
-    icon: <Shield className="w-8 h-8 text-white" />, // حماية شاملة
+    icon: Shield,
     title: 'حماية شاملة',
     desc: 'نحمي سيارتك من الأضرار الخارجية.',
-    color: 'bg-blue-400'
+    variant: 'dark'
   },
   {
-    icon: <Award className="w-8 h-8 text-white" />, // جودة إيطالية
+    icon: Award,
     title: 'جودة إيطالية',
     desc: 'نستخدم أفضل المواد الإيطالية لضمان أعلى جودة.',
-    color: 'bg-yellow-400'
+    variant: 'outline'
   },
 ];
 
@@ -36,8 +37,8 @@ const WhyUs = () => (
       <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-8 max-w-4xl mx-auto">
         {features.map((f, i) => (
           <div key={i} className="flex-1 bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6 flex flex-col items-center text-center border border-gray-100">
-            <div className={`mb-4 rounded-xl p-3 ${f.color} shadow-lg flex items-center justify-center`}>
-              {f.icon}
+            <div className="mb-4">
+              <GreenIcon icon={f.icon} variant={f.variant} size="md" />
             </div>
             <h3 className="font-bold text-lg text-gray-800 mb-2">{f.title}</h3>
             <p className="text-gray-500 text-sm">{f.desc}</p>

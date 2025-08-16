@@ -272,7 +272,7 @@ const Complaints = () => {
                 <div className="space-y-2 text-sm text-gray-500">
                   <div className="flex items-center justify-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-500" />
-                    رد فوري خلال 24 ساعة
+                    رد فوري ومضمون
                   </div>
                   <div className="flex items-center justify-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-500" />
@@ -374,7 +374,7 @@ const Complaints = () => {
               </h3>
               <p className="text-gray-600 mb-6">
                 رقم المرجع: #{formType === 'complaint' ? 'C' : 'S'}-{Math.floor(Math.random() * 10000)}. 
-                سنقوم بالرد عليك خلال 24 ساعة.
+                سنقوم بالرد عليك في أقرب وقت ممكن.
               </p>
               <button 
                 onClick={() => setSubmitStatus(null)}
@@ -623,7 +623,7 @@ const Complaints = () => {
               <Zap className="h-12 w-12 mx-auto mb-4 text-yellow-400" />
               <h3 className="text-xl font-bold mb-4 text-white">استجابة سريعة</h3>
               <p className="text-green-100">
-                نرد على جميع الرسائل خلال 24 ساعة
+                نرد على جميع الرسائل في أقرب وقت ممكن
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">

@@ -132,7 +132,7 @@ const HelpCenter = () => {
     {
       id: 4,
       question: "ما هو وقت الاستجابة للدعم؟",
-      answer: "نرد على جميع الاستفسارات خلال 24 ساعة كحد أقصى، وفي معظم الحالات نرد خلال ساعات قليلة.",
+      answer: "نرد على جميع الاستفسارات في أقرب وقت ممكن، وفي معظم الحالات نرد خلال ساعات قليلة.",
       category: "technical"
     },
     {
@@ -144,7 +144,7 @@ const HelpCenter = () => {
     {
       id: 6,
       question: "ما هي ساعات عمل الفروع؟",
-      answer: "معظم فروعنا تعمل من 7 صباحاً حتى 11 مساءً، مع فروع تعمل على مدار 24 ساعة في المواقع الرئيسية.",
+      answer: "معظم فروعنا تعمل من 7 صباحاً حتى 11 مساءً، مع فروع تعمل على مدار الساعة في المواقع الرئيسية.",
       category: "services"
     }
   ];
@@ -347,14 +347,14 @@ const HelpCenter = () => {
             <div className="smart-card p-6 text-center">
               <Phone className="h-12 w-12 mx-auto mb-4 text-green-600" />
               <h3 className="text-lg font-bold text-gray-800 mb-2">اتصل بنا</h3>
-              <p className="text-gray-600 text-sm mb-4">خدمة 24/7 على الرقم المجاني</p>
+                              <p className="text-gray-600 text-sm mb-4">خدمة متاحة على الرقم المجاني</p>
               <button className="smart-button w-full">اتصل الآن</button>
             </div>
             
             <div className="smart-card p-6 text-center">
               <Mail className="h-12 w-12 mx-auto mb-4 text-purple-600" />
               <h3 className="text-lg font-bold text-gray-800 mb-2">أرسل رسالة</h3>
-              <p className="text-gray-600 text-sm mb-4">رد خلال 24 ساعة مضمون</p>
+              <p className="text-gray-600 text-sm mb-4">رد سريع ومضمون</p>
               <button className="smart-button w-full">أرسل رسالة</button>
             </div>
           </div>

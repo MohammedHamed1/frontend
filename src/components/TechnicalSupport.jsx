@@ -123,10 +123,10 @@ const TechnicalSupport = () => {
     },
     {
       icon: <Mail className="h-8 w-8" />,
-      title: 'تذكرة دعم فني',
+              title: 'تذكرة خدمة عملاء',
       description: 'إرسال تذكرة مع متابعة شاملة',
-      availability: '24/7',
-      responseTime: '< 24 ساعة',
+              availability: '7-11',
+              responseTime: '< 2 ساعة',
       color: 'from-green-500 to-green-600',
       featured: false
     }
@@ -223,7 +223,7 @@ const TechnicalSupport = () => {
           </h1>
           
           <p className="text-xl text-green-100 max-w-4xl mx-auto leading-relaxed mb-8">
-            فريق دعم فني متخصص لحل جميع المشاكل التقنية بسرعة وكفاءة عالية
+            فريق خدمة عملاء متخصص لحل جميع المشاكل بسرعة وكفاءة عالية
           </p>
 
           {/* الإحصائيات الحية */}
@@ -383,7 +383,7 @@ const TechnicalSupport = () => {
       <div className="py-16 bg-gradient-to-br from-purple-50 to-indigo-50">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">
-            إرسال تذكرة دعم فني
+            إرسال تذكرة خدمة عملاء
           </h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
             املأ النموذج أدناه وسيقوم فريق الدعم الفني بالرد عليك في أقرب وقت ممكن
@@ -394,7 +394,7 @@ const TechnicalSupport = () => {
               <CheckCircle className="h-16 w-16 mx-auto mb-4 text-green-500" />
               <h3 className="text-2xl font-bold text-gray-800 mb-4">تم إرسال التذكرة بنجاح!</h3>
               <p className="text-gray-600 mb-6">
-                رقم التذكرة: #TS-{Math.floor(Math.random() * 10000)}. سنقوم بالرد عليك خلال 24 ساعة.
+                رقم التذكرة: #TS-{Math.floor(Math.random() * 10000)}. سنقوم بالرد عليك في أقرب وقت ممكن.
               </p>
               <button 
                 onClick={() => setSubmitStatus(null)}
@@ -554,7 +554,7 @@ const TechnicalSupport = () => {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-8 text-white">وعد الدعم الفني</h2>
           <p className="text-xl text-green-100 mb-12 max-w-4xl mx-auto leading-relaxed">
-            نلتزم بتقديم أفضل خدمة دعم فني مع ضمان الحل السريع والفعال
+            نلتزم بتقديم أفضل خدمة عملاء مع ضمان الحل السريع والفعال
           </p>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -562,7 +562,7 @@ const TechnicalSupport = () => {
               <Clock className="h-12 w-12 mx-auto mb-4 text-yellow-400" />
               <h3 className="text-xl font-bold mb-4 text-white">استجابة سريعة</h3>
               <p className="text-green-100">
-                نرد على جميع التذاكر خلال 24 ساعة كحد أقصى
+                نرد على جميع التذاكر خلال ساعات قليلة
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
@@ -576,7 +576,7 @@ const TechnicalSupport = () => {
               <Users className="h-12 w-12 mx-auto mb-4 text-yellow-400" />
               <h3 className="text-xl font-bold mb-4 text-white">فريق متخصص</h3>
               <p className="text-green-100">
-                فريق دعم فني محترف ومتخصص في جميع التقنيات
+                فريق خدمة عملاء محترف ومتخصص
               </p>
             </div>
           </div>

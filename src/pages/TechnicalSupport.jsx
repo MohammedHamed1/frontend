@@ -183,12 +183,12 @@ const TechnicalSupport = () => {
                 }`} />
                 <h2 className={`text-3xl font-bold mb-4 text-gray-800 transition-all duration-300 ${
                   hoveredItem === 'welcome-title' ? 'text-green-600 scale-105' : ''
-                }`} style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
-                  الدعم التقني
+                }`}>
+                  الدعم الفني
                 </h2>
               </div>
-              <p className="text-xl text-gray-800 mb-6" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
-                فريق الدعم التقني متاح على مدار الساعة لمساعدتك في حل جميع المشاكل التقنية
+              <p className="text-xl text-gray-800 mb-6">
+                فريق الدعم الفني متاح على مدار الساعة لمساعدتك في حل جميع المشاكل التقنية
               </p>
               <div className="grid md:grid-cols-3 gap-6">
                 <div 
@@ -200,7 +200,7 @@ const TechnicalSupport = () => {
                   onMouseLeave={() => setHoveredItem(null)}
                 >
                   <FaPhone className="text-2xl mx-auto mb-2 text-green-600" />
-                  <p className="font-bold text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>دعم هاتفي</p>
+                  <p className="font-bold text-gray-800">دعم هاتفي</p>
                 </div>
                 <div 
                   className={`bg-gray-50 p-4 rounded-xl cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
@@ -211,7 +211,7 @@ const TechnicalSupport = () => {
                   onMouseLeave={() => setHoveredItem(null)}
                 >
                   <FaHeadset className="text-2xl mx-auto mb-2 text-green-600" />
-                  <p className="font-bold text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>دعم مباشر</p>
+                  <p className="font-bold text-gray-800">دعم مباشر</p>
                 </div>
                 <div 
                   className={`bg-gray-50 p-4 rounded-xl cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
@@ -222,7 +222,7 @@ const TechnicalSupport = () => {
                   onMouseLeave={() => setHoveredItem(null)}
                 >
                   <FaEnvelope className="text-2xl mx-auto mb-2 text-green-600" />
-                  <p className="font-bold text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>بريد إلكتروني</p>
+                  <p className="font-bold text-gray-800">بريد إلكتروني</p>
                 </div>
               </div>
             </div>
@@ -239,11 +239,10 @@ const TechnicalSupport = () => {
                   onClick={() => handleItemClick('ابحث في المشاكل')}
                   onMouseEnter={() => setHoveredItem('search-title')}
                   onMouseLeave={() => setHoveredItem(null)}
-                  style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
                 >
                   ابحث في المشاكل
                 </h2>
-                <p className="text-gray-700" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>ابحث عن المشكلة التي تواجهها أو اختر فئة</p>
+                <p className="text-gray-700">ابحث عن المشكلة التي تواجهها أو اختر فئة</p>
               </div>
               
               <div className="space-y-6">
@@ -277,7 +276,6 @@ const TechnicalSupport = () => {
                         ? 'bg-green-500 text-white shadow-lg'
                         : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                     }`}
-                    style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
                   >
                     جميع المشاكل
                   </button>
@@ -295,7 +293,6 @@ const TechnicalSupport = () => {
                             ? 'bg-green-500 text-white shadow-lg'
                             : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                         }`}
-                        style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
                       >
                         <IconComponent className="text-lg text-green-600" />
                         {category.title}
@@ -331,14 +328,14 @@ const TechnicalSupport = () => {
                       <div className="flex-1">
                         <h3 className={`text-2xl font-bold mb-2 transition-all duration-300 ${
                           hoveredItem === `issue-${index}` ? 'text-emerald-500 scale-105' : 'text-gray-700'
-                        }`} style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                        }`}>
                           {issue.title}
                         </h3>
-                        <p className="text-gray-700 text-lg mb-4" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>{issue.description}</p>
+                        <p className="text-gray-700 text-lg mb-4">{issue.description}</p>
                         <div className="flex items-center gap-4 text-sm text-gray-500">
                           <span className="flex items-center gap-1">
                             <FaClock style={{color: '#22c55e'}} />
-                            {issue.priority} أولوية
+                            حلول متاحة
                           </span>
                           <span className="flex items-center gap-1">
                             <FaCheckCircle style={{color: '#22c55e'}} />
@@ -350,13 +347,12 @@ const TechnicalSupport = () => {
                   </div>
                   
                   <div className="bg-emerald-50 p-6 rounded-xl">
-                    <h4 className="font-bold text-gray-700 mb-4 text-lg" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>الحلول المقترحة:</h4>
+                    <h4 className="font-bold text-gray-700 mb-4 text-lg">الحلول المقترحة:</h4>
                     <ol className="space-y-3">
                       {issue.solutions.map((solution, solutionIndex) => (
                         <li 
                           key={solutionIndex}
                           className="flex items-start gap-3 text-gray-700"
-                          style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
                         >
                           <span className={`w-6 h-6 bg-emerald-500 text-white rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
                             hoveredItem === `issue-${index}` ? 'scale-110 bg-emerald-600' : ''
@@ -380,7 +376,6 @@ const TechnicalSupport = () => {
                       }}
                       onMouseEnter={() => setHoveredItem(`help-${index}`)}
                       onMouseLeave={() => setHoveredItem(null)}
-                      style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
                     >
                       <FaHeadset />
                       طلب مساعدة
@@ -395,7 +390,6 @@ const TechnicalSupport = () => {
                       }}
                       onMouseEnter={() => setHoveredItem(`report-${index}`)}
                       onMouseLeave={() => setHoveredItem(null)}
-                      style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
                     >
                       <FaExclamationTriangle />
                       تقرير مشكلة
@@ -416,11 +410,10 @@ const TechnicalSupport = () => {
                 onClick={() => handleItemClick('هل تحتاج مساعدة إضافية؟')}
                 onMouseEnter={() => setHoveredItem('help-title')}
                 onMouseLeave={() => setHoveredItem(null)}
-                style={{fontFamily: 'Cairo, sans-serif', color: 'white', fontWeight: 'bold'}}
               >
-                هل تحتاج مساعدة إضافية؟
+                نحن هنا لمساعدتك
               </h2>
-              <p className="text-xl mb-8 opacity-90" style={{fontFamily: 'Cairo, sans-serif', color: 'white', fontWeight: 'bold'}}>فريق الدعم متاح لمساعدتك في أي وقت</p>
+              <p className="text-xl mb-8 opacity-90">فريق الدعم متاح لمساعدتك في أي وقت</p>
               
               <div className="grid md:grid-cols-3 gap-6">
                 <div 
@@ -432,8 +425,8 @@ const TechnicalSupport = () => {
                   onMouseLeave={() => setHoveredItem(null)}
                 >
                   <FaPhone className="text-3xl mx-auto mb-4" style={{color: '#22c55e'}} />
-                  <h3 className="text-xl font-bold mb-2 text-gray-700" style={{fontWeight: 'bold'}}>اتصل بنا</h3>
-                  <p className="opacity-90 text-gray-700" style={{fontWeight: 'bold'}} dir="ltr">+966 56 890 9183</p>
+                  <h3 className="text-xl font-bold mb-2 text-gray-700">اتصل بنا</h3>
+                  <p className="opacity-90 text-gray-700" dir="ltr">+966 56 890 9183</p>
                 </div>
                 
                 <div 
@@ -445,8 +438,8 @@ const TechnicalSupport = () => {
                   onMouseLeave={() => setHoveredItem(null)}
                 >
                   <FaEnvelope className="text-3xl mx-auto mb-4" style={{color: '#22c55e'}} />
-                  <h3 className="text-xl font-bold mb-2 text-gray-700" style={{fontWeight: 'bold'}}>راسلنا</h3>
-                  <p className="opacity-90 text-gray-700" style={{fontWeight: 'bold'}}>support@paypasss.com</p>
+                  <h3 className="text-xl font-bold mb-2 text-gray-700">راسلنا</h3>
+                  <p className="opacity-90 text-gray-700">support@paypasss.com</p>
                 </div>
                 
                 <div 
@@ -458,8 +451,8 @@ const TechnicalSupport = () => {
                   onMouseLeave={() => setHoveredItem(null)}
                 >
                   <FaWhatsapp className="text-3xl mx-auto mb-4" style={{color: '#22c55e'}} />
-                  <h3 className="text-xl font-bold mb-2 text-gray-700" style={{fontWeight: 'bold'}}>واتساب</h3>
-                  <p className="opacity-90 text-gray-700" style={{fontWeight: 'bold'}}>رد فوري على الرسائل</p>
+                  <h3 className="text-xl font-bold mb-2 text-gray-700">واتساب</h3>
+                  <p className="opacity-90 text-gray-700">رد فوري على الرسائل</p>
                 </div>
               </div>
             </div>
@@ -479,8 +472,8 @@ const TechnicalSupport = () => {
                 <FaHeadset className={`text-4xl mx-auto mb-4 text-emerald-500 transition-all duration-300 ${
                   hoveredItem === 'stats-1' ? 'scale-110 text-emerald-600' : ''
                 }`} />
-                <h3 className="text-2xl font-bold text-gray-700 mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>24/7</h3>
-                <p className="text-gray-700" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>دعم متواصل</p>
+                <h3 className="text-2xl font-bold text-gray-700 mb-2">متاح</h3>
+                <p className="text-gray-700">دعم متواصل</p>
               </div>
               
               <div 
@@ -494,8 +487,8 @@ const TechnicalSupport = () => {
                 <FaClock className={`text-4xl mx-auto mb-4 text-emerald-500 transition-all duration-300 ${
                   hoveredItem === 'stats-2' ? 'scale-110 text-emerald-600' : ''
                 }`} />
-                <h3 className="text-2xl font-bold text-gray-700 mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>{'< 5'}</h3>
-                <p className="text-gray-700" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>دقائق استجابة</p>
+                <h3 className="text-2xl font-bold text-gray-700 mb-2">{'< 5'}</h3>
+                <p className="text-gray-700">دقائق استجابة</p>
               </div>
               
               <div 
@@ -509,8 +502,8 @@ const TechnicalSupport = () => {
                 <FaCheckCircle className={`text-4xl mx-auto mb-4 text-emerald-500 transition-all duration-300 ${
                   hoveredItem === 'stats-3' ? 'scale-110 text-emerald-600' : ''
                 }`} />
-                <h3 className="text-2xl font-bold text-gray-700 mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>98%</h3>
-                <p className="text-gray-700" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>معدل الحل</p>
+                <h3 className="text-2xl font-bold text-gray-700 mb-2">98%</h3>
+                <p className="text-gray-700">معدل الحل</p>
               </div>
               
               <div 
@@ -524,8 +517,8 @@ const TechnicalSupport = () => {
                 <FaStar className={`text-4xl mx-auto mb-4 text-emerald-500 transition-all duration-300 ${
                   hoveredItem === 'stats-4' ? 'scale-110 text-emerald-600' : ''
                 }`} />
-                <h3 className="text-2xl font-bold text-gray-700 mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>4.9</h3>
-                <p className="text-gray-700" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>تقييم العملاء</p>
+                <h3 className="text-2xl font-bold text-gray-700 mb-2">4.9</h3>
+                <p className="text-gray-700">تقييم العملاء</p>
               </div>
             </div>
           </div>

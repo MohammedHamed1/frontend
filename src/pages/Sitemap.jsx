@@ -370,12 +370,12 @@ const Sitemap = () => {
               </div>
               <div className="text-center p-6 bg-white rounded-2xl shadow-lg">
                 <FaUsers className="text-4xl mx-auto mb-4 text-green-500" />
-                <h3 className="text-2xl font-bold text-gray-800 mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>50K+</h3>
+                <h3 className="text-2xl font-bold text-gray-800 mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>10K+</h3>
                 <p className="text-gray-700" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>زائر شهرياً</p>
               </div>
               <div className="text-center p-6 bg-white rounded-2xl shadow-lg">
                 <FaSearch className="text-4xl mx-auto mb-4 text-green-500" />
-                <h3 className="text-2xl font-bold text-gray-800 mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>100%</h3>
+                <h3 className="text-2xl font-bold text-gray-800 mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>مضمون</h3>
                 <p className="text-gray-700" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>متوافق مع محركات البحث</p>
               </div>
               <div className="text-center p-6 bg-white rounded-2xl shadow-lg">

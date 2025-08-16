@@ -1,357 +1,258 @@
 import React, { useState, useEffect } from 'react';
-import { Car, Menu, X, User, Sparkles, Shield, Zap, Phone } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../useAuth';
+import { Link, useLocation } from 'react-router-dom';
+import { 
+  Menu, X, Phone, Mail, Star, Shield, ChevronDown, ChevronUp, User, LogIn
+} from 'lucide-react';
 import logo from '../assets/logo.png';
+import googlePlayBadge from '../assets/google-play-badge.png';
+import appStoreBadge from '../assets/app-store-badge.png';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState(null);
-  const { isAuth, logout } = useAuth();
-  const navigate = useNavigate();
-
-  // التمرير إلى أعلى الصفحة عند تحميل المكون
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
-
-  const handleLogout = () => {
-    logout();
-    navigate('/');
-  };
-
-  const handleItemClick = (itemName) => {
-    // تأثير النقر على العنصر
-  };
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-md ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-white/95 shadow-2xl border-b border-green-100' 
-        : 'bg-white/90'
+        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-green-200' 
+        : 'bg-white/90 backdrop-blur-sm shadow-sm'
     }`}>
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-4">
-          {/* شعار PayPass مع اللوجو */}
-          <div 
-            className="flex items-center gap-4 group cursor-pointer transform hover:scale-105 transition-all duration-300 active:scale-95"
-            onClick={() => handleItemClick('Logo')}
-            onMouseEnter={() => setHoveredItem('logo')}
-            onMouseLeave={() => setHoveredItem(null)}
-          >
-            <div className="relative">
-              <img 
-                src={logo} 
-                alt="PayPass Logo" 
-                className={`h-12 w-12 md:h-16 md:w-16 object-contain transition-all duration-300 ${
-                  hoveredItem === 'logo' ? 'scale-110 rotate-3' : 'scale-100 rotate-0'
-                }`} 
-              />
-              <div className={`absolute inset-0 bg-green-500 rounded-full transition-all duration-300 ${
-                hoveredItem === 'logo' ? 'opacity-30 scale-110' : 'opacity-0 scale-100'
-              }`}></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          
+          {/* الشعار */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
+              <img src={logo} alt="PayPass Logo" className="w-full h-full object-contain" />
             </div>
-            <div>
-              <span className={`text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent transition-all duration-300 ${
-                hoveredItem === 'logo' ? 'from-green-700 to-green-900 scale-105' : ''
-              }`}>
-                PayPass
-              </span>
-              <div className="flex items-center gap-2 mt-1">
-                <Sparkles className={`h-3 w-3 md:h-4 md:w-4 text-green-600 transition-all duration-300 ${
-                  hoveredItem === 'logo' ? 'animate-spin scale-110' : 'animate-pulse'
-                }`} />
-                <span className={`text-xs md:text-sm text-green-600 font-semibold transition-all duration-300 ${
-                  hoveredItem === 'logo' ? 'text-green-700 scale-105' : ''
-                }`}>غسيل السيارات الذكي</span>
-                <Shield className={`h-3 w-3 md:h-4 md:w-4 text-green-600 transition-all duration-300 ${
-                  hoveredItem === 'logo' ? 'scale-110 rotate-12' : 'rotate-0'
-                }`} />
-              </div>
+            <div className="hidden sm:block">
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">PayPass</h1>
+              <p className="text-xs text-green-600 font-medium">غسيل السيارات الذكي</p>
             </div>
-          </div>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-4">
+          {/* القائمة الرئيسية - للدسكتوب */}
+          <nav className="hidden lg:flex items-center gap-8">
             <Link 
               to="/" 
-              className="relative text-gray-700 hover:text-green-600 transition-all duration-300 font-semibold text-sm md:text-base py-3 px-4 rounded-xl hover:bg-green-50 group transform hover:scale-105 active:scale-95 cursor-pointer"
-              onClick={() => handleItemClick('الرئيسية')}
-              onMouseEnter={() => setHoveredItem('home')}
-              onMouseLeave={() => setHoveredItem(null)}
+              className={`relative font-semibold text-base transition-colors duration-200 ${
+                isActive('/') 
+                  ? 'text-green-600' 
+                  : 'text-gray-700 hover:text-green-600'
+              }`}
             >
-              <span className="relative z-10 flex items-center gap-2">
-                <span>الرئيسية</span>
-                <div className={`w-2 h-2 bg-green-500 rounded-full transition-all duration-300 ${
-                  hoveredItem === 'home' ? 'scale-150 animate-pulse' : 'scale-100'
-                }`}></div>
-              </span>
-              <div className={`absolute inset-0 bg-green-100 rounded-xl transition-all duration-300 ${
-                hoveredItem === 'home' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-              }`}></div>
-            </Link>
-            
-            <Link 
-              to="/services" 
-              className="relative text-gray-700 hover:text-green-600 transition-all duration-300 font-semibold text-sm md:text-base py-3 px-4 rounded-xl hover:bg-green-50 group transform hover:scale-105 active:scale-95 cursor-pointer"
-              onClick={() => handleItemClick('الخدمات')}
-              onMouseEnter={() => setHoveredItem('services')}
-              onMouseLeave={() => setHoveredItem(null)}
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                <span>الخدمات</span>
-                <div className={`w-2 h-2 bg-green-500 rounded-full transition-all duration-300 ${
-                  hoveredItem === 'services' ? 'scale-150 animate-pulse' : 'scale-100'
-                }`}></div>
-              </span>
-              <div className={`absolute inset-0 bg-green-100 rounded-xl transition-all duration-300 ${
-                hoveredItem === 'services' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-              }`}></div>
+              الرئيسية
+              {isActive('/') && (
+                <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-green-600 rounded-full"></div>
+              )}
             </Link>
             
             <Link 
               to="/packages" 
-              className="relative text-gray-700 hover:text-green-600 transition-all duration-300 font-semibold text-sm md:text-base py-3 px-4 rounded-xl hover:bg-green-50 group transform hover:scale-105 active:scale-95 cursor-pointer"
-              onClick={() => handleItemClick('الباقات')}
-              onMouseEnter={() => setHoveredItem('packages')}
-              onMouseLeave={() => setHoveredItem(null)}
+              className={`relative font-semibold text-base transition-colors duration-200 ${
+                isActive('/packages') 
+                  ? 'text-green-600' 
+                  : 'text-gray-700 hover:text-green-600'
+              }`}
             >
-              <span className="relative z-10 flex items-center gap-2">
-                <span>الباقات</span>
-                <div className={`w-2 h-2 bg-green-500 rounded-full transition-all duration-300 ${
-                  hoveredItem === 'packages' ? 'scale-150 animate-pulse' : 'scale-100'
-                }`}></div>
-              </span>
-              <div className={`absolute inset-0 bg-green-100 rounded-xl transition-all duration-300 ${
-                hoveredItem === 'packages' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-              }`}></div>
+              الباقات
+              {isActive('/packages') && (
+                <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-green-600 rounded-full"></div>
+              )}
             </Link>
             
             <Link 
-              to="/about-us" 
-              className="relative text-gray-700 hover:text-green-600 transition-all duration-300 font-semibold text-sm md:text-base py-3 px-4 rounded-xl hover:bg-green-50 group transform hover:scale-105 active:scale-95 cursor-pointer"
-              onClick={() => handleItemClick('من نحن')}
-              onMouseEnter={() => setHoveredItem('about')}
-              onMouseLeave={() => setHoveredItem(null)}
+              to="/services" 
+              className={`relative font-semibold text-base transition-colors duration-200 ${
+                isActive('/services') 
+                  ? 'text-green-600' 
+                  : 'text-gray-700 hover:text-green-600'
+              }`}
             >
-              <span className="relative z-10 flex items-center gap-2">
-                <span>من نحن</span>
-                <div className={`w-2 h-2 bg-green-500 rounded-full transition-all duration-300 ${
-                  hoveredItem === 'about' ? 'scale-150 animate-pulse' : 'scale-100'
-                }`}></div>
-              </span>
-              <div className={`absolute inset-0 bg-green-100 rounded-xl transition-all duration-300 ${
-                hoveredItem === 'about' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-              }`}></div>
+              الخدمات
+              {isActive('/services') && (
+                <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-green-600 rounded-full"></div>
+              )}
+            </Link>
+            
+            <Link 
+              to="/about" 
+              className={`relative font-semibold text-base transition-colors duration-200 ${
+                isActive('/about') 
+                  ? 'text-green-600' 
+                  : 'text-gray-700 hover:text-green-600'
+              }`}
+            >
+              من نحن
+              {isActive('/about') && (
+                <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-green-600 rounded-full"></div>
+              )}
             </Link>
             
             <Link 
               to="/contact" 
-              className="relative text-gray-700 hover:text-green-600 transition-all duration-300 font-semibold text-sm md:text-base py-3 px-4 rounded-xl hover:bg-green-50 group transform hover:scale-105 active:scale-95 cursor-pointer"
-              onClick={() => handleItemClick('اتصل بنا')}
-              onMouseEnter={() => setHoveredItem('contact')}
-              onMouseLeave={() => setHoveredItem(null)}
+              className={`relative font-semibold text-base transition-colors duration-200 ${
+                isActive('/contact') 
+                  ? 'text-green-600' 
+                  : 'text-gray-700 hover:text-green-600'
+              }`}
             >
-              <span className="relative z-10 flex items-center gap-2">
-                <span>اتصل بنا</span>
-                <div className={`w-2 h-2 bg-green-500 rounded-full transition-all duration-300 ${
-                  hoveredItem === 'contact' ? 'scale-150 animate-pulse' : 'scale-100'
-                }`}></div>
-              </span>
-              <div className={`absolute inset-0 bg-green-100 rounded-xl transition-all duration-300 ${
-                hoveredItem === 'contact' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-              }`}></div>
-            </Link>
-            
-            {/* Auth Buttons */}
-            <div className="flex items-center gap-3">
-              {isAuth ? (
-                <>
-                  <Link 
-                    to="/profile" 
-                    className="btn btn-primary flex items-center gap-2 text-sm transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
-                    onClick={() => handleItemClick('الملف الشخصي')}
-                    onMouseEnter={() => setHoveredItem('profile')}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <User className={`h-4 w-4 transition-all duration-300 ${
-                      hoveredItem === 'profile' ? 'scale-110 rotate-12' : 'scale-100 rotate-0'
-                    }`} />
-                    <span className="hidden md:inline">الملف الشخصي</span>
-                  </Link>
-                  <button 
-                    onClick={() => { handleLogout(); handleItemClick('تسجيل الخروج'); }} 
-                    className="btn bg-red-600 hover:bg-red-700 text-white flex items-center gap-2 text-sm transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
-                    onMouseEnter={() => setHoveredItem('logout')}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <span className="hidden md:inline">تسجيل الخروج</span>
-                  </button>
-                </>
-              ) : (
-                <>
-                  <Link 
-                    to="/signup" 
-                    className="btn bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2 text-sm transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
-                    onClick={() => handleItemClick('إنشاء حساب')}
-                    onMouseEnter={() => setHoveredItem('signup')}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <Zap className={`h-4 w-4 transition-all duration-300 ${
-                      hoveredItem === 'signup' ? 'scale-110 animate-pulse' : 'scale-100'
-                    }`} />
-                    <span className="hidden md:inline">إنشاء حساب</span>
-                  </Link>
-                  <Link 
-                    to="/login" 
-                    className="btn btn-primary flex items-center gap-2 text-sm transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
-                    onClick={() => handleItemClick('تسجيل الدخول')}
-                    onMouseEnter={() => setHoveredItem('login')}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <User className={`h-4 w-4 transition-all duration-300 ${
-                      hoveredItem === 'login' ? 'scale-110 rotate-12' : 'scale-100 rotate-0'
-                    }`} />
-                    <span className="hidden md:inline">تسجيل الدخول</span>
-                  </Link>
-                </>
+              اتصل بنا
+              {isActive('/contact') && (
+                <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-green-600 rounded-full"></div>
               )}
-            </div>
+            </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* الأزرار - للدسكتوب */}
+          <div className="hidden lg:flex items-center gap-4">
+            {/* أيقونات التطبيقات */}
+            {/* تم حذف أيقونات جوجل بلاي وأبل ستور */}
+            
+            {/* أزرار تسجيل الدخول وإنشاء الحساب */}
+                  <Link 
+              to="/login" 
+              className="flex items-center gap-2 text-gray-700 hover:text-green-600 transition-colors font-semibold"
+            >
+              <LogIn className="w-4 h-4" />
+              <span>تسجيل الدخول</span>
+                  </Link>
+            
+                  <Link 
+                    to="/signup" 
+              className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            >
+              إنشاء الحساب
+                  </Link>
+            </div>
+
+          {/* زر القائمة - للموبايل */}
           <button
-            onClick={() => { toggleMenu(); handleItemClick('Menu'); }}
-            className="lg:hidden p-3 rounded-2xl bg-green-50 hover:bg-green-100 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
-            onMouseEnter={() => setHoveredItem('menu')}
-            onMouseLeave={() => setHoveredItem(null)}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 rounded-lg bg-green-50 hover:bg-green-100 transition-colors"
           >
-            {isMenuOpen ? (
-              <X className={`h-6 w-6 text-primary transition-all duration-300 ${
-                hoveredItem === 'menu' ? 'scale-110 rotate-90' : 'scale-100 rotate-0'
-              }`} />
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6 text-green-600" />
             ) : (
-              <Menu className={`h-6 w-6 text-primary transition-all duration-300 ${
-                hoveredItem === 'menu' ? 'scale-110' : 'scale-100'
-              }`} />
+              <Menu className="w-6 h-6 text-green-600" />
             )}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden mb-4 animate-slide-down">
-            <div className="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden">
-              <nav className="flex flex-col p-6">
+        {/* القائمة المنسدلة - للموبايل */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden bg-white border-t border-green-200 shadow-lg">
+            <div className="px-4 py-6 space-y-4">
+              
+              {/* أيقونات التطبيقات */}
+              {/* تم حذف أيقونات جوجل بلاي وأبل ستور من القائمة المنسدلة */}
+
+              {/* القائمة الرئيسية */}
+              <nav className="space-y-2">
                 <Link 
                   to="/" 
-                  className="flex items-center gap-4 p-4 rounded-2xl hover:bg-green-50 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer" 
-                  onClick={() => { closeMenu(); handleItemClick('الرئيسية'); }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block px-4 py-3 rounded-xl font-semibold transition-colors ${
+                    isActive('/') 
+                      ? 'bg-green-100 text-green-700' 
+                      : 'text-gray-700 hover:bg-green-50'
+                  }`}
                 >
-                  <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-                  <span className="text-lg font-semibold text-gray-700">الرئيسية</span>
+                  الرئيسية
                 </Link>
-                <Link 
-                  to="/services" 
-                  className="flex items-center gap-4 p-4 rounded-2xl hover:bg-green-50 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer" 
-                  onClick={() => { closeMenu(); handleItemClick('الخدمات'); }}
-                >
-                  <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-                  <span className="text-lg font-semibold text-gray-700">الخدمات</span>
-                </Link>
+                
                 <Link 
                   to="/packages" 
-                  className="flex items-center gap-4 p-4 rounded-2xl hover:bg-green-50 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer" 
-                  onClick={() => { closeMenu(); handleItemClick('الباقات'); }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block px-4 py-3 rounded-xl font-semibold transition-colors ${
+                    isActive('/packages') 
+                      ? 'bg-green-100 text-green-700' 
+                      : 'text-gray-700 hover:bg-green-50'
+                  }`}
                 >
-                  <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-                  <span className="text-lg font-semibold text-gray-700">الباقات</span>
+                  الباقات
                 </Link>
+                
                 <Link 
-                  to="/about-us" 
-                  className="flex items-center gap-4 p-4 rounded-2xl hover:bg-green-50 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer" 
-                  onClick={() => { closeMenu(); handleItemClick('من نحن'); }}
+                  to="/services" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block px-4 py-3 rounded-xl font-semibold transition-colors ${
+                    isActive('/services') 
+                      ? 'bg-green-100 text-green-700' 
+                      : 'text-gray-700 hover:bg-green-50'
+                  }`}
                 >
-                  <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-                  <span className="text-lg font-semibold text-gray-700">من نحن</span>
+                  الخدمات
                 </Link>
+                
+                <Link 
+                  to="/about" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block px-4 py-3 rounded-xl font-semibold transition-colors ${
+                    isActive('/about') 
+                      ? 'bg-green-100 text-green-700' 
+                      : 'text-gray-700 hover:bg-green-50'
+                  }`}
+                >
+                  من نحن
+                </Link>
+                
                 <Link 
                   to="/contact" 
-                  className="flex items-center gap-4 p-4 rounded-2xl hover:bg-green-50 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer" 
-                  onClick={() => { closeMenu(); handleItemClick('اتصل بنا'); }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block px-4 py-3 rounded-xl font-semibold transition-colors ${
+                    isActive('/contact') 
+                      ? 'bg-green-100 text-green-700' 
+                      : 'text-gray-700 hover:bg-green-50'
+                  }`}
                 >
-                  <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-                  <span className="text-lg font-semibold text-gray-700">اتصل بنا</span>
+                  اتصل بنا
                 </Link>
-                {/* Mobile Auth Buttons */}
-                <div className="pt-4 border-t border-gray-200">
-                  {isAuth ? (
-                    <>
-                      <Link 
-                        to="/profile" 
-                        className="btn btn-primary flex items-center gap-3 mb-3 w-full justify-center transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer" 
-                        onClick={() => { closeMenu(); handleItemClick('الملف الشخصي'); }}
-                      >
-                        <User className="h-5 w-5" />
-                        <span>الملف الشخصي</span>
-                      </Link>
-                      <button 
-                        onClick={() => { handleLogout(); closeMenu(); handleItemClick('تسجيل الخروج'); }} 
-                        className="btn bg-red-600 hover:bg-red-700 text-white w-full justify-center transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
-                      >
-                        <span>تسجيل الخروج</span>
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <Link 
-                        to="/login" 
-                        className="btn btn-primary flex items-center gap-3 mb-3 w-full justify-center transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer" 
-                        onClick={() => { closeMenu(); handleItemClick('تسجيل الدخول'); }}
-                      >
-                        <User className="h-5 w-5" />
-                        <span>تسجيل الدخول</span>
-                      </Link>
-                      <Link 
-                        to="/signup" 
-                        className="btn bg-blue-600 hover:bg-blue-700 text-white w-full justify-center transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer" 
-                        onClick={() => { closeMenu(); handleItemClick('إنشاء حساب'); }}
-                      >
-                        <Zap className="h-5 w-5" />
-                        <span>إنشاء حساب</span>
-                      </Link>
-                    </>
-                  )}
-                </div>
-                {/* Mobile Contact */}
-                <div className="pt-4 border-t border-gray-200">
-                  <a 
-                    href="tel:+966568091983" 
-                    className="flex items-center gap-3 p-4 rounded-2xl bg-green-50 hover:bg-green-100 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
-                    onClick={() => handleItemClick('اتصال')}
-                  >
-                    <Phone className="h-5 w-5 text-green-600 animate-pulse" />
-                    <span className="text-green-700 font-semibold" dir="ltr">+966 56 890 9183</span>
-                  </a>
-                </div>
               </nav>
+
+              {/* أزرار تسجيل الدخول وإنشاء الحساب */}
+              <div className="space-y-3 pt-4 border-t border-green-200">
+                      <Link 
+                  to="/login" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block w-full bg-white border-2 border-green-600 text-green-600 font-bold text-center px-6 py-3 rounded-xl hover:bg-green-50 transition-colors"
+                >
+                  تسجيل الدخول
+                      </Link>
+                
+                      <Link 
+                  to="/signup" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold text-center px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                >
+                  إنشاء الحساب
+                      </Link>
+              </div>
+
+              {/* معلومات إضافية */}
+              <div className="flex items-center justify-center gap-4 pt-4 border-t border-green-200">
+                <div className="flex items-center gap-1">
+                  <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                  <span className="text-sm font-semibold text-gray-700">4.9</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Shield className="w-4 h-4 text-green-600" />
+                  <span className="text-sm font-semibold text-gray-700">خدمة موثقة</span>
+                </div>
+              </div>
             </div>
           </div>
         )}

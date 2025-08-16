@@ -1,190 +1,197 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Star, Download, Phone, ArrowRight, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { 
+  ArrowRight, Star, CheckCircle, Car, Clock, MapPin, Smartphone, Download, QrCode, Timer, Check
+} from 'lucide-react';
 import logo from '../assets/logo.png';
-import googlePlay from '../assets/google-play-badge.png';
-import appStore from '../assets/app-store-badge.png';
-
-const features = [
-  'شراء الباقات بسهولة',
-  'مسح QR Code سريع',
-  'تتبع الغسلات المتبقية',
-];
-
-const heroTypewriter = [
-  'مرحباً بك في PayPass',
-  'غسيل سيارتك أصبح أسهل',
-  'جرب الخدمة الذكية الآن',
-  'وفر وقتك وكن مطمئناً',
-  'جودة وراحة في كل غسلة'
-];
+import googlePlayBadge from '../assets/google-play-badge.png';
+import appStoreBadge from '../assets/app-store-badge.png';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [currentFeature, setCurrentFeature] = useState(0);
-  const [typedHero, setTypedHero] = useState('');
-  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
-  const [typedText, setTypedText] = useState('');
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-
-  const welcomeTexts = [
-    'مرحباً بك في PayPass',
-    'أفضل خدمة غسيل سيارات',
-    'تجربة استثنائية تنتظرك'
-  ];
-
-  // التمرير إلى أعلى الصفحة عند تحميل المكون
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   useEffect(() => {
     setIsVisible(true);
-    // تغيير الميزات كل 3 ثوان
-    const interval = setInterval(() => {
-      setCurrentFeature((prev) => (prev + 1) % features.length);
-    }, 3000);
-    return () => clearInterval(interval);
   }, []);
 
-  // Typewriter effect for hero main title
-  useEffect(() => {
-    const current = heroTypewriter[currentHeroIndex];
-    let charIndex = 0;
-    setTypedHero('');
-    const typeInterval = setInterval(() => {
-      if (charIndex <= current.length) {
-        setTypedHero(current.slice(0, charIndex));
-        charIndex++;
-      } else {
-        clearInterval(typeInterval);
-        setTimeout(() => {
-          setCurrentHeroIndex((prev) => (prev + 1) % heroTypewriter.length);
-        }, 2000);
-      }
-    }, 90);
-    return () => clearInterval(typeInterval);
-  }, [currentHeroIndex]);
-
-  // تأثير الكتابة للنص الترحيبي (الثانوي)
-  useEffect(() => {
-    if (isVisible) {
-      const currentText = welcomeTexts[currentTextIndex];
-      let charIndex = 0;
-      const typeInterval = setInterval(() => {
-        if (charIndex <= currentText.length) {
-          setTypedText(currentText.slice(0, charIndex));
-          charIndex++;
-        } else {
-          clearInterval(typeInterval);
-          setTimeout(() => {
-            setCurrentTextIndex((prev) => (prev + 1) % welcomeTexts.length);
-            setTypedText('');
-          }, 2000);
-        }
-      }, 100);
-      return () => clearInterval(typeInterval);
-    }
-  }, [isVisible, currentTextIndex]);
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-green-50 to-white">
-      <div className="container relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-20 min-h-[70vh]">
-          {/* النص والعنوان */}
-          <div className={`flex-1 flex flex-col items-center lg:items-start justify-center px-4 lg:px-0 order-2 lg:order-1 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="mb-4">
-              {/* نص ترحيبي متحرك */}
-              <div className="mb-6 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-                <div className="h-8 flex items-center justify-center lg:justify-start">
-                  <span className="text-lg text-green-600 font-medium">
-                    {typedText}
-                    <span className="animate-pulse">|</span>
-                  </span>
-                </div>
-              </div>
-
-              <div className="mb-6 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-                <span className="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:rotate-1 active:scale-95 cursor-pointer">
-                  <Sparkles className="inline w-5 h-5 mr-2 animate-spin group-hover:text-yellow-300 transition-colors duration-300" />
-                  الحل الأفضل لغسيل السيارات
-                </span>
-              </div>
+    <section className="relative min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-green-200 overflow-hidden">
+      {/* المحتوى الرئيسي */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 lg:pb-16">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 xl:gap-16 min-h-[calc(100vh-8rem)] sm:min-h-[calc(100vh-10rem)] lg:min-h-[calc(100vh-12rem)]">
+          
+          {/* النص الرئيسي - على اليسار */}
+          <div className="flex-1 text-center lg:text-right order-2 lg:order-1 w-full max-w-2xl lg:max-w-none">
+            <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
               
-              <h1 className="text-5xl md:text-6xl font-extrabold text-right mb-6 leading-tight animate-fade-in-up transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 hover:text-green-600" style={{animationDelay: '0.4s'}}>
-                <span className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent animate-pulse">{typedHero}<span className="animate-pulse">|</span></span>
-              </h1>
-              
-              <p className="text-gray-600 text-lg mb-8 text-right animate-fade-in-up transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 hover:text-green-600 font-bold" style={{animationDelay: '0.6s'}}>
-                نظام PayPass الذكي يوفر لك تجربة غسيل سيارات متطورة وسهلة. اشترِ باقتك، امسح الكود، واستمتع بخدمة استثنائية.
-              </p>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 mb-8 w-full lg:w-auto animate-fade-in-up" style={{animationDelay: '0.8s'}}>
-              <a href="/packages" className="group bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold rounded-xl px-8 py-4 shadow-lg transition-all duration-300 text-lg text-center transform hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2 hover:rotate-1">
-                <span>احجز خدمتك الآن</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a href="tel:" className="group bg-white border-2 border-green-600 text-green-700 font-bold rounded-xl px-8 py-4 shadow-lg transition-all duration-300 text-lg text-center flex items-center justify-center gap-2 hover:bg-green-50 transform hover:scale-105 hover:rotate-1">
-                <Phone className="w-5 h-5 animate-pulse" />
-                <span>اتصل بنا</span>
-              </a>
-            </div>
-            
-            <div className="flex gap-8 mt-4 w-full lg:w-auto justify-center lg:justify-start animate-fade-in-up" style={{animationDelay: '1s'}}>
-              <div className="text-center group hover:scale-110 active:scale-95 transition-transform duration-300 cursor-pointer" onClick={() => setCurrentFeature(0)}>
-                <div className="text-3xl font-bold text-gray-800 group-hover:text-green-600 group-active:text-green-700 transition-colors">+50</div>
-                <div className="text-gray-500 text-sm font-bold group-hover:text-green-600 transition-colors">فرع في المملكة</div>
-              </div>
-              <div className="text-center group hover:scale-110 active:scale-95 transition-transform duration-300 cursor-pointer" onClick={() => setCurrentFeature(1)}>
-                <div className="text-3xl font-bold text-gray-800 group-hover:text-green-600 group-active:text-green-700 transition-colors">+10K</div>
-                <div className="text-gray-500 text-sm font-bold group-hover:text-green-600 transition-colors">عميل راضي</div>
-              </div>
-              <div className="text-center group hover:scale-110 active:scale-95 transition-transform duration-300 cursor-pointer" onClick={() => setCurrentFeature(2)}>
-                <div className="text-3xl font-bold text-gray-800 flex items-center justify-center gap-1 group-hover:text-green-600 group-active:text-green-700 transition-colors">
-                  4.9 <Star className="w-5 h-5 text-yellow-400 animate-pulse group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <div className="text-gray-500 text-sm font-bold group-hover:text-green-600 transition-colors">تقييم</div>
-              </div>
-            </div>
-          </div>
-
-          {/* البطاقة الخضراء المائلة */}
-          <div className={`flex-1 flex justify-center items-center order-1 lg:order-2 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{animationDelay: '0.3s'}}>
-            <div className="relative group">
-              <div className="relative bg-white rounded-3xl shadow-2xl p-0 transform transition-all duration-500 hover:scale-105 hover:rotate-2 hover:shadow-3xl" style={{ width: 410, minHeight: 520 }}>
-                <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl m-8 p-8 flex flex-col items-center relative overflow-hidden" style={{ minHeight: 340 }}>
-                  {/* أيقونة التطبيق */}
-                  <div className="flex items-center justify-center mb-3 relative z-10">
-                    <div className="relative group/logo">
-                      <img src={logo} alt="شعار التطبيق" className="w-16 h-16 object-contain drop-shadow-lg brightness-0 invert animate-bounce group-hover/logo:scale-110 transition-transform duration-300" style={{animationDelay: '0.5s'}} />
+              {/* العنوان الرئيسي */}
+              <div className="relative mb-4 sm:mb-6 group">
+                <div className="absolute inset-0 bg-gradient-to-r from-green-100/50 to-blue-100/50 rounded-3xl blur-xl transform scale-105 group-hover:scale-110 transition-transform duration-500"></div>
+                <div className="relative p-3 sm:p-4 md:p-6 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-green-200/50 group-hover:shadow-3xl group-hover:border-green-300/50 transition-all duration-500">
+                  <div className="flex items-center justify-center lg:justify-start gap-2 sm:gap-4 mb-2">
+                    <div className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 animate-pulse">
+                      <Car className="w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
                     </div>
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+                      <span className="block text-green-600 mb-1 sm:mb-2 md:mb-3 bg-gradient-to-r from-green-500 to-green-700 bg-clip-text text-transparent drop-shadow-lg group-hover:drop-shadow-2xl transition-all duration-300 animate-pulse">غسيل السيارات</span>
+                      <span className="block text-gray-800 bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-transparent drop-shadow-lg group-hover:drop-shadow-2xl transition-all duration-300">الذكي مع PayPass</span>
+                    </h1>
                   </div>
-                  <div className="text-white text-2xl font-bold mb-1 relative z-10">تطبيق PayPass</div>
-                  <div className="text-green-100 text-sm mb-4 relative z-10">متوفر على Android و iOS</div>
-                  <div className="flex gap-2 mb-2 relative z-10">
-                    <a href="https://play.google.com/store/apps" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-300 hover:rotate-2">
-                      <img src={googlePlay} alt="Google Play" className="h-12 drop-shadow-lg" />
-                    </a>
-                    <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-300 hover:rotate-2">
-                      <img src={appStore} alt="App Store" className="h-12 drop-shadow-lg" />
-                    </a>
+                  {/* شريط مميز تحت العنوان */}
+                  <div className="flex justify-center lg:justify-start mt-2 sm:mt-4">
+                    <div className="h-1 w-24 sm:w-32 md:w-48 bg-gradient-to-r from-green-500 to-green-600 rounded-full shadow-lg group-hover:w-32 sm:group-hover:w-40 md:group-hover:w-56 transition-all duration-500 animate-pulse"></div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* الوصف */}
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mb-4 sm:mb-6 md:mb-8 lg:mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                استمتع بتجربة غسيل سيارات ذكية ومتطورة. حجز سريع، تتبع مباشر، وخدمة عالية الجودة
+              </p>
+              
+              {/* المميزات السريعة */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8 lg:mb-10">
+                <div className="flex items-center gap-1 sm:gap-2 bg-white/80 backdrop-blur-sm rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-2 shadow-lg border border-green-200">
+                  <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-green-600" style={{ fill: 'white' }} />
+                  <span className="text-xs sm:text-sm md:text-base font-semibold text-gray-800">حجز فوري</span>
+                </div>
+                <div className="flex items-center gap-1 sm:gap-2 bg-white/80 backdrop-blur-sm rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-2 shadow-lg border border-green-200">
+                  <Clock className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-green-600" style={{ fill: 'white' }} />
+                  <span className="text-xs sm:text-sm md:text-base font-semibold text-gray-800">تتبع مباشر</span>
+                </div>
+                <div className="flex items-center gap-1 sm:gap-2 bg-white/80 backdrop-blur-sm rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-2 shadow-lg border border-green-200">
+                  <Star className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-green-600" style={{ fill: 'white' }} />
+                  <span className="text-xs sm:text-sm md:text-base font-semibold text-gray-800">جودة عالية</span>
+                </div>
+              </div>
+                  
+              {/* الأزرار */}
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 justify-center lg:justify-start">
+                <Link 
+                  to="/packages" 
+                  className="group bg-green-500 hover:bg-green-600 text-white font-bold text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2 md:gap-3"
+                  style={{ backgroundColor: '#22c55e' }}
+                >
+                  <span>احجز الآن</span>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" style={{ fill: 'white' }} />
+                </Link>
+                
+                <Link 
+                  to="/about" 
+                  className="group bg-white/90 backdrop-blur-sm hover:bg-white text-gray-800 font-bold text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-green-200 hover:border-green-300 flex items-center justify-center gap-1 sm:gap-2 md:gap-3"
+                >
+                  <span>اعرف المزيد</span>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" style={{ fill: 'white' }} />
+                </Link>
+              </div>
+                  
+              {/* إحصائيات سريعة */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 md:gap-6 mt-6 sm:mt-8 md:mt-10 lg:mt-12">
+                <div className="text-center">
+                  <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-green-600 mb-1">10K+</div>
+                  <div className="text-xs sm:text-sm md:text-base text-gray-600">عميل راضي</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-green-600 mb-1">فرع واحد</div>
+                  <div className="text-xs sm:text-sm text-gray-600">حالياً وقريباً في جميع أنحاء المملكة</div>
+                </div>
+              </div>
+            </div>
+                  </div>
+
+          {/* بطاقة التطبيق الجديدة - على اليمين */}
+          <div className="flex-1 flex justify-center items-center w-full max-w-sm sm:max-w-lg xl:max-w-xl order-1 lg:order-2 px-2 sm:px-4">
+            <div className={`relative group w-full max-w-sm sm:max-w-md xl:max-w-lg transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+              <div className="app-card relative bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl p-0 transform transition-all duration-500 hover:shadow-2xl sm:hover:shadow-3xl hover:scale-105 overflow-hidden">
+                
+                {/* القسم العلوي الأخضر */}
+                <div className="relative bg-gradient-to-br from-green-500 via-green-600 to-green-700 p-4 sm:p-6 md:p-8 text-center">
+                  {/* المحتوى */}
+                  <div className="relative z-10">
+                    {/* أيقونة الهاتف */}
+                    <div className="flex justify-center mb-3 sm:mb-4">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl flex items-center justify-center border border-white/50 shadow-lg">
+                        <img src={logo} alt="PayPass Logo" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain" />
+                      </div>
+                    </div>
+                    
+                    {/* اسم التطبيق */}
+                    <h3 className="text-white font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-1 sm:mb-2">PAYPASS</h3>
+                    
+                    {/* العنوان الرئيسي */}
+                    <h4 className="text-white font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl mb-1 sm:mb-2">تطبيق PayPass</h4>
+                    
+                    {/* النص الفرعي */}
+                    <p className="text-green-100 text-sm sm:text-base md:text-lg mb-4 sm:mb-6">متوفر على Android و iOS</p>
+                    
+                    {/* أزرار التحميل */}
+                    <div className="flex flex-col items-center sm:flex-row gap-1 sm:gap-2 justify-center mt-3 sm:mt-4">
+                      <a 
+                        href="https://apps.apple.com/app/paypass/id1234567890" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:opacity-80 transition-opacity"
+                      >
+                        <img src={appStoreBadge} alt="Download on the App Store" className="h-5 sm:h-6 md:h-7" />
+                      </a>
+                      <a 
+                        href="https://play.google.com/store/apps/details?id=com.paypass.app" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:opacity-80 transition-opacity"
+                      >
+                        <img src={googlePlayBadge} alt="Get it on Google Play" className="h-5 sm:h-6 md:h-7" />
+                      </a>
+                    </div>
                   </div>
                 </div>
                 
-                <div className="flex flex-col gap-4 mt-4 mb-8 px-10">
-                  {features.map((feature, idx) => (
-                    <div 
-                      key={idx} 
-                      className={`flex items-center gap-3 text-gray-700 text-lg transition-all duration-500 hover:scale-105 hover:translate-x-2 ${
-                        idx === currentFeature ? 'text-green-600 scale-105' : 'text-gray-600'
-                      }`}
-                    >
-                      <CheckCircle className={`w-6 h-6 transition-all duration-500 ${
-                        idx === currentFeature ? 'text-green-500 scale-110 animate-pulse' : 'text-green-400'
-                      }`} />
-                      <span className={idx === currentFeature ? 'font-semibold' : ''}>{feature}</span>
-              </div>
-                  ))}
+                {/* القسم الأوسط - المميزات */}
+                <div className="p-4 sm:p-6 md:p-8 bg-white">
+                  <div className="space-y-3 sm:space-y-4 md:space-y-6">
+                    {/* الميزة الأولى */}
+                    <div className="flex items-center gap-2 sm:gap-4">
+                      <div className="flex-1 text-right">
+                        <h5 className="font-bold text-gray-800 text-sm sm:text-base md:text-lg">شراء الباقات بسهولة</h5>
+                        <p className="text-gray-600 text-xs sm:text-sm md:text-base">اشتر باقتك المفضلة بضغطة واحدة</p>
+                      </div>
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <Download className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-green-600" style={{ fill: 'white' }} />
+                      </div>
+                    </div>
+                    
+                    {/* الميزة الثانية */}
+                    <div className="flex items-center gap-2 sm:gap-4">
+                      <div className="flex-1 text-right">
+                        <h5 className="font-bold text-gray-800 text-sm sm:text-base md:text-lg">مسح QR Code سريع</h5>
+                        <p className="text-gray-600 text-xs sm:text-sm md:text-base">امسح الكود واستمتع بالخدمة فورا</p>
+                      </div>
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <QrCode className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-green-600" style={{ fill: 'white' }} />
+                      </div>
+                    </div>
+                    
+                    {/* الميزة الثالثة */}
+                    <div className="flex items-center gap-2 sm:gap-4">
+                      <div className="flex-1 text-right">
+                        <h5 className="font-bold text-gray-800 text-sm sm:text-base md:text-lg">تتبع الغسلات المتبقية</h5>
+                        <p className="text-gray-600 text-xs sm:text-sm md:text-base">اعرف عدد الغسلات والأيام المتبقية</p>
+                      </div>
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <Timer className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-green-600" style={{ fill: 'white' }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* القسم السفلي */}
+                <div className="p-3 sm:p-4 md:p-6 bg-green-50">
+                  <div className="flex items-center justify-center gap-1 sm:gap-2">
+                    <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-100 rounded-full flex items-center justify-center">
+                      <Check className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" style={{ fill: 'white' }} />
+                    </div>
+                    <span className="text-green-700 font-semibold text-sm sm:text-base md:text-lg">متوافق مع جميع الأجهزة</span>
+                  </div>
                 </div>
               </div>
             </div>

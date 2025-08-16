@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Phone, Mail, MapPin, Clock, MessageCircle, Send, Users, Star, Shield, Zap, Globe, Heart, Award, CheckCircle, ArrowRight, Download, Video, FileText, Headphones, Smartphone, Monitor, Globe as GlobeIcon, DollarSign } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import LoadingSpinner from './common/LoadingSpinner';
 import PageHeader from './common/PageHeader';
 import AnimatedCard from './common/AnimatedCard';
-import LoadingSpinner from './common/LoadingSpinner';
 import SearchBar from './common/SearchBar';
 import '../components/common/styles.css';
 
@@ -45,7 +46,7 @@ const Contact = () => {
     {
       icon: <Phone className="h-8 w-8" />,
       title: "اتصل بنا",
-      subtitle: "خدمة العملاء 24/7",
+              subtitle: "خدمة العملاء المتخصصة",
       primary: <span dir="ltr">+966 56 810 9183</span>,
       secondary: <span dir="ltr">+966 11 234 5678</span>,
       color: "from-blue-500 to-blue-600",
@@ -69,7 +70,7 @@ const Contact = () => {
       title: "الدردشة المباشرة",
       subtitle: "رد فوري",
       primary: "متاحة الآن",
-      secondary: "24/7",
+              secondary: "7-11",
       color: "from-purple-500 to-purple-600",
       bgColor: "bg-purple-50",
       action: "ابدأ الدردشة",
@@ -85,7 +86,7 @@ const Contact = () => {
   ];
 
   const supportStats = [
-    { icon: <Users className="h-6 w-6" />, value: "50K+", label: "عميل راضي" },
+    { icon: <Users className="h-6 w-6" />, value: "10K+", label: "عميل راضي" },
     { icon: <Star className="h-6 w-6" />, value: "4.9", label: "تقييم متوسط" },
     { icon: <Clock className="h-6 w-6" />, value: "< 2 د", label: "وقت الاستجابة" },
     { icon: <CheckCircle className="h-6 w-6" />, value: "99%", label: "معدل الحل" }
@@ -344,11 +345,11 @@ const Contact = () => {
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
                         <CheckCircle className="h-5 w-5 text-green-600" />
-                        <span className="text-gray-700">رد خلال 24 ساعة</span>
+                        <span className="text-gray-700">رد سريع</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="h-5 w-5 text-green-600" />
-                        <span className="text-gray-700">دعم فني متخصص</span>
+                        <span className="text-gray-700">خدمة عملاء متخصصة</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="h-5 w-5 text-green-600" />
@@ -439,7 +440,7 @@ const Contact = () => {
                   </div>
                   
                   <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 text-white">
-                    <h3 className="text-xl font-bold mb-6">خدمة العملاء 24/7</h3>
+                    <h3 className="text-xl font-bold mb-6">خدمة العملاء المتخصصة</h3>
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         <Phone className="h-5 w-5" />

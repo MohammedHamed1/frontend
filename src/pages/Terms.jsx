@@ -62,7 +62,7 @@ const Terms = () => {
       title: 'شروط الحجز',
       icon: FaCalendarAlt,
       content: [
-        'يجب الحجز مسبقاً قبل 24 ساعة على الأقل',
+        'يجب الحجز مسبقاً قبل ساعة على الأقل',
         'يمكن إلغاء الحجز مجاناً قبل 12 ساعة من الموعد',
         'في حالة عدم الحضور، سيتم خصم رسوم إلغاء',
         'يمكن تغيير الموعد مجاناً قبل 6 ساعات من الحجز'
@@ -131,7 +131,7 @@ const Terms = () => {
       type: 'success',
       icon: FaCheckCircle,
       title: 'ضمان الجودة',
-      content: 'نضمن جودة الخدمة ورضا العملاء بنسبة 100%'
+      content: 'نضمن جودة الخدمة ورضا العملاء'
     }
   ];
 
@@ -284,8 +284,8 @@ const Terms = () => {
                           }`}>
                             <span className="text-white font-bold text-sm">{index + 1}</span>
                           </div>
-                          <p className={`text-gray-700 font-bold leading-relaxed transition-all duration-300 ${
-                            hoveredItem === `item-${section.id}-${index}` ? 'text-gray-800 scale-105' : ''
+                          <p className={`text-gray-500 text-sm leading-relaxed transition-all duration-300 ${
+                            hoveredItem === `item-${section.id}-${index}` ? 'text-gray-600 scale-105' : ''
                           }`} style={{fontFamily: 'Cairo, sans-serif'}}>
                             {item}
                           </p>

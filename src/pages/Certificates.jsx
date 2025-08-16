@@ -241,7 +241,7 @@ const Certificates = () => {
     { number: '25+', label: 'شهادة معتمدة', icon: FaCertificate },
     { number: '15+', label: 'جائزة حصل عليها', icon: FaTrophy },
     { number: '10+', label: 'معيار أمان', icon: FaShieldAlt },
-    { number: '100%', label: 'امتثال للمعايير', icon: FaCheckCircle }
+    { number: 'مكتمل', label: 'امتثال للمعايير', icon: FaCheckCircle }
   ];
 
   const handleItemClick = (itemName) => {

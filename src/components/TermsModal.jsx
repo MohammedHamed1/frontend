@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
-const TermsModal = ({ onClose, onAccept }) => {
+const TermsModal = ({ onAccept }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   // التمرير إلى أعلى الصفحة عند تحميل المكون
@@ -27,12 +27,7 @@ const TermsModal = ({ onClose, onAccept }) => {
     }, 300);
   };
 
-  const handleClose = () => {
-    setIsVisible(false);
-    setTimeout(() => {
-      onClose();
-    }, 300);
-  };
+
 
   if (!isVisible) return null;
 
@@ -68,16 +63,10 @@ const TermsModal = ({ onClose, onAccept }) => {
             </a>
           </div>
 
-          <div className="flex gap-3">
-            <button
-              onClick={handleClose}
-              className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105"
-            >
-              رفض
-            </button>
+          <div className="flex justify-center">
             <button
               onClick={handleAccept}
-              className="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               أوافق على الشروط والأحكام
             </button>

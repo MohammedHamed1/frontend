@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useLoading } from './LoadingManager';
-import LoadingSpinner from './LoadingSpinner';
+import { motion } from 'framer-motion';
+import LoadingSpinner from './common/LoadingSpinner.jsx';
 
 const PageTransitionLoader = ({ children }) => {
   const location = useLocation();
@@ -45,7 +45,7 @@ const PageTransitionLoader = ({ children }) => {
   if (!showContent) {
     return (
       <div style={{position:'fixed',inset:0,zIndex:9999,background:'#fff',display:'flex',alignItems:'center',justifyContent:'center'}}>
-        <LoadingSpinner isLoading={true} message="جاري تحميل الصفحة..." />
+        <LoadingSpinner size="lg" color="green" text="جاري تحميل الصفحة..." />
       </div>
     );
   }

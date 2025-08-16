@@ -214,55 +214,71 @@ const Team = () => {
             <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
               <div 
                 className="mb-8 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300"
-                onClick={() => handleItemClick('فريقنا المتميز')}
-                onMouseEnter={() => setHoveredItem('team-title')}
+                onClick={() => handleItemClick('رؤيتنا')}
+                onMouseEnter={() => setHoveredItem('vision-title')}
                 onMouseLeave={() => setHoveredItem(null)}
               >
                 <h1 className={`text-5xl font-bold mb-6 text-gray-800 transition-all duration-300 ${
-                  hoveredItem === 'team-title' ? 'scale-105 text-green-600' : ''
+                  hoveredItem === 'vision-title' ? 'scale-105 text-green-600' : ''
                 }`} style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
-                  فريقنا المتميز
+                  رؤيتنا المستقبلية
                 </h1>
                 <p className={`text-xl text-gray-800 font-medium transition-all duration-300 ${
-                  hoveredItem === 'team-title' ? 'scale-105' : ''
+                  hoveredItem === 'vision-title' ? 'scale-105' : ''
                 }`} style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
-                  فريق محترف ومتخصص يضع نجاح عملائنا في المقام الأول
+                  نسعى لتصبح الشركة الرائدة في مجال غسيل السيارات الذكي في المملكة العربية السعودية
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className={`bg-gray-50 p-6 rounded-2xl cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
-                  hoveredItem === 'stats-1' ? 'bg-green-100 scale-105' : ''
-                } ${clickedItem === 'إحصائيات الفريق' ? 'bg-green-200 shadow-green-300' : ''}`}
-                onClick={() => handleItemClick('إحصائيات الفريق')}
-                onMouseEnter={() => setHoveredItem('stats-1')}
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                <div className={`bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
+                  hoveredItem === 'mission' ? 'from-green-100 to-green-200 scale-105' : ''
+                } ${clickedItem === 'مهمتنا' ? 'from-green-200 to-green-300 shadow-green-300' : ''}`}
+                onClick={() => handleItemClick('مهمتنا')}
+                onMouseEnter={() => setHoveredItem('mission')}
                 onMouseLeave={() => setHoveredItem(null)}
                 >
-                  <FaUsers className="text-4xl mx-auto mb-4 text-green-600" />
-                  <h3 className="text-2xl font-bold mb-2 text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>+80</h3>
-                  <p className="text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>موظف محترف</p>
+                  <FaRocket className="text-4xl mx-auto mb-4 text-green-600" />
+                  <h3 className="text-2xl font-bold mb-4 text-gray-800 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>مهمتنا</h3>
+                  <p className="text-gray-700 text-center leading-relaxed" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                    تقديم خدمات غسيل السيارات المتميزة بأحدث التقنيات وأعلى معايير الجودة، مع التركيز على راحة العملاء ورضاهم التام
+                  </p>
                 </div>
-                <div className={`bg-gray-50 p-6 rounded-2xl cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
-                  hoveredItem === 'stats-2' ? 'bg-green-100 scale-105' : ''
-                } ${clickedItem === 'خبرة الفريق' ? 'bg-green-200 shadow-green-300' : ''}`}
-                onClick={() => handleItemClick('خبرة الفريق')}
-                onMouseEnter={() => setHoveredItem('stats-2')}
+                <div className={`bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
+                  hoveredItem === 'values' ? 'from-green-100 to-green-200 scale-105' : ''
+                } ${clickedItem === 'قيمنا' ? 'from-green-200 to-green-300 shadow-green-300' : ''}`}
+                onClick={() => handleItemClick('قيمنا')}
+                onMouseEnter={() => setHoveredItem('values')}
                 onMouseLeave={() => setHoveredItem(null)}
                 >
-                  <FaAward className="text-4xl mx-auto mb-4 text-green-600" />
-                  <h3 className="text-2xl font-bold mb-2 text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>15+</h3>
-                  <p className="text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>سنة خبرة</p>
+                  <FaHeart className="text-4xl mx-auto mb-4 text-green-600" />
+                  <h3 className="text-2xl font-bold mb-4 text-gray-800 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>قيمنا</h3>
+                  <p className="text-gray-700 text-center leading-relaxed" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                    الجودة، الابتكار، الشفافية، والالتزام بتقديم أفضل تجربة للعملاء مع الحفاظ على البيئة والاستدامة
+                  </p>
                 </div>
-                <div className={`bg-gray-50 p-6 rounded-2xl cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
-                  hoveredItem === 'stats-3' ? 'bg-green-100 scale-105' : ''
-                } ${clickedItem === 'تقييم العملاء' ? 'bg-green-200 shadow-green-300' : ''}`}
-                onClick={() => handleItemClick('تقييم العملاء')}
-                onMouseEnter={() => setHoveredItem('stats-3')}
-                onMouseLeave={() => setHoveredItem(null)}
-                >
-                  <FaStar className="text-4xl mx-auto mb-4 text-green-600" />
-                  <h3 className="text-2xl font-bold mb-2 text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>4.9</h3>
-                  <p className="text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>تقييم العملاء</p>
+              </div>
+
+              <div className="bg-white p-8 rounded-2xl shadow-lg border border-green-100">
+                <h3 className="text-2xl font-bold mb-6 text-green-600 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  لماذا تختار PayPass؟
+                </h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <FaCheckCircle className="text-3xl mx-auto mb-3 text-green-500" />
+                    <h4 className="text-lg font-bold mb-2 text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>تقنيات متطورة</h4>
+                    <p className="text-gray-600 text-sm" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>أحدث معدات الغسيل الذكية</p>
+                  </div>
+                  <div className="text-center">
+                    <FaCheckCircle className="text-3xl mx-auto mb-3 text-green-500" />
+                    <h4 className="text-lg font-bold mb-2 text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>ساعات عمل مرنة</h4>
+                    <p className="text-gray-600 text-sm" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>من 7 صباحاً حتى 11 مساءً</p>
+                  </div>
+                  <div className="text-center">
+                    <FaCheckCircle className="text-3xl mx-auto mb-3 text-green-500" />
+                    <h4 className="text-lg font-bold mb-2 text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>ضمان الجودة</h4>
+                    <p className="text-gray-600 text-sm" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>نتائج مضمونة</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -365,104 +381,211 @@ const Team = () => {
             </div>
           </section>
 
-          {/* أعضاء الفريق */}
+          {/* خدماتنا المتميزة */}
           <section className={`mt-16 transition-all duration-1000 transform ${animateElements ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
             <div className="text-center mb-12">
               <h2 
                 className="text-4xl font-bold mb-6 text-green-600 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300"
-                onClick={() => handleItemClick('أعضاء الفريق')}
-                onMouseEnter={() => setHoveredItem('members-title')}
+                onClick={() => handleItemClick('خدماتنا المتميزة')}
+                onMouseEnter={() => setHoveredItem('services-title')}
                 onMouseLeave={() => setHoveredItem(null)}
                 style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
               >
-                أعضاء الفريق
+                خدماتنا المتميزة
               </h2>
               <p className="text-xl text-gray-800 max-w-3xl mx-auto" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
-                تعرف على القادة المحترفين الذين يقودون نجاح شركتنا
+                نقدم مجموعة شاملة من خدمات غسيل السيارات بأحدث التقنيات وأعلى معايير الجودة
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {teamMembers.map((member, index) => (
-                <motion.div
-                  key={member.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 ${
-                    hoveredItem === `member-${member.id}` ? 'shadow-green-200' : ''
-                  } ${clickedItem === `عضو الفريق ${member.name}` ? 'shadow-green-300' : ''}`}
-                  onClick={() => handleItemClick(`عضو الفريق ${member.name}`)}
-                  onMouseEnter={() => setHoveredItem(`member-${member.id}`)}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
-                  <div className="relative">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-64 object-cover"
-                    />
-                    <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                      {member.department}
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 text-green-600" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
-                      {member.name}
-                    </h3>
-                    <p className="text-lg font-bold mb-2 text-gray-800" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
-                      {member.position}
-                    </p>
-                    <p className="text-sm text-gray-800 mb-4" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
-                      {member.experience} خبرة
-                    </p>
-                    
-                    <p className="text-gray-800 mb-4 leading-relaxed" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
-                      {member.bio}
-                    </p>
-                    
-                    <div className="mb-4">
-                      <h4 className="font-bold text-gray-800 mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>المهارات:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {member.skills.map((skill, skillIndex) => (
-                          <span
-                            key={skillIndex}
-                            className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-bold"
-                            style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div className="flex justify-center space-x-4 space-x-reverse">
-                      <a
-                        href={`mailto:${member.email}`}
-                        className="text-green-600 hover:text-green-700 transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <FaEnvelope className="text-xl" />
-                      </a>
-                      <a
-                        href={`tel:${member.phone}`}
-                        className="text-green-600 hover:text-green-700 transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <FaPhone className="text-xl" />
-                      </a>
-                      <a
-                        href={member.linkedin}
-                        className="text-green-600 hover:text-green-700 transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <FaLinkedin className="text-xl" />
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 ${
+                  hoveredItem === 'service-1' ? 'shadow-green-200' : ''
+                } ${clickedItem === 'غسيل خارجي شامل' ? 'bg-green-50 shadow-green-300' : ''}`}
+                onClick={() => handleItemClick('غسيل خارجي شامل')}
+                onMouseEnter={() => setHoveredItem('service-1')}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
+                <div className={`w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 ${
+                  hoveredItem === 'service-1' ? 'scale-110' : ''
+                }`}>
+                  <FaShieldAlt className="text-white text-2xl" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-green-600 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  غسيل خارجي شامل
+                </h3>
+                <p className="text-gray-800 text-center leading-relaxed" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  غسيل شامل للخارج مع تنظيف الإطارات والعجلات وتلميع السطح للحصول على مظهر لامع
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 ${
+                  hoveredItem === 'service-2' ? 'shadow-green-200' : ''
+                } ${clickedItem === 'غسيل داخلي وخارجي' ? 'bg-green-50 shadow-green-300' : ''}`}
+                onClick={() => handleItemClick('غسيل داخلي وخارجي')}
+                onMouseEnter={() => setHoveredItem('service-2')}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
+                <div className={`w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 ${
+                  hoveredItem === 'service-2' ? 'scale-110' : ''
+                }`}>
+                  <FaStar className="text-white text-2xl" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-green-600 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  غسيل داخلي وخارجي
+                </h3>
+                <p className="text-gray-800 text-center leading-relaxed" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  تنظيف شامل للداخل والخارج مع تعطير المقصورة وتنظيف جميع الأسطح الداخلية
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 ${
+                  hoveredItem === 'service-3' ? 'shadow-green-200' : ''
+                } ${clickedItem === 'تلميع احترافي' ? 'bg-green-50 shadow-green-300' : ''}`}
+                onClick={() => handleItemClick('تلميع احترافي')}
+                onMouseEnter={() => setHoveredItem('service-3')}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
+                <div className={`w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 ${
+                  hoveredItem === 'service-3' ? 'scale-110' : ''
+                }`}>
+                  <FaAward className="text-white text-2xl" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-green-600 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  تلميع احترافي
+                </h3>
+                <p className="text-gray-800 text-center leading-relaxed" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  تلميع احترافي للطلاء مع إزالة الخدوش البسيطة وحماية السطح من العوامل الخارجية
+                </p>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* إحصائيات نجاحنا */}
+          <section className={`mt-16 transition-all duration-1000 transform ${animateElements ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
+            <div className="text-center mb-12">
+              <h2 
+                className="text-4xl font-bold mb-6 text-green-600 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300"
+                onClick={() => handleItemClick('إحصائيات نجاحنا')}
+                onMouseEnter={() => setHoveredItem('stats-title')}
+                onMouseLeave={() => setHoveredItem(null)}
+                style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
+              >
+                إحصائيات نجاحنا
+              </h2>
+              <p className="text-xl text-gray-800 max-w-3xl mx-auto" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                أرقام تتحدث عن نجاحنا وثقة عملائنا في خدماتنا المتميزة
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-4 gap-8">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1 }}
+                className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 ${
+                  hoveredItem === 'stat-1' ? 'shadow-green-200' : ''
+                } ${clickedItem === 'عملاء راضون' ? 'bg-green-50 shadow-green-300' : ''}`}
+                onClick={() => handleItemClick('عملاء راضون')}
+                onMouseEnter={() => setHoveredItem('stat-1')}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
+                <div className={`w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 ${
+                  hoveredItem === 'stat-1' ? 'scale-110' : ''
+                }`}>
+                  <FaUsers className="text-white text-2xl" />
+                </div>
+                <h3 className="text-3xl font-bold mb-2 text-green-600 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  +10K
+                </h3>
+                <p className="text-gray-800 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  عميل راضٍ
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 ${
+                  hoveredItem === 'stat-2' ? 'shadow-green-200' : ''
+                } ${clickedItem === 'سيارات مغسولة' ? 'bg-green-50 shadow-green-300' : ''}`}
+                onClick={() => handleItemClick('سيارات مغسولة')}
+                onMouseEnter={() => setHoveredItem('stat-2')}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
+                <div className={`w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 ${
+                  hoveredItem === 'stat-2' ? 'scale-110' : ''
+                }`}>
+                  <FaCheckCircle className="text-white text-2xl" />
+                </div>
+                <h3 className="text-3xl font-bold mb-2 text-green-600 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  +10K
+                </h3>
+                <p className="text-gray-800 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  سيارة مغسولة
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 }}
+                className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 ${
+                  hoveredItem === 'stat-3' ? 'shadow-green-200' : ''
+                } ${clickedItem === 'تقييم العملاء' ? 'bg-green-50 shadow-green-300' : ''}`}
+                onClick={() => handleItemClick('تقييم العملاء')}
+                onMouseEnter={() => setHoveredItem('stat-3')}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
+                <div className={`w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 ${
+                  hoveredItem === 'stat-3' ? 'scale-110' : ''
+                }`}>
+                  <FaStar className="text-white text-2xl" />
+                </div>
+                <h3 className="text-3xl font-bold mb-2 text-green-600 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  4.9
+                </h3>
+                <p className="text-gray-800 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  تقييم العملاء
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4 }}
+                className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 ${
+                  hoveredItem === 'stat-4' ? 'shadow-green-200' : ''
+                } ${clickedItem === 'سنوات الخبرة' ? 'bg-green-50 shadow-green-300' : ''}`}
+                onClick={() => handleItemClick('سنوات الخبرة')}
+                onMouseEnter={() => setHoveredItem('stat-4')}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
+                <div className={`w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 ${
+                  hoveredItem === 'stat-4' ? 'scale-110' : ''
+                }`}>
+                  <FaAward className="text-white text-2xl" />
+                </div>
+                <h3 className="text-3xl font-bold mb-2 text-green-600 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  5+
+                </h3>
+                <p className="text-gray-800 text-center" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  سنوات خبرة
+                </p>
+              </motion.div>
             </div>
           </section>
 

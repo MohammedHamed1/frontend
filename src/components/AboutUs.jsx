@@ -11,10 +11,10 @@ const AboutUs = () => {
   }, []);
 
   const stats = [
-    { icon: <Users className="h-8 w-8" />, value: "50+", label: "فرع", color: "blue" },
-    { icon: <Heart className="h-8 w-8" />, value: "10K+", label: "عميل راضي", color: "red" },
+    { icon: <Users className="h-8 w-8" />, value: "فرع واحد", label: "حالياً وقريباً في جميع أنحاء المملكة", color: "blue" },
+    { icon: <Heart className="h-8 w-8" />, value: "+10K", label: "عميل راضي", color: "red" },
     { icon: <Award className="h-8 w-8" />, value: "4.9", label: "تقييم", color: "yellow" },
-    { icon: <Clock className="h-8 w-8" />, value: "24/7", label: "خدمة", color: "green" }
+          { icon: <Clock className="h-8 w-8" />, value: "7-11", label: "ساعات العمل", color: "green" }
   ];
 
   const values = [
@@ -68,7 +68,7 @@ const AboutUs = () => {
     {
       year: "2024",
       title: "الريادة",
-      description: "50+ فرع و 10,000+ عميل راضي في جميع أنحاء المملكة"
+              description: "الفروع 1 و +10K عميل راضي في جميع أنحاء المملكة"
     }
   ];
 
@@ -125,7 +125,7 @@ const AboutUs = () => {
                 بدأت قصة PayPass في عام 2020 كفكرة بسيطة: كيف يمكننا جعل غسيل السيارات أسهل وأسرع وأكثر كفاءة؟ من خلال دمج التكنولوجيا مع الخدمة التقليدية، طورنا نظام الباركود الذكي الذي أحدث ثورة في هذا المجال.
               </p>
               <p className="font-bold text-white leading-relaxed mb-4">
-                اليوم، بعد أربع سنوات من العمل الجاد والابتكار المستمر، أصبحنا الشركة الرائدة في مجال غسيل السيارات الذكي في المملكة العربية السعودية، مع أكثر من 50 فرع و 10,000 عميل راضي.
+                اليوم، بعد أربع سنوات من العمل الجاد والابتكار المستمر، أصبحنا الشركة الرائدة في مجال غسيل السيارات الذكي في المملكة العربية السعودية، مع فرع واحد حالياً وقريباً سوف نكون في جميع أنحاء المملكة و 10K عميل راضي.
               </p>
               <p className="font-bold text-white leading-relaxed">
                 نحن نؤمن بأن المستقبل ينتمي للذكاء الاصطناعي والتكنولوجيا المتطورة، ونسعى دائماً لتطوير خدماتنا لتلبية احتياجات عملائنا المتزايدة.
@@ -144,11 +144,11 @@ const AboutUs = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Users className="h-5 w-5 text-blue-500" />
-                  <span>أكثر من 10,000 عميل راضي</span>
+                  <span>+10K عميل راضي</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Globe className="h-5 w-5 text-purple-500" />
-                  <span>خدمة 24/7 في جميع الفروع</span>
+                  <span>ساعات عمل مرنة في جميع الفروع</span>
                 </div>
               </div>
             </div>
@@ -252,8 +252,8 @@ const AboutUs = () => {
                         </div>
                         <span className="text-2xl font-bold text-white">2023</span>
                       </div>
-                      <h3 className="text-xl font-bold mb-2 text-white">50 فرع</h3>
-                      <p className="text-green-100">وصولنا لـ 50 فرع في جميع أنحاء المملكة</p>
+                      <h3 className="text-xl font-bold mb-2 text-white">فرع واحد</h3>
+                      <p className="text-green-100">حالياً وقريباً سوف نكون في جميع أنحاء المملكة</p>
                     </div>
                   </div>
                   <div className="relative z-10">
@@ -342,7 +342,7 @@ const AboutUs = () => {
                 <h3 className="text-lg font-bold mb-2 text-gray-800">الاهتمام بالعملاء</h3>
                 <p className="text-gray-600 text-sm mb-4">نضع رضا العملاء في المقام الأول ونقدم أفضل تجربة ممكنة</p>
                 <ul className="text-green-600 text-xs space-y-1 text-right w-full">
-                  <li>خدمة 24/7 <span className="ml-1">✔️</span></li>
+                  <li>ساعات عمل مرنة <span className="ml-1">✔️</span></li>
                   <li>دعم فوري <span className="ml-1">✔️</span></li>
                   <li>رضا مضمون <span className="ml-1">✔️</span></li>
                 </ul>
@@ -352,7 +352,7 @@ const AboutUs = () => {
         </section>
 
         {/* Enhanced Team */}
-        <AnimatedCard delay="0.7s" className="p-8 mb-16">
+        {/* <AnimatedCard delay="0.7s" className="p-8 mb-16">
           <h2 className="text-3xl font-bold text-center mb-8">فريق العمل</h2>
           <p className="text-gray-600 text-center mb-8 max-w-2xl mx-auto">
             فريق متخصص من الخبراء والمحترفين يعملون بجد لتقديم أفضل الخدمات لعملائنا
@@ -380,7 +380,7 @@ const AboutUs = () => {
               <p className="text-purple-600 font-semibold">مدير التطوير التقني</p>
             </div>
           </div>
-        </AnimatedCard>
+        </AnimatedCard> */}
 
         {/* Enhanced CTA */}
         <AnimatedCard delay="0.8s" className="bg-gradient-to-r from-green-500 to-green-600 p-8 text-white text-center">

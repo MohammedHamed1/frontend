@@ -148,7 +148,7 @@ const HelpCenter = () => {
           <li>انتظر مراجعة الطلب</li>
         </ol>
       `,
-      tags: ['تسجيل دخول', 'مشاكل', 'دعم فني'],
+              tags: ['تسجيل دخول', 'مشاكل', 'خدمة عملاء'],
       helpful: 345,
       notHelpful: 23,
       views: 5670,
@@ -170,7 +170,7 @@ const HelpCenter = () => {
         <h3>شروط الإلغاء:</h3>
         <ul>
           <li>المعاملة لم تكتمل بعد</li>
-          <li>لم يمر أكثر من 24 ساعة</li>
+          <li>لم يمر وقت طويل على الخدمة</li>
           <li>المعاملة قابلة للإلغاء</li>
         </ul>
       `,
@@ -265,7 +265,6 @@ const HelpCenter = () => {
             >
               <h1 
                 className="text-4xl md:text-6xl font-bold mb-6 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 text-gray-700"
-                style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
                 onClick={() => handleItemClick('كيف يمكننا مساعدتك؟')}
               >
                 كيف يمكننا
@@ -273,7 +272,6 @@ const HelpCenter = () => {
               </h1>
               <p 
                 className="text-xl max-w-3xl mx-auto leading-relaxed text-gray-700"
-                style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
               >
                 ابحث في قاعدة المعرفة الشاملة أو تواصل مع فريق الدعم 
                 للحصول على المساعدة التي تحتاجها
@@ -309,14 +307,13 @@ const HelpCenter = () => {
                   onClick={() => setActiveCategory(category.id)}
                   className={`p-4 rounded-2xl text-center transition-all duration-300 ${
                     activeCategory === category.id
-                      ? 'bg-gradient-to-r from-green-600 to-green-700 text-white shadow-lg'
+                                              ? 'bg-gradient-to-r from-green-600 to-green-700 text-white shadow-lg'
                       : 'bg-white text-gray-700 border border-gray-200 hover:border-green-300 hover:shadow-md'
                   }`}
                 >
                   <category.icon className="text-2xl mx-auto mb-2" />
                   <div 
                     className="text-sm font-semibold text-gray-700"
-                    style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
                   >
                     {category.name}
                   </div>
@@ -351,7 +348,7 @@ const HelpCenter = () => {
                   </h3>
                                         <p 
                     className="text-sm leading-relaxed mb-4"
-                    style={{fontFamily: 'Cairo, sans-serif', color: '#374151', fontWeight: 'bold'}}
+                    style={{color: '#374151', fontWeight: 'bold'}}
                   >
                     {article.content}
                   </p>
@@ -360,7 +357,7 @@ const HelpCenter = () => {
                       <span
                         key={tagIndex}
                         className="bg-gray-100 px-2 py-1 rounded-full text-xs"
-                        style={{fontFamily: 'Cairo, sans-serif', color: '#374151', fontWeight: 'bold'}}
+                        style={{color: '#374151', fontWeight: 'bold'}}
                       >
                         {tag}
                       </span>
@@ -395,7 +392,7 @@ const HelpCenter = () => {
                 </h3>
                 <p 
                   className="mb-6"
-                  style={{fontFamily: 'Cairo, sans-serif', color: '#374151', fontWeight: 'bold'}}
+                  style={{color: '#374151', fontWeight: 'bold'}}
                 >
                   جرب البحث بكلمات مختلفة أو تواصل مع فريق الدعم
                 </p>
@@ -428,7 +425,7 @@ const HelpCenter = () => {
               </h2>
               <p 
                 className="text-xl max-w-2xl mx-auto"
-                style={{fontFamily: 'Cairo, sans-serif', color: '#374151', fontWeight: 'bold'}}
+                style={{color: '#374151', fontWeight: 'bold'}}
               >
                 أكثر المواضيع التي يبحث عنها عملاؤنا
               </p>

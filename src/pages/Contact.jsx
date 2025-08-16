@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp, FaLinkedin, FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp, FaLinkedin, FaTwitter, FaFacebook, FaInstagram, FaCar, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import PageHeader from '../components/common/PageHeader';
 
 const Contact = () => {
@@ -9,87 +9,133 @@ const Contact = () => {
     name: '',
     email: '',
     phone: '',
-    company: '',
-    subject: '',
+    carType: '',
+    service: '',
     message: ''
   });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [activeTab, setActiveTab] = useState('general');
-  const [hoveredItem, setHoveredItem] = useState(null);
-  const [clickedItem, setClickedItem] = useState(null);
-  const [openFaq, setOpenFaq] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // استخدام hook مخصص للتمرير التلقائي
-
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const contactInfo = [
     {
       icon: FaPhone,
       title: 'الهاتف',
-      value: '+966 11 123 4567',
-      subtitle: 'من الأحد إلى الخميس',
-      color: 'from-blue-500 to-blue-600'
+      value: '+966 50 123 4567',
+              subtitle: 'خدمة عملاء',
+      color: 'from-blue-500 to-blue-600',
+      action: 'tel:+966501234567'
     },
     {
       icon: FaEnvelope,
       title: 'البريد الإلكتروني',
-      value: 'info@paypasss.com',
-      subtitle: 'رد خلال 24 ساعة',
-      color: 'from-green-500 to-green-600'
+      value: 'info@carwash.com',
+      subtitle: 'رد خلال ساعتين',
+      color: 'from-green-500 to-green-600',
+      action: 'mailto:info@carwash.com'
     },
     {
       icon: FaMapMarkerAlt,
       title: 'العنوان',
       value: 'الرياض، المملكة العربية السعودية',
-      subtitle: 'برج المملكة، الطابق 15',
-      color: 'from-purple-500 to-purple-600'
+      subtitle: '4 فروع في الرياض',
+      color: 'from-purple-500 to-purple-600',
+      action: '#'
     },
     {
       icon: FaClock,
       title: 'ساعات العمل',
-      value: 'الأحد - الخميس',
-      subtitle: '8:00 ص - 6:00 م',
-      color: 'from-orange-500 to-orange-600'
+      value: 'السبت - الخميس',
+      subtitle: '7:00 ص - 11:00 م',
+      color: 'from-orange-500 to-orange-600',
+      action: '#'
     }
   ];
 
-  const departments = [
+  const branches = [
     {
-      id: 'general',
-      title: 'الاستفسارات العامة',
-      description: 'للاستفسارات العامة والمعلومات الأساسية',
-      email: 'info@paypasss.com',
-      phone: '+966 11 123 4567'
+      name: 'فرع الشمال',
+      address: 'شارع الملك فهد، حي الشمال',
+      phone: '+966 50 123 4567',
+      hours: '7:00 ص - 11:00 م'
     },
     {
-      id: 'sales',
-      title: 'المبيعات',
-      description: 'للاستفسارات حول المنتجات والخدمات',
-      email: 'sales@paypasss.com',
-      phone: '+966 11 123 4568'
+      name: 'فرع الجنوب',
+      address: 'شارع الملك عبدالله، حي الجنوب',
+      phone: '+966 50 123 4568',
+      hours: '7:00 ص - 11:00 م'
     },
     {
-      id: 'support',
-      title: 'الدعم الفني',
-      description: 'للمساعدة التقنية والدعم الفني',
-      email: 'support@paypasss.com',
-      phone: '+966 11 123 4569'
+      name: 'فرع الشرق',
+      address: 'شارع الملك خالد، حي الشرق',
+      phone: '+966 50 123 4569',
+      hours: '7:00 ص - 11:00 م'
     },
     {
-      id: 'partnership',
-      title: 'الشراكات',
-      description: 'للاستفسارات حول الشراكات والتعاون',
-      email: 'partnership@paypasss.com',
-      phone: '+966 11 123 4570'
+      name: 'فرع الغرب',
+      address: 'شارع الملك سلمان، حي الغرب',
+      phone: '+966 50 123 4570',
+      hours: '7:00 ص - 11:00 م'
     }
+  ];
+
+  const services = [
+    { value: 'basic', label: 'غسيل أساسي' },
+    { value: 'advanced', label: 'غسيل متقدم' },
+    { value: 'premium', label: 'غسيل مميز' },
+    { value: 'vip', label: 'خدمة VIP' },
+    { value: 'other', label: 'خدمات أخرى' }
+  ];
+
+  const carTypes = [
+    { value: 'small', label: '🚗 سيارة صغيرة' },
+    { value: 'suv', label: '🚙 SUV' },
+    { value: 'truck', label: '🚛 شاحنة' },
+    { value: 'luxury', label: '🏎️ فاخرة' },
+    { value: 'other', label: '🚐 أخرى' }
   ];
 
   const socialMedia = [
-    { icon: FaWhatsapp, name: 'WhatsApp', url: '#', color: 'from-green-500 to-green-600' },
-    { icon: FaLinkedin, name: 'LinkedIn', url: '#', color: 'from-blue-600 to-blue-700' },
+    { icon: FaWhatsapp, name: 'WhatsApp', url: 'https://wa.me/966501234567', color: 'from-green-500 to-green-600' },
     { icon: FaTwitter, name: 'Twitter', url: '#', color: 'from-blue-400 to-blue-500' },
     { icon: FaFacebook, name: 'Facebook', url: '#', color: 'from-blue-600 to-blue-700' },
     { icon: FaInstagram, name: 'Instagram', url: '#', color: 'from-pink-500 to-purple-600' }
   ];
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'الاسم مطلوب';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'البريد الإلكتروني مطلوب';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'البريد الإلكتروني غير صحيح';
+    }
+    
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'رقم الهاتف مطلوب';
+    }
+    
+    if (!formData.service) {
+      newErrors.service = 'نوع الخدمة مطلوب';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'الرسالة مطلوبة';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -97,49 +143,56 @@ const Contact = () => {
       ...prev,
       [name]: value
     }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // هنا يمكن إضافة منطق إرسال النموذج
-    alert('تم إرسال الرسالة بنجاح!');
+    
+    if (!validateForm()) {
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitSuccess(true);
     setFormData({
       name: '',
       email: '',
-      subject: '',
+        phone: '',
+        carType: '',
+        service: '',
       message: ''
     });
-  };
-
-  const handleItemClick = (itemName) => {
-    setClickedItem(itemName);
-    // إعادة تعيين العنصر المحدد بعد ثانية
-    setTimeout(() => setClickedItem(null), 1000);
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5
-      }
-    }
+      
+      setTimeout(() => {
+        setSubmitSuccess(false);
+      }, 5000);
+    }, 2000);
   };
 
   return (
     <>
+      <Helmet>
+                        <title>اتصل بنا - شركة غسيل السيارات في الرياض | خدمة عملاء</title>
+                        <meta name="description" content="تواصل معنا للحصول على أفضل خدمات غسيل السيارات في الرياض. خدمة عملاء، 1 فرع في الرياض، احجز الآن!" />
+                        <meta name="keywords" content="اتصل بنا, غسيل سيارات الرياض, خدمة عملاء, فروع غسيل سيارات, احجز غسيل سيارات" />
+        <meta property="og:title" content="اتصل بنا - شركة غسيل السيارات في الرياض" />
+        <meta property="og:description" content="تواصل معنا للحصول على أفضل خدمات غسيل السيارات في الرياض" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="/contact" />
+      </Helmet>
+
       <div className="header-spacer"></div>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
         <PageHeader 
@@ -149,7 +202,7 @@ const Contact = () => {
         />
 
         {/* Hero Section */}
-        <section className="py-16 px-4">
+        <section className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -157,25 +210,11 @@ const Contact = () => {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h1 
-                className={`text-4xl md:text-5xl font-bold text-gray-900 mb-6 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
-                  hoveredItem === 'contact-title' ? 'text-blue-600' : ''
-                }`}
-                onClick={() => handleItemClick('عنوان التواصل')}
-                onMouseEnter={() => setHoveredItem('contact-title')}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
                 نحن هنا
-                <span className="text-blue-600"> لمساعدتك</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600"> لمساعدتك</span>
               </h1>
-              <p 
-                className={`text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
-                  hoveredItem === 'contact-description' ? 'text-gray-800' : ''
-                }`}
-                onClick={() => handleItemClick('وصف التواصل')}
-                onMouseEnter={() => setHoveredItem('contact-description')}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 فريقنا متاح دائماً للإجابة على استفساراتك وتقديم الدعم الذي تحتاجه. 
                 لا تتردد في التواصل معنا بأي طريقة تفضلها.
               </p>
@@ -183,416 +222,289 @@ const Contact = () => {
 
             {/* Contact Info Cards */}
             <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
             >
             {contactInfo.map((info, index) => (
                 <motion.div
                   key={index}
-                  variants={itemVariants}
-                  className={`bg-white rounded-2xl p-6 shadow-lg cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 text-center ${
-                    hoveredItem === `contact-info-${index}` ? 'shadow-xl' : ''
-                  }`}
-                  onClick={() => handleItemClick(`معلومات ${info.title}`)}
-                  onMouseEnter={() => setHoveredItem(`contact-info-${index}`)}
-                  onMouseLeave={() => setHoveredItem(null)}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 text-center"
                 >
-                  <div className={`w-16 h-16 bg-gradient-to-r ${info.color} rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 ${
-                    hoveredItem === `contact-info-${index}` ? 'scale-110' : ''
-                  }`}>
-                    <info.icon className={`text-white text-2xl transition-all duration-300 ${
-                      hoveredItem === `contact-info-${index}` ? 'scale-110' : ''
-                    }`} />
+                  <div className={`w-16 h-16 bg-gradient-to-r ${info.color} text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg`}>
+                    <info.icon className="w-8 h-8" />
                 </div>
-                  <h3 className={`text-xl font-bold text-gray-900 mb-2 transition-all duration-300 ${
-                    hoveredItem === `contact-info-${index}` ? 'text-blue-600' : ''
-                  }`}>
-                    {info.title}
-                  </h3>
-                  <p className="text-lg text-gray-700 mb-1" dir="ltr">
-                    {info.value}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    {info.subtitle}
-                  </p>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">{info.title}</h3>
+                  <p className="text-gray-600 mb-2 font-semibold">{info.value}</p>
+                  <p className="text-gray-500 text-sm">{info.subtitle}</p>
+                  {info.action && (
+                    <a 
+                      href={info.action}
+                      className="inline-block mt-4 text-green-600 hover:text-green-700 font-semibold transition-colors duration-300"
+                    >
+                      تواصل الآن
+                    </a>
+                  )}
                 </motion.div>
               ))}
             </motion.div>
+          </div>
+        </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        {/* Contact Form & Branches */}
+        <section className="py-20 px-4 bg-gradient-to-r from-gray-50 to-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="bg-white rounded-3xl shadow-xl p-8"
+                transition={{ duration: 0.8 }}
+                className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100"
               >
-                <h2 
-                  className={`text-2xl font-bold mb-6 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
-                    hoveredItem === 'form-title' ? 'text-green-600' : 'text-gray-900'
-                  }`}
-                  onClick={() => handleItemClick('نموذج التواصل')}
-                  onMouseEnter={() => setHoveredItem('form-title')}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
-                  <span className="bg-green-500 text-white px-4 py-2 rounded-lg">أرسل لنا رسالة</span>
-                </h2>
+                <div className="text-center mb-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">أرسل لنا رسالة</h2>
+                  <p className="text-gray-600">سنرد عليك في أقرب وقت ممكن</p>
+                </div>
+
+                {submitSuccess && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="bg-green-50 border border-green-200 rounded-2xl p-6 mb-6"
+                  >
+                    <div className="flex items-center gap-3">
+                      <FaCheckCircle className="w-6 h-6 text-green-600" />
+                      <div>
+                        <h3 className="font-bold text-green-800">تم إرسال الرسالة بنجاح!</h3>
+                        <p className="text-green-700">سنرد عليك في أقرب وقت ممكن</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        الاسم الكامل
-                      </label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">الاسم الكامل *</label>
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 ${
-                          hoveredItem === 'name-input' ? 'border-green-400' : ''
+                        className={`w-full px-4 py-3 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 ${
+                          errors.name ? 'border-red-500' : 'border-gray-300'
                         }`}
-                        onMouseEnter={() => setHoveredItem('name-input')}
-                        onMouseLeave={() => setHoveredItem(null)}
-                        onClick={() => handleItemClick('حقل الاسم')}
-                        required
+                        placeholder="أدخل اسمك الكامل"
                       />
+                      {errors.name && (
+                        <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                          <FaTimesCircle className="w-4 h-4" />
+                          {errors.name}
+                        </p>
+                      )}
                     </div>
+
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        البريد الإلكتروني
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className={`w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 ${
-                          hoveredItem === 'email-input' ? 'border-green-400' : ''
-                        }`}
-                        onMouseEnter={() => setHoveredItem('email-input')}
-                        onMouseLeave={() => setHoveredItem(null)}
-                        onClick={() => handleItemClick('حقل البريد الإلكتروني')}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        رقم الهاتف
-                      </label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">رقم الهاتف *</label>
                       <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 ${
-                          hoveredItem === 'phone-input' ? 'border-green-400' : ''
+                        className={`w-full px-4 py-3 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 ${
+                          errors.phone ? 'border-red-500' : 'border-gray-300'
                         }`}
-                        onMouseEnter={() => setHoveredItem('phone-input')}
-                        onMouseLeave={() => setHoveredItem(null)}
-                        onClick={() => handleItemClick('حقل الهاتف')}
+                        placeholder="+966 50 123 4567"
                       />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        الشركة
-                      </label>
-                      <input
-                        type="text"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        className={`w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 ${
-                          hoveredItem === 'company-input' ? 'border-green-400' : ''
-                        }`}
-                        onMouseEnter={() => setHoveredItem('company-input')}
-                        onMouseLeave={() => setHoveredItem(null)}
-                        onClick={() => handleItemClick('حقل الشركة')}
-                      />
+                      {errors.phone && (
+                        <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                          <FaTimesCircle className="w-4 h-4" />
+                          {errors.phone}
+                        </p>
+                      )}
                     </div>
                   </div>
+
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      الموضوع
-                    </label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">البريد الإلكتروني *</label>
                     <input
-                      type="text"
-                      name="subject"
-                      value={formData.subject}
+                      type="email"
+                      name="email"
+                      value={formData.email}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 ${
-                        hoveredItem === 'subject-input' ? 'border-green-400' : ''
+                      className={`w-full px-4 py-3 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 ${
+                        errors.email ? 'border-red-500' : 'border-gray-300'
                       }`}
-                      onMouseEnter={() => setHoveredItem('subject-input')}
-                      onMouseLeave={() => setHoveredItem(null)}
-                      onClick={() => handleItemClick('حقل الموضوع')}
-                      required
+                      placeholder="example@email.com"
                     />
+                    {errors.email && (
+                      <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                        <FaTimesCircle className="w-4 h-4" />
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">نوع السيارة</label>
+                      <select
+                        name="carType"
+                        value={formData.carType}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
+                      >
+                        <option value="">اختر نوع السيارة</option>
+                        {carTypes.map((car) => (
+                          <option key={car.value} value={car.value}>
+                            {car.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">نوع الخدمة *</label>
+                      <select
+                        name="service"
+                        value={formData.service}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 ${
+                          errors.service ? 'border-red-500' : 'border-gray-300'
+                        }`}
+                      >
+                        <option value="">اختر نوع الخدمة</option>
+                        {services.map((service) => (
+                          <option key={service.value} value={service.value}>
+                            {service.label}
+                          </option>
+                        ))}
+                      </select>
+                      {errors.service && (
+                        <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                          <FaTimesCircle className="w-4 h-4" />
+                          {errors.service}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      الرسالة
-                    </label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">الرسالة *</label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      rows="6"
-                      className={`w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 resize-none ${
-                        hoveredItem === 'message-input' ? 'border-green-400' : ''
+                      rows="5"
+                      className={`w-full px-4 py-3 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 resize-none ${
+                        errors.message ? 'border-red-500' : 'border-gray-300'
                       }`}
-                      onMouseEnter={() => setHoveredItem('message-input')}
-                      onMouseLeave={() => setHoveredItem(null)}
-                      onClick={() => handleItemClick('حقل الرسالة')}
-                      required
+                      placeholder="اكتب رسالتك هنا..."
                     ></textarea>
+                    {errors.message && (
+                      <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                        <FaTimesCircle className="w-4 h-4" />
+                        {errors.message}
+                      </p>
+                    )}
                   </div>
+
                   <button
                     type="submit"
-                    onMouseEnter={() => setHoveredItem('submit-button')}
-                    onMouseLeave={() => setHoveredItem(null)}
-                    onClick={() => handleItemClick('إرسال الرسالة')}
-                    className={`w-full bg-green-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-green-700 transition-all duration-300 cursor-pointer transform hover:scale-105 active:scale-95 ${
-                      hoveredItem === 'submit-button' ? 'bg-green-700 scale-105' : ''
-                    }`}
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-4 rounded-2xl font-bold text-lg hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
-                    إرسال الرسالة
+                    {isSubmitting ? 'جاري الإرسال...' : 'إرسال الرسالة'}
                   </button>
                 </form>
               </motion.div>
 
-              {/* Department Tabs */}
+              {/* Branches */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="bg-white rounded-3xl shadow-xl p-8"
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <h2 
-                  className={`text-2xl font-bold mb-6 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
-                    hoveredItem === 'departments-title' ? 'text-green-600' : 'text-gray-900'
-                  }`}
-                  onClick={() => handleItemClick('الأقسام')}
-                  onMouseEnter={() => setHoveredItem('departments-title')}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
-                  <span className="bg-green-500 text-white px-4 py-2 rounded-lg">تواصل مع القسم المناسب</span>
-                </h2>
-                
-                <div className="space-y-4">
-                  {departments.map((dept, index) => (
-                    <div
-                      key={dept.id}
-                      className={`p-4 rounded-xl border-2 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
-                        activeTab === dept.id
-                          ? 'border-blue-500 bg-blue-50'
-                          : 'border-gray-200 hover:border-blue-300'
-                      } ${
-                        hoveredItem === `dept-${dept.id}` ? 'border-blue-500 bg-blue-50' : ''
-                      }`}
-                      onClick={() => {
-                        setActiveTab(dept.id);
-                        handleItemClick(`قسم ${dept.title}`);
-                      }}
-                      onMouseEnter={() => setHoveredItem(`dept-${dept.id}`)}
-                      onMouseLeave={() => setHoveredItem(null)}
-                    >
-                      <h3 className={`font-bold text-lg mb-2 transition-all duration-300 ${
-                        hoveredItem === `dept-${dept.id}` ? 'text-blue-600' : ''
-                      }`}>
-                        {dept.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-3">
-                        {dept.description}
-                      </p>
-                      <div className="space-y-1 text-sm">
-                        <div className="flex items-center gap-2">
-                          <FaEnvelope className="text-blue-500" />
-                          {dept.email}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <FaPhone className="text-green-500" />
-                          {dept.phone}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                <div className="text-center mb-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">فروعنا في الرياض</h2>
+                  <p className="text-gray-600">4 فروع منتشرة في جميع أنحاء الرياض</p>
                 </div>
 
-                {/* Social Media */}
-                <div className="mt-8">
-                  <h3 
-                    className={`text-lg font-bold text-gray-900 mb-4 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
-                      hoveredItem === 'social-title' ? 'text-blue-600' : ''
-                    }`}
-                    onClick={() => handleItemClick('وسائل التواصل الاجتماعي')}
-                    onMouseEnter={() => setHoveredItem('social-title')}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    تابعنا على وسائل التواصل الاجتماعي
-                  </h3>
-                  <div className="flex gap-4">
-                    {socialMedia.map((social, index) => (
-                      <a
-                        key={index}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`w-12 h-12 bg-gradient-to-r ${social.color} text-white rounded-xl flex items-center justify-center transition-all duration-300 cursor-pointer transform hover:scale-110 active:scale-95 ${
-                          hoveredItem === `social-${index}` ? 'scale-110' : ''
-                        }`}
-                        onClick={() => handleItemClick(`وسيلة ${social.name}`)}
-                        onMouseEnter={() => setHoveredItem(`social-${index}`)}
-                        onMouseLeave={() => setHoveredItem(null)}
-                      >
-                        <social.icon className="text-xl" />
-                      </a>
-                    ))}
-                  </div>
+                <div className="space-y-6">
+                  {branches.map((branch, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl flex items-center justify-center flex-shrink-0">
+                          <FaMapMarkerAlt className="w-6 h-6" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold text-gray-800 mb-2">{branch.name}</h3>
+                          <p className="text-gray-600 mb-2">{branch.address}</p>
+                          <div className="flex items-center gap-4 text-sm text-gray-500">
+                            <span className="flex items-center gap-1">
+                              <FaPhone className="w-4 h-4" />
+                              {branch.phone}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <FaClock className="w-4 h-4" />
+                              {branch.hours}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Map Section */}
-        <section className="py-16 px-4 bg-gradient-to-r from-gray-50 to-blue-50">
+        {/* Social Media */}
+        <section className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
+              className="text-center mb-16"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                <span 
-                  className={`bg-green-500 text-white px-6 py-3 rounded-xl cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
-                    clickedItem === 'موقعنا' ? 'animate-pulse bg-green-600 shadow-lg' : ''
-                  }`}
-                  onClick={() => handleItemClick('موقعنا')}
-                  onMouseEnter={() => setHoveredItem('location-title')}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
-                  موقعنا
-                </span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                يمكنك زيارتنا في مقرنا الرئيسي في الرياض
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">تواصل معنا على وسائل التواصل الاجتماعي</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                تابعنا للحصول على آخر العروض والتحديثات
               </p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-3xl shadow-xl overflow-hidden"
-            >
-              <div className="h-96 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
-                <div className="text-center">
-                  <FaMapMarkerAlt className="text-6xl text-blue-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    مقرنا الرئيسي
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    برج المملكة، الطابق 15<br />
-                    شارع الملك فهد<br />
-                    الرياض، المملكة العربية السعودية
-                  </p>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-green-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-green-700 hover:shadow-lg transition-all duration-300"
-                  >
-                    احصل على الاتجاهات
-                  </motion.button>
-                </div>
-              </div>
-            </motion.div>
-                </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="py-16 px-4">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 
-                className={`text-3xl md:text-4xl font-bold text-white mb-6 bg-green-500 px-8 py-4 rounded-xl shadow-lg cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
-                  clickedItem === 'الأسئلة الشائعة' ? 'animate-pulse bg-green-600 shadow-xl' : ''
-                }`}
-                onClick={() => handleItemClick('الأسئلة الشائعة')}
-                onMouseEnter={() => setHoveredItem('faq-title')}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
-                الأسئلة الشائعة
-              </h2>
-              <p className="text-xl text-gray-600">
-                إجابات على أكثر الأسئلة شيوعاً
-              </p>
-            </motion.div>
-
-            <div className="space-y-6">
-              {[
-                {
-                  question: 'كيف يمكنني التواصل مع الدعم الفني؟',
-                  answer: 'يمكنك التواصل مع الدعم الفني عبر البريد الإلكتروني support@paypasss.com أو الهاتف +966 11 123 4569 من الأحد إلى الخميس من 8 صباحاً إلى 6 مساءً.'
-                },
-                {
-                  question: 'ما هي ساعات العمل؟',
-                  answer: 'نعم، نقدم خدماتنا في جميع دول مجلس التعاون الخليجي وبعض الدول العربية. يمكنك التواصل معنا لمعرفة المزيد عن التغطية في منطقتك.'
-                },
-                {
-                  question: 'هل تقدمون خدمات خارج المملكة؟',
-                  answer: 'نعم، نقدم خدماتنا في جميع دول مجلس التعاون الخليجي وبعض الدول العربية. يمكنك التواصل معنا لمعرفة المزيد عن التغطية في منطقتك.'
-                },
-                {
-                  question: 'كيف يمكنني طلب عرض سعر؟',
-                  answer: 'يمكنك طلب عرض سعر عبر ملء النموذج أعلاه أو التواصل مع فريق المبيعات مباشرة على sales@paypasss.com أو +966 11 123 4568.'
-                }
-              ].map((faq, index) => (
-                <motion.div
+            <div className="grid md:grid-cols-4 gap-8">
+              {socialMedia.map((social, index) => (
+                <motion.a
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-2xl shadow-lg overflow-hidden"
+                  className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 text-center group"
                 >
-                  <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full p-6 text-right flex items-center justify-between hover:bg-gray-50 transition-all duration-300"
-                  >
-                    <h3 className="text-lg font-bold text-gray-900 flex-1">
-                      {faq.question}
+                  <div className={`w-16 h-16 bg-gradient-to-r ${social.color} text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <social.icon className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 group-hover:text-green-600 transition-colors duration-300">
+                    {social.name}
                     </h3>
-                    <div className={`ml-4 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`}>
-                      ▼
-                    </div>
-                  </button>
-                  {openFaq === index && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="px-6 pb-6"
-                    >
-                      <p className="text-gray-600 leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </motion.div>
+                </motion.a>
               ))}
             </div>
           </div>

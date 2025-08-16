@@ -1,106 +1,118 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { FaCalendar, FaUser, FaEye, FaHeart, FaShare, FaSearch, FaFilter, FaArrowRight } from 'react-icons/fa';
+import { FaCalendar, FaUser, FaEye, FaHeart, FaShare, FaSearch, FaFilter, FaArrowRight, FaCar, FaStar, FaCheckCircle } from 'react-icons/fa';
 import PageHeader from '../components/common/PageHeader';
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [likedPosts, setLikedPosts] = useState(new Set());
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const categories = [
     { id: 'all', name: 'جميع المقالات' },
+    { id: 'tips', name: 'نصائح العناية' },
+    { id: 'services', name: 'خدماتنا' },
     { id: 'technology', name: 'التكنولوجيا' },
-    { id: 'finance', name: 'الخدمات المالية' },
-    { id: 'security', name: 'الأمان السيبراني' },
-    { id: 'innovation', name: 'الابتكار' },
-    { id: 'business', name: 'الأعمال' }
+    { id: 'maintenance', name: 'الصيانة' },
+    { id: 'news', name: 'الأخبار' }
   ];
 
   const blogPosts = [
     {
       id: 1,
-      title: 'مستقبل الدفع الإلكتروني في المملكة العربية السعودية',
-      excerpt: 'تستكشف هذه المقالة التطورات المستقبلية في مجال الدفع الإلكتروني وكيف ستشكل مستقبل التجارة في المملكة.',
-      content: 'مع التطور السريع في التكنولوجيا والتحول الرقمي، يشهد مجال الدفع الإلكتروني تطورات مذهلة في المملكة العربية السعودية. من المحافظ الإلكترونية إلى العملات الرقمية، نحن نشهد ثورة في طريقة تعاملنا مع المال.',
+      title: 'دليل شامل للعناية بسيارتك في الصيف',
+      excerpt: 'تعرف على أفضل الطرق للعناية بسيارتك خلال فصل الصيف وحمايتها من الحرارة والغبار',
+      content: 'فصل الصيف يفرض تحديات خاصة على السيارات. من الحرارة العالية إلى الغبار والأتربة، تحتاج سيارتك لعناية خاصة. في هذه المقالة، نقدم لك دليلاً شاملاً للعناية بسيارتك في الصيف.',
       author: 'أحمد محمد',
       date: '2024-01-15',
-      category: 'finance',
-      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=400&fit=crop',
+      category: 'tips',
+      image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=400&fit=crop',
       readTime: '5 دقائق',
       views: 1250,
       likes: 89,
-      featured: true
+      featured: true,
+      tags: ['العناية', 'الصيف', 'نصائح']
     },
     {
       id: 2,
-      title: 'أحدث تقنيات الأمان السيبراني لعام 2024',
-      excerpt: 'تعرف على أحدث التقنيات والحلول لحماية البيانات والأنظمة من التهديدات السيبرانية.',
-      content: 'مع تزايد التهديدات السيبرانية، أصبح الأمان الرقمي أولوية قصوى للشركات والأفراد. نستعرض في هذه المقالة أحدث التقنيات والحلول لحماية البيانات والأنظمة.',
+      title: 'أحدث تقنيات غسيل السيارات في 2024',
+      excerpt: 'اكتشف أحدث التقنيات المستخدمة في غسيل السيارات وكيف تحسن من جودة الخدمة',
+      content: 'تطورت تقنيات غسيل السيارات بشكل كبير في السنوات الأخيرة. من الأنظمة الآلية إلى المواد المتطورة، نستعرض أحدث التقنيات التي نستخدمها في خدماتنا.',
       author: 'سارة أحمد',
       date: '2024-01-12',
-      category: 'security',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop',
+      category: 'technology',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop',
       readTime: '7 دقائق',
       views: 980,
       likes: 67,
-      featured: false
+      featured: false,
+      tags: ['تقنيات', 'تطوير', 'جودة']
     },
     {
       id: 3,
-      title: 'كيف تختار أفضل حلول التكنولوجيا لعملك',
-      excerpt: 'دليل شامل لاختيار الحلول التقنية المناسبة لاحتياجات عملك وأهدافه.',
-      content: 'اختيار الحلول التقنية المناسبة لعملك يمكن أن يكون قراراً صعباً. في هذه المقالة، نقدم دليلاً شاملاً لمساعدتك في اتخاذ القرار الصحيح.',
+      title: 'كيف تختار أفضل خدمة غسيل لسيارتك',
+      excerpt: 'دليل شامل لاختيار خدمة غسيل السيارات المناسبة لاحتياجاتك وميزانيتك',
+      content: 'اختيار خدمة غسيل السيارات المناسبة يمكن أن يكون قراراً صعباً. في هذه المقالة، نقدم دليلاً شاملاً لمساعدتك في اتخاذ القرار الصحيح.',
       author: 'محمد علي',
       date: '2024-01-10',
-      category: 'business',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
+      category: 'services',
+      image: 'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?w=800&h=400&fit=crop',
       readTime: '6 دقائق',
       views: 756,
       likes: 45,
-      featured: false
+      featured: false,
+      tags: ['اختيار', 'خدمات', 'نصائح']
     },
     {
       id: 4,
-      title: 'الذكاء الاصطناعي في الخدمات المالية',
-      excerpt: 'كيف يغير الذكاء الاصطناعي وجه الخدمات المالية ويحسن تجربة العملاء.',
-      content: 'الذكاء الاصطناعي يحدث ثورة في مجال الخدمات المالية. من الروبوتات المالية إلى التحليل المتقدم، نستكشف كيف يغير هذا التكنولوجيا وجه القطاع المالي.',
+      title: 'فوائد التلميع الاحترافي للسيارات',
+      excerpt: 'تعرف على فوائد التلميع الاحترافي وكيف يحمي طلاء سيارتك ويحسن مظهرها',
+      content: 'التلميع الاحترافي ليس مجرد تحسين للمظهر، بل هو استثمار في حماية طلاء سيارتك. نستكشف فوائد التلميع وكيف يحمي سيارتك من العوامل الخارجية.',
       author: 'فاطمة حسن',
       date: '2024-01-08',
-      category: 'technology',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop',
+      category: 'maintenance',
+      image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=400&fit=crop',
       readTime: '8 دقائق',
       views: 1120,
       likes: 78,
-      featured: true
+      featured: true,
+      tags: ['تلميع', 'حماية', 'طلاء']
     },
     {
       id: 5,
-      title: 'استراتيجيات النمو الرقمي للشركات الصغيرة',
-      excerpt: 'نصائح واستراتيجيات عملية لمساعدة الشركات الصغيرة على النمو في العصر الرقمي.',
-      content: 'النمو الرقمي أصبح ضرورة للشركات الصغيرة في العصر الحديث. نقدم استراتيجيات عملية ونصائح مفيدة لمساعدتك على تحقيق النمو المستدام.',
+      title: 'نصائح للحفاظ على نظافة السيارة الداخلية',
+      excerpt: 'نصائح عملية للحفاظ على نظافة داخل السيارة وحمايتها من البقع والروائح',
+      content: 'نظافة داخل السيارة لا تقل أهمية عن النظافة الخارجية. نقدم نصائح عملية للحفاظ على نظافة المقاعد والزجاج والكونسول.',
       author: 'خالد عبدالله',
       date: '2024-01-05',
-      category: 'business',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=400&fit=crop',
+      category: 'tips',
+      image: 'https://images.unsplash.com/photo-1549924231-f129b911e442?w=800&h=400&fit=crop',
       readTime: '4 دقائق',
       views: 634,
       likes: 34,
-      featured: false
+      featured: false,
+      tags: ['نظافة', 'داخلي', 'نصائح']
     },
     {
       id: 6,
-      title: 'مستقبل العمل عن بعد والتكنولوجيا',
-      excerpt: 'كيف تشكل التكنولوجيا مستقبل العمل عن بعد وتغير طبيعة الوظائف.',
-      content: 'العمل عن بعد أصبح واقعاً جديداً في عالم الأعمال. نستكشف كيف تشكل التكنولوجيا هذا التحول وتغير طبيعة الوظائف والشركات.',
+      title: 'خدمة VIP: تجربة غسيل فريدة من نوعها',
+      excerpt: 'اكتشف خدمة VIP المميزة وكيف تقدم تجربة غسيل فريدة من نوعها',
+      content: 'خدمة VIP ليست مجرد غسيل عادي، بل هي تجربة شاملة تبدأ من لحظة الوصول وتنتهي بتسليم سيارة متلألئة. نستكشف ما يجعل هذه الخدمة مميزة.',
       author: 'نورا محمد',
       date: '2024-01-03',
-      category: 'innovation',
-      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=400&fit=crop',
+      category: 'services',
+      image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&h=400&fit=crop',
       readTime: '5 دقائق',
       views: 892,
       likes: 56,
-      featured: false
+      featured: false,
+      tags: ['VIP', 'خدمة', 'مميزة']
     }
   ];
 
@@ -123,39 +135,37 @@ const Blog = () => {
     });
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5
-      }
-    }
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ar-SA', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
   };
 
   return (
     <>
+      <Helmet>
+        <title>المدونة - شركة غسيل السيارات في الرياض | نصائح وأخبار العناية بالسيارات</title>
+        <meta name="description" content="مدونة شاملة عن العناية بالسيارات، نصائح غسيل السيارات، أحدث التقنيات، وأخبار خدمات غسيل السيارات في الرياض." />
+        <meta name="keywords" content="مدونة غسيل سيارات, نصائح العناية بالسيارات, تقنيات غسيل السيارات, أخبار غسيل السيارات الرياض" />
+        <meta property="og:title" content="المدونة - شركة غسيل السيارات في الرياض" />
+        <meta property="og:description" content="مدونة شاملة عن العناية بالسيارات ونصائح غسيل السيارات" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="/blog" />
+      </Helmet>
+
       <div className="header-spacer"></div>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
         <PageHeader 
           title="المدونة"
-          subtitle="أحدث الأخبار والمقالات في عالم التكنولوجيا والخدمات المالية"
+          subtitle="أحدث الأخبار والمقالات في عالم العناية بالسيارات"
           breadcrumbs={['الرئيسية', 'المدونة']}
         />
 
         {/* Hero Section */}
-        <section className="py-16 px-4">
+        <section className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -163,20 +173,25 @@ const Blog = () => {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
                 مدونة
-                <span className="text-blue-600"> PayPasss</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600"> العناية بالسيارات</span>
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                اكتشف أحدث الأخبار والمقالات في عالم التكنولوجيا والخدمات المالية، 
-                واحصل على رؤى قيمة لمساعدتك على النمو والابتكار
+                اكتشف أحدث الأخبار والمقالات في عالم العناية بالسيارات، 
+                واحصل على نصائح قيمة لمساعدتك في الحفاظ على سيارتك
               </p>
             </motion.div>
 
             {/* Search and Filter */}
-            <div className="max-w-4xl mx-auto mb-12">
-              <div className="bg-white rounded-2xl shadow-lg p-6">
-                <div className="flex flex-col md:flex-row gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="max-w-4xl mx-auto mb-12"
+            >
+              <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+                <div className="flex flex-col md:flex-row gap-6">
                   <div className="flex-1 relative">
                     <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
@@ -184,14 +199,14 @@ const Blog = () => {
                       placeholder="ابحث في المقالات..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300"
                     />
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-3">
                     <select
                       value={activeCategory}
                       onChange={(e) => setActiveCategory(e.target.value)}
-                      className="px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="px-6 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
                     >
                       {categories.map(category => (
                         <option key={category.id} value={category.id}>
@@ -202,185 +217,196 @@ const Blog = () => {
                   </div>
                 </div>
               </div>
+            </motion.div>
             </div>
+        </section>
 
             {/* Featured Posts */}
             {filteredPosts.filter(post => post.featured).length > 0 && (
+          <section className="py-20 px-4 bg-gradient-to-r from-gray-50 to-white">
+            <div className="max-w-7xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="mb-16"
+                transition={{ duration: 0.8 }}
+                className="text-center mb-16"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-                  المقالات المميزة
-                </h2>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {filteredPosts.filter(post => post.featured).map((post, index) => (
-                    <motion.div
-                      key={post.id}
-                      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      whileHover={{ y: -5 }}
-                      className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
-                    >
-                      <div className="relative">
-                        <img 
-                          src={post.image} 
-                          alt={post.title}
-                          className="w-full h-48 object-cover"
-                        />
-                        {post.featured && (
-                          <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                            مميز
-                          </div>
-                        )}
-                      </div>
-                      <div className="p-6">
-                        <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                          <div className="flex items-center gap-1">
-                            <FaCalendar className="text-blue-500" />
-                            {new Date(post.date).toLocaleDateString('ar-SA')}
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <FaUser className="text-blue-500" />
-                            {post.author}
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <FaEye className="text-blue-500" />
-                            {post.views}
-                          </div>
-                        </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors duration-300">
-                          {post.title}
-                        </h3>
-                        <p className="text-gray-600 mb-4 leading-relaxed">
-                          {post.excerpt}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-500">{post.readTime}</span>
-                          <div className="flex items-center gap-4">
-                            <button
-                              onClick={() => handleLike(post.id)}
-                              className={`flex items-center gap-1 text-sm ${
-                                likedPosts.has(post.id) ? 'text-red-500' : 'text-gray-500'
-                              } hover:text-red-500 transition-colors duration-300`}
-                            >
-                              <FaHeart className={likedPosts.has(post.id) ? 'fill-current' : ''} />
-                              {post.likes + (likedPosts.has(post.id) ? 1 : 0)}
-                            </button>
-                            <button className="flex items-center gap-1 text-sm text-gray-500 hover:text-blue-500 transition-colors duration-300">
-                              <FaShare />
-                              مشاركة
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">المقالات المميزة</h2>
+                <p className="text-xl text-gray-600">أفضل المقالات المختارة لك</p>
               </motion.div>
-            )}
 
-            {/* All Posts */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-                جميع المقالات
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredPosts.map((post, index) => (
-                  <motion.div
+              <div className="grid lg:grid-cols-2 gap-8">
+                {filteredPosts.filter(post => post.featured).map((post, index) => (
+                  <motion.article
                     key={post.id}
-                    variants={itemVariants}
-                    whileHover={{ y: -5 }}
-                    className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="bg-white rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
                   >
                     <div className="relative">
                       <img 
                         src={post.image} 
                         alt={post.title}
-                        className="w-full h-48 object-cover"
+                        className="w-full h-64 object-cover"
                       />
-                      {post.featured && (
-                        <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      <div className="absolute top-4 right-4">
+                        <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
                           مميز
+                        </span>
                         </div>
-                      )}
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                        <div className="flex items-center gap-1">
-                          <FaCalendar className="text-blue-500" />
-                          {new Date(post.date).toLocaleDateString('ar-SA')}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <FaUser className="text-blue-500" />
+                    <div className="p-8">
+                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                        <span className="flex items-center gap-1">
+                          <FaCalendar className="w-4 h-4" />
+                          {formatDate(post.date)}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <FaUser className="w-4 h-4" />
                           {post.author}
-                        </div>
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <FaEye className="w-4 h-4" />
+                          {post.views}
+                        </span>
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors duration-300">
+                      
+                      <h3 className="text-2xl font-bold text-gray-800 mb-4 leading-tight">
                         {post.title}
                       </h3>
-                      <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                      
+                      <p className="text-gray-600 mb-6 leading-relaxed">
                         {post.excerpt}
                       </p>
+                      
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-500">{post.readTime}</span>
                         <div className="flex items-center gap-4">
                           <button
                             onClick={() => handleLike(post.id)}
-                            className={`flex items-center gap-1 text-sm ${
-                              likedPosts.has(post.id) ? 'text-red-500' : 'text-gray-500'
-                            } hover:text-red-500 transition-colors duration-300`}
+                            className={`flex items-center gap-2 px-4 py-2 rounded-2xl transition-all duration-300 ${
+                              likedPosts.has(post.id)
+                                ? 'bg-red-100 text-red-600'
+                                : 'bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-600'
+                            }`}
                           >
-                            <FaHeart className={likedPosts.has(post.id) ? 'fill-current' : ''} />
+                            <FaHeart className="w-4 h-4" />
                             {post.likes + (likedPosts.has(post.id) ? 1 : 0)}
                           </button>
-                          <button className="flex items-center gap-1 text-sm text-gray-500 hover:text-blue-500 transition-colors duration-300">
-                            <FaShare />
-                          </button>
+                          <span className="text-sm text-gray-500">{post.readTime}</span>
                         </div>
+                        <button className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-2 rounded-2xl font-bold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 flex items-center gap-2">
+                          اقرأ المزيد
+                          <FaArrowRight className="w-4 h-4" />
+                        </button>
                       </div>
                     </div>
-                  </motion.div>
+                  </motion.article>
                 ))}
               </div>
+            </div>
+          </section>
+        )}
+
+        {/* All Posts */}
+        <section className="py-20 px-4">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">جميع المقالات</h2>
+              <p className="text-xl text-gray-600">اكتشف جميع مقالاتنا المفيدة</p>
             </motion.div>
 
-            {/* Newsletter */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 text-white text-center"
-            >
-              <h3 className="text-2xl font-bold mb-4">
-                اشترك في النشرة الإخبارية
-              </h3>
-              <p className="text-lg mb-6 opacity-90">
-                احصل على أحدث المقالات والأخبار مباشرة في بريدك الإلكتروني
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="بريدك الإلكتروني"
-                  className="flex-1 px-4 py-3 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
-                />
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post, index) => (
+                <motion.article
+                  key={post.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
                 >
-                  اشتراك
-                </motion.button>
-              </div>
+                  <div className="relative">
+                    <img 
+                      src={post.image} 
+                      alt={post.title}
+                      className="w-full h-48 object-cover"
+                    />
+                    {post.featured && (
+                      <div className="absolute top-4 right-4">
+                        <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                          مميز
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                      <span className="flex items-center gap-1">
+                        <FaCalendar className="w-4 h-4" />
+                        {formatDate(post.date)}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <FaEye className="w-4 h-4" />
+                        {post.views}
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-xl font-bold text-gray-800 mb-3 leading-tight">
+                      {post.title}
+              </h3>
+                    
+                    <p className="text-gray-600 mb-4 leading-relaxed text-sm">
+                      {post.excerpt}
+                    </p>
+                    
+                    <div className="flex items-center justify-between">
+                      <button
+                        onClick={() => handleLike(post.id)}
+                        className={`flex items-center gap-2 px-3 py-2 rounded-2xl transition-all duration-300 text-sm ${
+                          likedPosts.has(post.id)
+                            ? 'bg-red-100 text-red-600'
+                            : 'bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-600'
+                        }`}
+                      >
+                        <FaHeart className="w-4 h-4" />
+                        {post.likes + (likedPosts.has(post.id) ? 1 : 0)}
+                      </button>
+                      <button className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-2xl font-bold text-sm hover:from-green-600 hover:to-emerald-700 transition-all duration-300">
+                        اقرأ المزيد
+                      </button>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+
+            {filteredPosts.length === 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center py-12"
+              >
+                <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <FaSearch className="w-12 h-12 text-gray-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">لم نجد مقالات</h3>
+                <p className="text-gray-600 mb-6">جرب البحث بكلمات مختلفة أو اختر فئة أخرى</p>
+                <button 
+                  onClick={() => {
+                    setSearchTerm('');
+                    setActiveCategory('all');
+                  }}
+                  className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-3 rounded-2xl font-bold hover:from-green-600 hover:to-emerald-700 transition-all duration-300"
+                >
+                  عرض جميع المقالات
+                </button>
             </motion.div>
+            )}
           </div>
         </section>
       </div>

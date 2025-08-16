@@ -262,11 +262,11 @@ const UserGuide = () => {
             <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-2xl p-8 text-center">
               <div className="mb-6 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300">
                 <FaBook className="text-5xl mx-auto mb-4 text-gray-700 transition-all duration-300" />
-                <h2 className="text-3xl font-bold mb-4 transition-all duration-300 text-gray-700" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                <h2 className="text-3xl font-bold mb-4 transition-all duration-300 text-gray-700 font-cairo-bold">
                   دليل المستخدم الشامل
                 </h2>
               </div>
-              <p className="text-xl mb-6 text-gray-700" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+              <p className="text-xl mb-6 text-gray-700 font-cairo-bold">
                 تعلم كيفية استخدام جميع مميزات تطبيقنا بسهولة. 
                 دليل شامل مع فيديوهات تعليمية وأمثلة عملية.
               </p>
@@ -421,7 +421,7 @@ const UserGuide = () => {
                   </div>
                   
                   <div className="bg-green-50 p-6 rounded-xl">
-                    <h4 className="font-bold text-gray-800 mb-4 text-lg" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>الخطوات:</h4>
+                    <h4 className="font-bold text-gray-800 mb-4 text-lg font-cairo-bold">الخطوات:</h4>
                     <ol className="space-y-3">
                       {guide.steps.map((step, stepIndex) => (
                         <li 
@@ -493,7 +493,7 @@ const UserGuide = () => {
               >
                 هل تحتاج مساعدة إضافية؟
               </h2>
-              <p className="text-xl mb-8 opacity-90" style={{fontFamily: 'Cairo, sans-serif', color: 'white', fontWeight: 'bold'}}>فريق الدعم متاح لمساعدتك في أي وقت</p>
+              <p className="text-xl mb-8 opacity-90 font-cairo-bold">فريق الدعم متاح لمساعدتك في أي وقت</p>
               
               <div className="grid md:grid-cols-3 gap-6">
                 <div 
@@ -552,7 +552,7 @@ const UserGuide = () => {
                 <FaBook className={`text-4xl mx-auto mb-4 text-green-500 transition-all duration-300 ${
                   hoveredItem === 'stats-1' ? 'scale-110 text-green-600' : ''
                 }`} />
-                <h3 className="text-2xl font-bold text-black mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>+50</h3>
+                <h3 className="text-2xl font-bold text-black mb-2 font-cairo-bold">+50</h3>
                 <p 
                   className={`transition-all duration-300 ${
                     hoveredItem === 'stats-1' ? 'text-green-600' : 'text-black'
@@ -574,7 +574,7 @@ const UserGuide = () => {
                 <FaVideo className={`text-4xl mx-auto mb-4 text-green-500 transition-all duration-300 ${
                   hoveredItem === 'stats-2' ? 'scale-110 text-green-600' : ''
                 }`} />
-                <h3 className="text-2xl font-bold text-black mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>+30</h3>
+                <h3 className="text-2xl font-bold text-black mb-2 font-cairo-bold">+30</h3>
                 <p 
                   className={`transition-all duration-300 ${
                     hoveredItem === 'stats-2' ? 'text-green-600' : 'text-black'
@@ -596,7 +596,7 @@ const UserGuide = () => {
                 <FaUsers className={`text-4xl mx-auto mb-4 text-green-500 transition-all duration-300 ${
                   hoveredItem === 'stats-3' ? 'scale-110 text-green-600' : ''
                 }`} />
-                <h3 className="text-2xl font-bold text-black mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>+10K</h3>
+                <h3 className="text-2xl font-bold text-black mb-2 font-cairo-bold">+10K</h3>
                 <p 
                   className={`transition-all duration-300 ${
                     hoveredItem === 'stats-3' ? 'text-green-600' : 'text-black'
@@ -618,7 +618,7 @@ const UserGuide = () => {
                 <FaStar className={`text-4xl mx-auto mb-4 text-green-500 transition-all duration-300 ${
                   hoveredItem === 'stats-4' ? 'scale-110 text-green-600' : ''
                 }`} />
-                <h3 className="text-2xl font-bold text-black mb-2" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>4.8</h3>
+                <h3 className="text-2xl font-bold text-black mb-2 font-cairo-bold">4.8</h3>
                 <p 
                   className={`transition-all duration-300 ${
                     hoveredItem === 'stats-4' ? 'text-green-600' : 'text-black'

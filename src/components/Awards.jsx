@@ -77,7 +77,7 @@ const Awards = () => {
       ],
       image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop',
       featured: true,
-      stats: { customers: '50K+', satisfaction: '99%', response: '5min' }
+              stats: { customers: '10K+', satisfaction: '99%', response: '5min' }
     },
     {
       id: 2,
@@ -95,7 +95,7 @@ const Awards = () => {
       ],
       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
       featured: true,
-      stats: { quality: '98%', safety: '100%', efficiency: '95%' }
+      stats: { quality: '98%', safety: 'ممتاز', efficiency: '95%' }
     },
     {
       id: 3,
@@ -149,7 +149,7 @@ const Awards = () => {
       ],
       image: 'https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=600&h=400&fit=crop',
       featured: false,
-      stats: { projects: '25+', beneficiaries: '10K+', investment: '2M+' }
+              stats: { projects: '25+', beneficiaries: '+10K', investment: '2M+' }
     },
     {
       id: 6,
@@ -178,8 +178,8 @@ const Awards = () => {
   const stats = [
     { icon: FaTrophy, value: '15+', label: 'جائزة محققة', color: 'from-yellow-500 to-orange-500' },
     { icon: FaStar, value: '99%', label: 'رضا العملاء', color: 'from-green-500 to-blue-500' },
-    { icon: FaUsers, value: '50K+', label: 'عميل راضي', color: 'from-purple-500 to-pink-500' },
-    { icon: FaGlobe, value: '50+', label: 'فرع في المملكة', color: 'from-indigo-500 to-cyan-500' }
+    { icon: FaUsers, value: '10K+', label: 'عميل راضي', color: 'from-purple-500 to-pink-500' },
+    { icon: FaGlobe, value: 'فرع واحد', label: 'حالياً وقريباً في جميع أنحاء المملكة', color: 'from-indigo-500 to-cyan-500' }
   ];
 
   return (

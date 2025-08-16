@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import LoadingSpinner from './LoadingSpinner';
+import LoadingSpinner from './common/LoadingSpinner.jsx';
 
 // إنشاء سياق التحميل
 const LoadingContext = createContext();
@@ -49,7 +49,7 @@ export const LoadingProvider = ({ children }) => {
   return (
     <LoadingContext.Provider value={value}>
       {children}
-      <LoadingSpinner isLoading={isLoading} message={loadingMessage} />
+      {isLoading && <LoadingSpinner size="lg" color="green" text={loadingMessage} />}
     </LoadingContext.Provider>
   );
 };

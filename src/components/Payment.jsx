@@ -23,9 +23,9 @@ const Payment = () => {
   }, []);
 
   const paymentMethods = [
-    { id: 'apple-pay', name: 'Apple Pay', icon: <Apple className="h-6 w-6" />, color: 'bg-black', ring: 'ring-black' },
-    { id: 'mada', name: 'مدى', icon: <CreditCard className="h-6 w-6" />, color: 'bg-green-600', ring: 'ring-green-600' },
-    { id: 'credit-card', name: 'بطاقة ائتمان', icon: <CreditCard className="h-6 w-6" />, color: 'bg-blue-600', ring: 'ring-blue-600' }
+    { id: 'apple-pay', name: 'Apple Pay', icon: <img src="/src/assets/apple-pay.png" alt="Apple Pay" className="h-6 w-6" />, color: 'bg-black', ring: 'ring-black', description: 'الدفع السريع عبر Apple Pay' },
+    { id: 'mada', name: 'مدى', icon: <CreditCard className="h-6 w-6" />, color: 'bg-green-600', ring: 'ring-green-600', description: 'بطاقة مدى المحلية' },
+    { id: 'credit-card', name: 'بطاقة ائتمان', icon: <CreditCard className="h-6 w-6" />, color: 'bg-blue-600', ring: 'ring-blue-600', description: 'فيزا، ماستركارد، مدى' }
   ];
 
   const handlePay = async () => {
@@ -87,24 +87,48 @@ const Payment = () => {
             </div>
           </div>
           <div className="mb-8">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">اختر طريقة الدفع</h3>
+            {/* العنوان الرئيسي */}
+            <div className="payment-header">
+              <div className="payment-header-icon">
+                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="payment-header-text">طرق الدفع الآمنة</h3>
+            </div>
+            
             <div className="flex flex-col gap-4">
               {paymentMethods.map((method) => (
-                <button
+                <div
                   key={method.id}
-                  className={`flex items-center gap-4 px-6 py-4 rounded-xl border-2 transition-all duration-200 font-medium text-lg shadow-sm focus:outline-none focus:ring-2 ${
-                    paymentMethod === method.id
-                      ? `${method.color} text-white border-2 border-green-700 ring-2 ${method.ring} scale-105 shadow-lg`
-                      : 'border-gray-200 bg-white text-gray-700 hover:border-green-600'
-                  }`}
-                  style={paymentMethod === method.id ? { boxShadow: '0 0 0 4px #bbf7d0' } : {}}
                   onClick={() => setPaymentMethod(method.id)}
-                  disabled={loading}
+                  className={`payment-option-card ${paymentMethod === method.id ? 'selected' : ''}`}
                 >
-                  <span className={`p-2 rounded-full ${method.color} text-white`}>{method.icon}</span>
-                  {method.name}
-                  {paymentMethod === method.id && <span className="ml-auto text-xs font-bold">(محدد)</span>}
-                </button>
+                  {/* علامة الاختيار */}
+                  {paymentMethod === method.id && (
+                    <div className="payment-option-check">
+                      <svg className="payment-option-check-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                  )}
+                  
+                  <div className="payment-option-content">
+                    <div className={`payment-option-icon ${method.id === 'apple-pay' ? 'apple-pay-icon-container' : 'credit-card-icon-container'}`}>
+                      {method.id === 'apple-pay' ? (
+                        <img src="/src/assets/apple-pay.png" alt="Apple Pay" className="apple-pay-icon" />
+                      ) : (
+                        <svg className="credit-card-icon" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" />
+                        </svg>
+                      )}
+                    </div>
+                    <div className="payment-option-text">
+                      <h3 className="payment-option-title">{method.name}</h3>
+                      <p className="payment-option-description">{method.description}</p>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

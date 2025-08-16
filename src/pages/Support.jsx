@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, MessageCircle, Phone, Mail, MapPin, Clock, ChevronRight, HelpCircle, FileText, Users, Settings } from 'lucide-react';
 import PageHeader from '../components/common/PageHeader';
-import SmoothScroll from '../components/SmoothScroll';
+import SmoothScroll from '../components/common/SmoothScroll';
 
 const Support = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -94,7 +94,7 @@ const Support = () => {
     },
     {
       question: 'هل يمكنني إلغاء الحجز؟',
-      answer: 'نعم، يمكنك إلغاء الحجز قبل 24 ساعة من الموعد المحدد دون أي رسوم إضافية.'
+      answer: 'نعم، يمكنك إلغاء الحجز قبل الموعد المحدد دون أي رسوم إضافية.'
     },
     {
       question: 'ما هي طرق الدفع المتاحة؟',
@@ -102,7 +102,7 @@ const Support = () => {
     },
     {
       question: 'هل تقدمون ضمان على الخدمات؟',
-      answer: 'نعم، نقدم ضمان استرداد الأموال إذا لم تكن راضياً عن الخدمة خلال 24 ساعة.'
+      answer: 'نعم، نقدم ضمان استرداد الأموال إذا لم تكن راضياً عن الخدمة.'
     },
     {
       question: 'كيف يمكنني تتبع حالة غسيل سيارتي؟',
@@ -179,12 +179,12 @@ const Support = () => {
                 className={`flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-md cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
                   hoveredItem === 'availability-badge' ? 'shadow-lg' : ''
                 }`}
-                onClick={() => handleItemClick('متاح 24/7')}
+                onClick={() => handleItemClick('متاح')}
                 onMouseEnter={() => setHoveredItem('availability-badge')}
                 onMouseLeave={() => setHoveredItem(null)}
               >
                 <Clock className="h-4 w-4 text-[#2E7D32]" />
-                <span className="text-[#000000] text-sm">متاح 24/7</span>
+                                  <span className="text-[#000000] text-sm">متاح</span>
               </div>
               <div 
                 className={`flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-md cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
@@ -452,7 +452,7 @@ const Support = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-[#000000] opacity-70">طوال الأسبوع</span>
-                    <span className="text-[#000000] font-medium">24/7</span>
+                    <span className="text-[#000000] font-medium">متاح</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[#000000] opacity-70">الرد السريع</span>

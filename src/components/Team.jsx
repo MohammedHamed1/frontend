@@ -155,7 +155,7 @@ const Team = () => {
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6 text-center">
             <Heart className="h-8 w-8 text-red-500 mx-auto mb-4" />
-            <div className="text-3xl font-bold text-gray-800 mb-2">10K+</div>
+                            <div className="text-3xl font-bold text-gray-800 mb-2">+10K</div>
             <div className="text-gray-600">عميل راضي</div>
           </div>
         </div>

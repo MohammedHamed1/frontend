@@ -236,12 +236,12 @@ const News = () => {
                   }`} style={{animationDuration: '2s'}} />
                   <h2 className={`text-3xl font-bold mb-4 text-white transition-all duration-300 ${
                     hoveredItem === 'featured-news' ? 'scale-105 text-yellow-100' : ''
-                  }`} style={{fontFamily: 'Cairo, sans-serif'}}>
+                  }`}>
                     الأخبار المميزة
                   </h2>
                   <p className={`text-xl text-white opacity-90 font-medium transition-all duration-300 ${
                     hoveredItem === 'featured-news' ? 'opacity-100 scale-105' : ''
-                  }`} style={{fontFamily: 'Cairo, sans-serif'}}>
+                  }`}>
                     أهم الأخبار والتحديثات من شركتنا
                   </p>
                 </div>
@@ -276,11 +276,11 @@ const News = () => {
                       
                       <h3 className={`font-bold text-lg mb-3 text-gray-800 transition-all duration-300 ${
                         hoveredItem === `featured-${news.id}` ? 'text-[#00916E] scale-105' : ''
-                      }`} style={{fontFamily: 'Cairo, sans-serif'}}>
+                      }`}>
                         {news.title}
                       </h3>
                       
-                      <p className="text-gray-600 text-sm mb-4 leading-relaxed" style={{fontFamily: 'Cairo, sans-serif'}}>
+                      <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                         {news.excerpt}
                       </p>
                       
@@ -324,12 +324,12 @@ const News = () => {
                 }`} style={{animationDuration: '2s'}} />
                 <h2 className={`text-3xl font-bold mb-4 text-[#00916E] transition-all duration-300 ${
                   hoveredItem === 'all-news' ? 'scale-105 text-green-600' : ''
-                }`} style={{fontFamily: 'Cairo, sans-serif'}}>
+                }`}>
                   جميع الأخبار
                 </h2>
                 <p className={`text-lg text-gray-600 font-medium transition-all duration-300 ${
                   hoveredItem === 'all-news' ? 'text-gray-700 scale-105' : ''
-                }`} style={{fontFamily: 'Cairo, sans-serif'}}>
+                }`}>
                   اطلع على جميع الأخبار والتحديثات من شركتنا
                 </p>
               </div>
@@ -366,11 +366,11 @@ const News = () => {
                     
                     <h3 className={`font-bold text-lg mb-3 text-gray-800 transition-all duration-300 ${
                       hoveredItem === `news-${news.id}` ? 'text-[#00916E] scale-105' : ''
-                    }`} style={{fontFamily: 'Cairo, sans-serif'}}>
+                    }`}>
                       {news.title}
                     </h3>
                     
-                    <p className="text-gray-600 text-sm mb-4 leading-relaxed" style={{fontFamily: 'Cairo, sans-serif'}}>
+                    <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                       {news.excerpt}
                     </p>
                     
@@ -416,10 +416,10 @@ const News = () => {
               {filteredNews.length === 0 && (
                 <div className="text-center py-12">
                   <FaSearch className="text-gray-400 text-6xl mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-gray-600 mb-2" style={{fontFamily: 'Cairo, sans-serif'}}>
+                  <h3 className="text-xl font-bold text-gray-600 mb-2">
                     لا توجد أخبار
                   </h3>
-                  <p className="text-gray-500" style={{fontFamily: 'Cairo, sans-serif'}}>
+                  <p className="text-gray-500">
                     جرب تغيير معايير البحث أو الفئة المحددة
                   </p>
                 </div>
@@ -445,12 +445,12 @@ const News = () => {
               >
                 <h2 className={`text-3xl font-bold mb-4 text-white transition-all duration-300 ${
                   hoveredItem === 'news-stats' ? 'scale-105 text-yellow-100' : ''
-                }`} style={{fontFamily: 'Cairo, sans-serif'}}>
+                }`}>
                   إحصائيات الأخبار
                 </h2>
                 <p className={`text-xl text-white opacity-90 font-medium transition-all duration-300 ${
                   hoveredItem === 'news-stats' ? 'opacity-100 scale-105' : ''
-                }`} style={{fontFamily: 'Cairo, sans-serif'}}>
+                }`}>
                   أرقام وإحصائيات من عالم الأخبار
                 </p>
               </div>
@@ -461,15 +461,15 @@ const News = () => {
                     <FaNewspaper className="text-white text-2xl" />
                   </div>
                   <h3 className="text-2xl font-bold mb-2 text-[#00916E] group-hover:text-green-600 transition-colors">+150</h3>
-                  <p className="text-gray-700 font-bold text-base group-hover:text-gray-800 transition-colors" style={{fontFamily: 'Cairo, sans-serif'}}>مقال إخباري</p>
+                  <p className="text-gray-700 font-bold text-base group-hover:text-gray-800 transition-colors">مقال إخباري</p>
                 </div>
                 
                 <div className="group bg-white bg-opacity-95 p-6 rounded-xl border-2 border-white shadow-lg hover:shadow-xl hover:bg-opacity-100 hover:scale-105 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer active:scale-95">
                   <div className="w-16 h-16 bg-gradient-to-r from-[#00916E] to-[#16c47a] rounded-full flex items-center justify-center mx-auto mb-4 shadow-md group-hover:scale-110 transition-transform">
                     <FaEye className="text-white text-2xl" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 text-[#00916E] group-hover:text-green-600 transition-colors">+50K</h3>
-                  <p className="text-gray-700 font-bold text-base group-hover:text-gray-800 transition-colors" style={{fontFamily: 'Cairo, sans-serif'}}>مشاهدات</p>
+                  <h3 className="text-2xl font-bold mb-2 text-[#00916E] group-hover:text-green-600 transition-colors">+10K</h3>
+                  <p className="text-gray-700 font-bold text-base group-hover:text-gray-800 transition-colors">مشاهدات</p>
                 </div>
                 
                 <div className="group bg-white bg-opacity-95 p-6 rounded-xl border-2 border-white shadow-lg hover:shadow-xl hover:bg-opacity-100 hover:scale-105 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer active:scale-95">
@@ -477,7 +477,7 @@ const News = () => {
                     <FaHeart className="text-white text-2xl" />
                   </div>
                   <h3 className="text-2xl font-bold mb-2 text-[#00916E] group-hover:text-green-600 transition-colors">+2K</h3>
-                  <p className="text-gray-700 font-bold text-base group-hover:text-gray-800 transition-colors" style={{fontFamily: 'Cairo, sans-serif'}}>إعجابات</p>
+                  <p className="text-gray-700 font-bold text-base group-hover:text-gray-800 transition-colors">إعجابات</p>
                 </div>
                 
                 <div className="group bg-white bg-opacity-95 p-6 rounded-xl border-2 border-white shadow-lg hover:shadow-xl hover:bg-opacity-100 hover:scale-105 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer active:scale-95">
@@ -485,7 +485,7 @@ const News = () => {
                     <FaComment className="text-white text-2xl" />
                   </div>
                   <h3 className="text-2xl font-bold mb-2 text-[#00916E] group-hover:text-green-600 transition-colors">+500</h3>
-                  <p className="text-gray-700 font-bold text-base group-hover:text-gray-800 transition-colors" style={{fontFamily: 'Cairo, sans-serif'}}>تعليقات</p>
+                  <p className="text-gray-700 font-bold text-base group-hover:text-gray-800 transition-colors">تعليقات</p>
                 </div>
               </div>
             </div>

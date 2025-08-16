@@ -36,12 +36,7 @@ const ModalManager = () => {
     localStorage.setItem('hasSeenWelcomeModals', 'true');
   };
 
-  const handleTermsClose = () => {
-    setShowTerms(false);
-    setHasSeenModals(true);
-    // حفظ أن المستخدم رأى المنبثقات
-    localStorage.setItem('hasSeenWelcomeModals', 'true');
-  };
+
 
   return (
     <>
@@ -53,7 +48,6 @@ const ModalManager = () => {
       
       {showTerms && (
         <TermsModal 
-          onClose={handleTermsClose}
           onAccept={handleTermsAccept}
         />
       )}

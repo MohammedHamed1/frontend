@@ -90,7 +90,7 @@ const Support = () => {
       icon: <Phone className="h-6 w-6" />,
       title: "الهاتف المباشر",
       value: <span dir="ltr">+966 920 000 000</span>,
-      description: "خدمة 24/7 مع فريق متخصص",
+              description: "خدمة عملاء متخصصة",
       action: "اتصل الآن",
       color: "from-green-500 to-green-600",
       delay: "0.1s"
@@ -99,7 +99,7 @@ const Support = () => {
       icon: <Mail className="h-6 w-6" />,
       title: "البريد الإلكتروني",
       value: "support@paypass.sa",
-      description: "رد خلال 24 ساعة مضمون",
+              description: "رد سريع مضمون",
       action: "أرسل رسالة",
       color: "from-blue-500 to-blue-600",
       delay: "0.2s"
@@ -116,10 +116,10 @@ const Support = () => {
   ];
 
   const supportStats = [
-    { icon: <Clock className="h-6 w-6" />, value: "24/7", label: "دعم متواصل", color: "text-green-500" },
+          { icon: <Clock className="h-6 w-6" />, value: "7-11", label: "ساعات العمل", color: "text-green-500" },
     { icon: <Star className="h-6 w-6" />, value: "4.9", label: "تقييم الدعم", color: "text-yellow-500" },
     { icon: <Users className="h-6 w-6" />, value: `${liveStats.onlineAgents}+`, label: "مستشار دعم", color: "text-blue-500" },
-    { icon: <Shield className="h-6 w-6" />, value: "100%", label: "خصوصية مضمونة", color: "text-purple-500" }
+    { icon: <Shield className="h-6 w-6" />, value: "مضمونة", label: "خصوصية كاملة", color: "text-purple-500" }
   ];
 
   const quickActions = [
@@ -326,7 +326,7 @@ const Support = () => {
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="glass-effect p-8 rounded-2xl">
               <Clock className="h-12 w-12 mx-auto mb-4 text-yellow-400" />
-              <h3 className="text-xl font-bold mb-4">دعم 24/7</h3>
+                              <h3 className="text-xl font-bold mb-4">دعم متواصل</h3>
               <p className="text-gray-300">
                 فريق دعم متاح على مدار الساعة لمساعدتك في أي وقت تحتاج فيه
               </p>

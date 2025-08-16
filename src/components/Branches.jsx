@@ -1,343 +1,341 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { MapPin, Phone, Clock, Car, Navigation, ExternalLink, Star, Users, X } from 'lucide-react';
-import { getWashingPlaces } from '../api';
+import { MapPin, Phone, Clock, Car, Navigation, Star, Users, Sparkles, Zap, Map, Building2, Calendar } from 'lucide-react';
 
 const cities = [
-  { name: 'الرياض', key: 'riyadh' },
-  { name: 'جدة', key: 'jeddah' },
-  { name: 'الدمام', key: 'dammam' },
-  { name: 'مكة', key: 'makkah' },
-  { name: 'المدينة', key: 'madinah' },
+  { name: 'الرياض', key: 'riyadh', available: true },
+  { name: 'جدة', key: 'jeddah', available: false },
+  { name: 'الدمام', key: 'dammam', available: false },
+  { name: 'مكة', key: 'makkah', available: false },
+  { name: 'المدينة', key: 'madinah', available: false },
 ];
 
-// بيانات فروع الرياض كمثال عملي
-const riyadhBranches = [
-  {
-    id: 1,
-    name: 'مغاسل أناقة الموتر الاوتوماتيكيه للسيارات',
-    address: 'طريق الملك فهد الفرعي، العارض، الرياض 13334، المملكة العربية السعودية',
-    phone: '+966568801020',
-    hours: 'مفتوح على مدار الساعة',
-    rating: 4.1,
-    customers: 0,
-    services: ['غسيل خارجي', 'غسيل داخلي', 'تلميع'],
-    directions: 'https://maps.google.com/?q=24.900000,46.600000',
-    booking: '#',
-  },
-  {
-    id: 2,
-    name: 'مغاسل رجل الفقاعات للسيارات',
-    address: 'Prince Faisal bin Bandar Road, النرجس، الرياض 12211، المملكة العربية السعودية',
-    phone: '+966507762505',
-    hours: 'مفتوح على مدار الساعة',
-    rating: 4.5,
-    customers: 0,
-    services: ['غسيل خارجي', 'غسيل داخلي', 'تلميع'],
-    directions: 'https://maps.google.com/?q=24.850000,46.700000',
-    booking: '#',
-  },
-  {
-    id: 3,
-    name: 'مغسلة القوه الذكيه للسيارات',
-    address: 'القنا، النرجس، السهام &, الرياض المملكة العربية السعودية',
-    phone: '+966547321924',
-    hours: 'مفتوح على مدار الساعة',
-    rating: 4.4,
-    customers: 0,
-    services: ['غسيل خارجي', 'غسيل داخلي', 'تلميع'],
-    directions: 'https://maps.google.com/?q=24.800000,46.650000',
-    booking: '#',
-  },
-  {
-    id: 4,
-    name: 'مغسلة اللمسة الناعمة الاوتوماتيكية',
-    address: 'طريق الملك فهد، الصحافة، الرياض, المملكة العربية السعودية',
-    phone: '+966541222253',
-    hours: 'مفتوح على مدار الساعة',
-    rating: 4.6,
-    customers: 0,
-    services: ['غسيل خارجي', 'غسيل داخلي', 'تلميع'],
-    directions: 'https://maps.google.com/?q=24.774265,46.738586',
-    booking: '#',
-  },
-];
-
-// قسم إحصائيات الفروع
-const branchStats = [
-  { label: '+50', desc: 'فرع' },
-  { label: '15', desc: 'مدينة' },
-  { label: '24/7', desc: 'خدمة' },
-  { label: '4.8', desc: 'تقييم متوسط' },
-];
-
-const Branches = () => {
-  const [branches, setBranches] = useState([]);
-  const [selectedCity, setSelectedCity] = useState('riyadh');
-  const [showMap, setShowMap] = useState(false);
-  const navigate = useNavigate();
-
-  // التمرير إلى أعلى الصفحة عند تحميل المكون
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    getWashingPlaces().then(res => {
-      setBranches(res.data);
-    });
-  }, []);
-
-  // Function to extract coordinates from Google Maps URL
-  const extractCoordinatesFromUrl = (url) => {
-    try {
-      // Pattern to match coordinates in Google Maps URL
-      const coordPattern = /@(-?\d+\.?\d*),(-?\d+\.?\d*)/;
-      const match = url.match(coordPattern);
-      
-      if (match) {
-        return {
-          lat: parseFloat(match[1]),
-          lng: parseFloat(match[2])
-        };
-      }
-      
-      // Alternative pattern for different URL formats
-      const altPattern = /3d(-?\d+\.?\d*)!4d(-?\d+\.?\d*)/;
-      const altMatch = url.match(altPattern);
-      
-      if (altMatch) {
-        return {
-          lat: parseFloat(altMatch[1]),
-          lng: parseFloat(altMatch[2])
-        };
-      }
-      
-      return null;
-    } catch (error) {
-      console.error('Error extracting coordinates:', error);
-      return null;
+const branchesData = {
+  riyadh: [
+    {
+      id: 1,
+      name: 'مغسلة النقاء المطلق',
+      address: 'King Fahd Road, Al Olaya, Riyadh',
+      phone: '+966 11 488 1234',
+      hours: 'مفتوح على مدار الساعة',
+      rating: 4.7,
+      customers: 1500,
+      services: ['غسيل خارجي', 'غسيل داخلي', 'تلميع احترافي', 'خدمة سريعة'],
+      directions: 'https://maps.app.goo.gl/hD3KYnFEgx9pEXBu6?g_st=iw',
+    },
+    {
+      id: 2,
+      name: 'مغسلة اللمسة الناعمة',
+      address: 'King Fahd Road, Al Olaya, Riyadh',
+      phone: '+966 11 488 5678',
+      hours: 'مفتوح على مدار الساعة',
+      rating: 4.7,
+      customers: 1600,
+      services: ['غسيل خارجي', 'غسيل داخلي', 'تلميع احترافي', 'خدمة VIP'],
+      directions: 'https://maps.app.goo.gl/khhqHgaRFZXqELYTA?g_st=iw',
+    },
+    {
+      id: 3,
+      name: 'مغسلة القوة الذكية',
+      address: 'King Fahd Road, Al Olaya, Riyadh',
+      phone: '+966 11 488 1234',
+      hours: 'مفتوح على مدار الساعة',
+      rating: 4.8,
+      customers: 1200,
+      services: ['غسيل خارجي', 'غسيل داخلي', 'تلميع احترافي', 'تعطير'],
+      directions: 'https://maps.app.goo.gl/uB82K6Tj8jsPmXFeA?g_st=iw',
+    },
+    {
+      id: 4,
+      name: 'مغسلة البريق الذهبي',
+      address: 'King Fahd Road, Al Olaya, Riyadh',
+      phone: '+966 11 488 5678',
+      hours: 'مفتوح على مدار الساعة',
+      rating: 4.6,
+      customers: 1100,
+      services: ['غسيل خارجي', 'غسيل داخلي', 'تلميع احترافي', 'خدمة متميزة'],
+      directions: 'https://maps.app.goo.gl/VY5rRk7oLZ2YpSmb7?g_st=iw',
     }
-  };
+  ],
+};
 
-  // Function to convert Google Maps URL to embed URL
-  const getEmbedUrl = (locationUrl) => {
-    const coords = extractCoordinatesFromUrl(locationUrl);
-    if (coords) {
-      return `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d${coords.lng}!3d${coords.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1625000000000!5m2!1sen!2s`;
-    }
-    return null;
-  };
-
-  // Interactive Map Component
-  const InteractiveMap = () => (
-    <div className="bg-white rounded-2xl p-6 shadow-xl border border-black-100">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-bold text-gray-900">خريطة الفروع</h3>
-        <button 
-          onClick={() => setShowMap(false)}
-          className="text-gray-500 hover:text-gray-700"
-        >
-          ✕
-        </button>
+const ComingSoonCard = ({ city }) => (
+  <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 shadow-xl border border-gray-100 text-center relative overflow-hidden group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+    {/* خلفية زخرفية */}
+    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-100 to-transparent rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-all duration-500"></div>
+    <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-blue-100 to-transparent rounded-full translate-y-12 -translate-x-12 group-hover:scale-150 transition-all duration-500"></div>
+    
+    <div className="relative z-10">
+      <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
+        <Building2 className="w-10 h-10" style={{ fill: 'white' }} />
       </div>
       
-      <div className="bg-gradient-to-br from-green-100 to-primary-100 rounded-xl p-8 text-center">
-        <div className="bg-white rounded-xl p-6 shadow-lg mb-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            {branches.map((branch, index) => (
-              <div
-                key={index}
-                className="text-center p-3 bg-green-50 rounded-lg hover:bg-green-100 transition-colors cursor-pointer block"
-                style={{ userSelect: 'none' }}
-                onClick={() => navigate(`/washing-place/${branch._id || branch.id}`)}
-              >
-                <button
-                  type="button"
-                  className="mb-3 px-4 py-2 bg-green-600 text-white rounded-lg font-bold text-xs hover:bg-green-700 transition-colors"
-                  onClick={e => { e.stopPropagation(); navigate(`/washing-place/${branch._id || branch.id}`); }}
-                >
-                  تفاصيل الفرع
-                </button>
-                <div className="w-3 h-3 bg-primary-500 rounded-full mx-auto mb-2"></div>
-                <div className="text-sm font-medium text-gray-900">{branch.name}</div>
-                <div className="text-xs text-gray-600">{branch.rating} ⭐</div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-green-200 to-primary-200 opacity-50"></div>
-            <div className="relative z-10 text-center">
-              <MapPin className="h-12 w-12 text-primary-600 mx-auto mb-4" />
-              <h4 className="text-lg font-bold text-gray-900 mb-2">خريطة تفاعلية</h4>
-              <p className="text-gray-600 mb-4">انقر على أي فرع لرؤية التفاصيل والاتجاهات</p>
-              <a
-                href="https://www.google.com/maps"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-black rounded-lg font-medium hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-lg"
-              >
-                فتح Google Maps
-              </a>
-            </div>
-          </div>
+             <h3 className="text-xl font-bold text-gray-900 mb-4">{city}</h3>
+      
+       <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-full text-xs font-bold mb-4 inline-block">
+         قريباً جداً
+       </div>
+      
+       <p className="text-gray-600 text-base mb-6 leading-relaxed">
+         نحن نعمل بجد لإفتتاح فروعنا في {city} قريباً جداً
+       </p>
+      
+      <div className="flex items-center justify-center gap-4 text-sm text-gray-500 mb-6">
+        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" style={{ fill: 'white' }} />
+          <span>قريباً</span>
+        </div>
+        <div className="flex items-center gap-2">
+                          <Map className="w-4 h-4" style={{ fill: 'white' }} />
+          <span>مواقع مميزة</span>
+        </div>
+      </div>
+      
+      <div className="bg-green-50 rounded-2xl p-4 border border-green-100">
+        <p className="text-green-700 font-semibold text-sm">
+          🎉 انتظرونا قريباً! نحن قادمون إلى {city}
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
+const BranchCard = ({ branch }) => (
+  <div className="group bg-white rounded-3xl shadow-xl border border-gray-100 p-6 flex flex-col gap-3 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden">
+    {/* خلفية زخرفية */}
+    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-green-100 to-transparent rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-all duration-500"></div>
+    
+    <div className="relative z-10">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-xl font-bold text-gray-900 group-hover:text-gray-800 transition-colors duration-300">{branch.name}</h3>
+        <span className="flex items-center gap-1 text-green-500 font-bold bg-green-50 px-3 py-1 rounded-full">
+        <Star className="w-4 h-4 ml-1" style={{ fill: 'white' }} />
+        {branch.rating}
+      </span>
+    </div>
+      
+      <div className="space-y-3 mb-4">
+        <div className="flex items-center text-gray-600 text-sm">
+          <MapPin className="w-4 h-4 text-green-600 ml-2" style={{ fill: 'white' }} />
+          <span className="line-clamp-2">{branch.address}</span>
+    </div>
+        <div className="flex items-center text-gray-600 text-sm">
+          <Phone className="w-4 h-4 text-green-600 ml-2" style={{ fill: 'white' }} />
+          <a href={`tel:${branch.phone}`} className="hover:text-green-700 transition-colors duration-300">
+        {branch.phone}
+      </a>
+    </div>
+        <div className="flex items-center text-gray-600 text-sm">
+          <Clock className="w-4 h-4 text-green-600 ml-2" style={{ fill: 'white' }} />
+      {branch.hours}
+    </div>
+        <div className="flex items-center text-gray-600 text-sm">
+          <Users className="w-4 h-4 text-green-600 ml-2" style={{ fill: 'white' }} />
+      +{branch.customers} عميل
+    </div>
+      </div>
+      
+      <div className="flex flex-wrap gap-2 mb-4">
+      {branch.services.map((service, i) => (
+        <span
+          key={i}
+            className="px-3 py-1 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 text-xs rounded-full font-medium border border-green-200"
+        >
+          {service}
+        </span>
+      ))}
+    </div>
+      
+      <div className="flex gap-3 mt-auto">
+      <a
+        href={branch.directions}
+        target="_blank"
+        rel="noopener noreferrer"
+          className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 px-4 rounded-2xl font-medium flex items-center justify-center gap-2 hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+      >
+        <Navigation className="w-4 h-4" style={{ fill: 'white' }} />
+        الاتجاهات
+      </a>
+      <a
+        href="#"
+          className="flex-1 border-2 border-green-500 text-green-700 py-3 px-4 rounded-2xl font-medium flex items-center justify-center gap-2 hover:bg-green-50 transition-all duration-300 transform hover:scale-105"
+      >
+        <Car className="w-4 h-4" style={{ fill: 'white' }} />
+        احجز الآن
+      </a>
+      </div>
+    </div>
+  </div>
+);
+
+const InteractiveMap = () => (
+  <div className="bg-white rounded-3xl border border-gray-100 shadow-2xl p-8">
+    <div className="text-center mb-8">
+      <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-lg">
+        <Map className="w-4 h-4" style={{ fill: 'white' }} />
+        خريطة تفاعلية
+        <Map className="w-4 h-4" style={{ fill: 'white' }} />
+      </div>
+             <h3 className="text-2xl font-bold text-gray-900 mb-4">موقع فروعنا</h3>
+       <p className="text-gray-600 text-base">انقر على أي فرع لرؤية التفاصيل والاتجاهات</p>
+    </div>
+    
+    <div className="bg-gradient-to-br from-green-100 to-emerald-100 rounded-3xl p-8 text-center relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-green-200/30 to-transparent rounded-full -translate-x-32 -translate-y-32"></div>
+      <div className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-emerald-200/30 to-transparent rounded-full translate-x-32 translate-y-32"></div>
+      
+      <div className="relative z-10 bg-white rounded-3xl p-8 shadow-xl">
+        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-100">
+          <MapPin className="h-16 w-16 text-green-600 mx-auto mb-6" style={{ fill: 'white' }} />
+                     <h4 className="text-xl font-bold text-gray-900 mb-4">خريطة تفاعلية</h4>
+           <p className="text-gray-600 mb-6 text-base">اكتشف فروعنا في الرياض وابحث عن أقرب فرع إليك</p>
+            <a
+              href="https://www.google.com/maps"
+              target="_blank"
+              rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl font-bold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+            <Map className="w-5 h-5" style={{ fill: 'white' }} />
+              فتح Google Maps
+            </a>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 
-  // Individual Branch Map Component
-  const BranchMapPlaceholder = ({ branch }) => {
-    const embedUrl = getEmbedUrl(branch.location);
-    
-    return (
-      <div className="mt-4 bg-gray-50 rounded-xl p-4 border border-gray-200">
-        <div className="flex items-center justify-between mb-3">
-          <h4 className="text-lg font-semibold text-gray-900 flex items-center">
-            <MapPin className="h-5 w-5 text-primary-600 mr-2" />
-            موقع الفرع
-          </h4>
-        </div>
-        
-        {embedUrl ? (
-          <div className="relative">
-            <iframe
-              title={`خريطة ${branch.name}`}
-              width="100%"
-              height="300"
-              style={{ border: 0, borderRadius: '0.5rem' }}
-              loading="lazy"
-              allowFullScreen
-              src={embedUrl}
-              className="shadow-md"
-            ></iframe>
-            <div className="absolute top-2 right-2">
-              <a
-                href={branch.location}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white bg-opacity-90 hover:bg-opacity-100 p-2 rounded-lg shadow-md transition-all duration-200 flex items-center text-sm font-medium text-gray-700 hover:text-primary-600"
-              >
-                <ExternalLink className="h-4 w-4 mr-1" />
-                فتح في Google Maps
-              </a>
-            </div>
-          </div>
-        ) : (
-          <div className="bg-white rounded-lg p-6 text-center border border-gray-200">
-            <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-3" />
-            <p className="text-gray-600 mb-4">لا يمكن عرض الخريطة حالياً</p>
-            <a
-              href={branch.location}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium transition-colors duration-200"
-            >
-              <ExternalLink className="h-4 w-4 mr-2" />
-              عرض في Google Maps
-            </a>
-          </div>
-        )}
-      </div>
-    );
+const Branches = () => {
+  const [selectedCity, setSelectedCity] = useState('riyadh');
+  const [showMap, setShowMap] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  
+  const branches = branchesData[selectedCity] || [];
+  const selectedCityData = cities.find(city => city.key === selectedCity);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  // تعديل الإحصائيات لتتوافق مع 4 فروع
+  const branchStats = {
+    count: 4,
+    rating: 4.7,
+    customers: 5400
   };
 
-  // تصفية الفروع حسب المدينة
-  let filteredBranches = [];
-  if (selectedCity === 'riyadh') {
-    filteredBranches = riyadhBranches;
-  } else {
-    filteredBranches = branches.filter(branch => branch.cityKey === selectedCity);
-  }
-
   return (
-    <section id="branches" className="py-20 bg-[#f8fcfa] min-h-[400px] relative overflow-hidden">
-      {/* دائرة زخرفية */}
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-green-100 rounded-full opacity-30 blur-2xl"></div>
-      <div className="container mx-auto px-4 relative z-10">
-        {/* قسم إحصائيات الفروع */}
-        <div className="flex justify-center mb-12">
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 px-10 py-6 flex flex-col items-center max-w-2xl w-full" style={{boxShadow:'0 8px 32px 0 #eaf7f0'}}>
-            <div className="text-center text-gray-800 font-bold text-lg mb-4">إحصائيات الفروع</div>
-            <div className="flex flex-row gap-0 items-center w-full">
-            {branchStats.map((stat, i) => (
-                <div key={i} className="flex flex-col items-center flex-1 border-l last:border-l-0 border-gray-100 px-6">
-                <span className="text-emerald-600 text-2xl font-extrabold mb-1">{stat.label}</span>
-                <span className="text-gray-700 text-base font-semibold">{stat.desc}</span>
-              </div>
-            ))}
+    <section className="relative min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 py-16 overflow-hidden">
+      {/* خلفية زخرفية */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-green-200/20 to-transparent rounded-full -translate-x-48 -translate-y-48"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-emerald-200/20 to-transparent rounded-full translate-x-48 translate-y-48"></div>
+      
+      <div className="relative z-10 container mx-auto px-4">
+        {/* العنوان الرئيسي */}
+        <div className={`text-center mb-12 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-lg">
+            <Sparkles className="w-4 h-4" style={{ fill: 'white' }} />
+            فروعنا
+            <Sparkles className="w-4 h-4" style={{ fill: 'white' }} />
+          </div>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            فروعنا
+          </h1>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            اكتشف فروعنا المنتشرة في جميع أنحاء المملكة العربية السعودية
+          </p>
+        </div>
+        {/* إحصائيات */}
+        <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 sm:mb-16 transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <div className="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 text-center group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <MapPin className="w-8 h-8" style={{ fill: 'white', stroke: 'white' }} />
             </div>
+            <div className="text-3xl font-bold text-gray-900 mb-2">{branchStats.count}</div>
+            <div className="text-gray-600">فرع في الرياض</div>
+          </div>
+          <div className="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 text-center group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <Star className="w-8 h-8" style={{ fill: 'white' }} />
+            </div>
+            <div className="text-3xl font-bold text-gray-900 mb-2">{branchStats.rating}</div>
+            <div className="text-gray-600">متوسط التقييم</div>
+          </div>
+          <div className="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 text-center group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <Users className="w-8 h-8" style={{ fill: 'white' }} />
+            </div>
+            <div className="text-3xl font-bold text-gray-900 mb-2">+{branchStats.customers}</div>
+            <div className="text-gray-600">تقييم إجمالي</div>
           </div>
         </div>
-        {/* عنوان موقع الفروع */}
-        <div className="text-center mb-6 animate-fade-in-up">
-          <h2 className="text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2 text-center">موقع فروعنا</h2>
-          <p className="text-base lg:text-lg text-gray-500 max-w-2xl mx-auto mb-8">اكتشف أقرب فرع لك واحصل على الاتجاهات</p>
-        </div>
-        {/* Tabs للمدن */}
-        <div className="flex justify-center gap-3 mb-8 flex-wrap">
-          {cities.map(city => (
+        {/* أزرار المدن */}
+        <div className={`flex flex-wrap justify-center gap-3 mb-12 transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <button
+            key="riyadh"
+            className="px-8 py-4 rounded-2xl font-bold bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg"
+            disabled
+          >
+            الرياض
+          </button>
+          <button
+            key="jeddah"
+            className="px-8 py-4 rounded-2xl font-bold bg-gray-300 text-gray-600 shadow-lg cursor-not-allowed"
+            disabled
+          >
+            جدة قريباً
+          </button>
+          <button
+            key="dammam"
+            className="px-8 py-4 rounded-2xl font-bold bg-gray-300 text-gray-600 shadow-lg cursor-not-allowed"
+            disabled
+          >
+            الدمام قريباً
+          </button>
+          <button
+            key="mecca"
+            className="px-8 py-4 rounded-2xl font-bold bg-gray-300 text-gray-600 shadow-lg cursor-not-allowed"
+            disabled
+          >
+            مكة قريباً
+          </button>
             <button
-              key={city.key}
-              onClick={() => setSelectedCity(city.key)}
-              className={`px-6 py-2 rounded-xl font-semibold shadow-sm transition-all duration-200 text-base focus:outline-none ${selectedCity === city.key ? 'bg-emerald-600 text-white shadow-lg' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
-            >
-              {city.name}
+            key="medina"
+            className="px-8 py-4 rounded-2xl font-bold bg-gray-300 text-gray-600 shadow-lg cursor-not-allowed"
+            disabled
+          >
+            المدينة قريباً
             </button>
-          ))}
-        </div>
-        {/* قائمة الفروع أو رسالة قريبا */}
-        <div className="flex flex-col items-center min-h-[120px]">
-          {filteredBranches.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
-              {filteredBranches.map(branch => (
-                <div key={branch.id} className="bg-white rounded-2xl p-6 shadow-xl border border-gray-100 flex flex-col items-stretch text-right min-w-[320px]">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-emerald-700 font-bold text-base">{branch.name}</span>
-                    <span className="ml-2"><svg xmlns='http://www.w3.org/2000/svg' className='inline h-5 w-5 text-emerald-500' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M17.657 16.657L13.414 12.414a2 2 0 00-2.828 0l-4.243 4.243M15 11a3 3 0 11-6 0 3 3 0 016 0z' /></svg></span>
-                  </div>
-                  <div className="text-gray-600 text-sm mb-1 flex items-center"><svg xmlns='http://www.w3.org/2000/svg' className='inline h-4 w-4 text-emerald-400 ml-1' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M17.657 16.657L13.414 12.414a2 2 0 00-2.828 0l-4.243 4.243M15 11a3 3 0 11-6 0 3 3 0 016 0z' /></svg>{branch.address}</div>
-                  <div className="text-gray-600 text-sm mb-1 flex items-center"><svg xmlns='http://www.w3.org/2000/svg' className='inline h-4 w-4 text-emerald-400 ml-1' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9' /></svg><span dir="ltr">{branch.phone}</span></div>
-                  <div className="text-gray-600 text-sm mb-1 flex items-center"><svg xmlns='http://www.w3.org/2000/svg' className='inline h-4 w-4 text-emerald-400 ml-1' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M8 17v-1a4 4 0 018 0v1' /></svg>{branch.hours}</div>
-                  <div className="flex items-center text-sm mb-1">
-                    <span className="text-yellow-500 font-bold flex items-center mr-1">{branch.rating} <svg xmlns='http://www.w3.org/2000/svg' className='inline h-4 w-4 text-yellow-400 mx-1' fill='currentColor' viewBox='0 0 20 20'><path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.454a1 1 0 00-1.175 0l-3.38 2.454c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.049 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z'/></svg></span>
-                    <span className="text-gray-500">/ {branch.customers} عميل</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2 mb-3 mt-1">
-                    {branch.services.map((srv, i) => (
-                      <span key={i} className="bg-gray-100 text-emerald-700 rounded-lg px-3 py-1 text-xs font-semibold">{srv}</span>
-                    ))}
-                  </div>
-                  <div className="flex gap-2 mt-auto">
-                    <a href={branch.directions} target="_blank" rel="noopener noreferrer" className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold rounded-lg px-4 py-2 text-sm flex items-center justify-center transition"><svg xmlns='http://www.w3.org/2000/svg' className='inline h-4 w-4 ml-1' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 20l-5.447-2.724A2 2 0 013 15.382V6.618a2 2 0 011.553-1.947l7-2.1a2 2 0 011.894 0l7 2.1A2 2 0 0121 6.618v8.764a2 2 0 01-1.553 1.947L15 20' /></svg>الاتجاهات</a>
-                    <button onClick={() => navigate('/packages')} className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg px-4 py-2 text-sm flex items-center justify-center transition"><svg xmlns='http://www.w3.org/2000/svg' className='inline h-4 w-4 ml-1' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 4v16m8-8H4' /></svg>احجز الآن</button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-lg text-gray-500 font-semibold py-12">قريباً سوف نكون في {cities.find(c => c.key === selectedCity)?.name} انتظرونا قادمون</div>
-          )}
         </div>
         {/* زر الخريطة */}
-        <div className="flex justify-center mt-8">
+        <div className={`text-center mb-12 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <button
             onClick={() => setShowMap(!showMap)}
-            className="px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold shadow-lg transition-all duration-300 text-base"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-10 py-4 rounded-2xl font-bold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
-            {showMap ? 'إخفاء الخريطة التفاعلية' : 'عرض الخريطة التفاعلية'}
+            <Map className="w-5 h-5" style={{ fill: 'white' }} />
+            عرض الخريطة التفاعلية
           </button>
         </div>
-        {/* الخريطة التفاعلية */}
-        {showMap && (
-          <div className="mt-10 animate-fade-in-up">
-            <InteractiveMap />
+        {/* المحتوى */}
+        <div className={`transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+        {showMap ? (
+          <InteractiveMap />
+        ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {branches.length > 0 ? (
+              branches.map((branch) => (
+                <BranchCard key={branch.id} branch={branch} />
+              ))
+            ) : (
+              <div className="col-span-full text-center text-gray-500 py-12">
+                لا توجد فروع متاحة في هذه المدينة حالياً.
+              </div>
+            )}
           </div>
         )}
       </div>
+    </div>
     </section>
   );
 };
 
-export default Branches;
+export default Branches; 

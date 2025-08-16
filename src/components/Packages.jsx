@@ -48,7 +48,7 @@ const Packages = () => {
         "معالجة الخدوش",
         "خدمة VIP",
         "عدد غير محدود",
-        "دعم فني مخصص"
+        "خدمة مخصصة"
       ],
       popular: false,
       icon: <Star className="h-6 w-6" />
@@ -65,7 +65,7 @@ const Packages = () => {
         "غسيل 10 سيارات شهرياً",
         "خدمة مخصصة",
         "تقارير شهرية",
-        "دعم فني"
+        "خدمة عملاء"
       ]
     },
     {
@@ -77,7 +77,7 @@ const Packages = () => {
         "غسيل 25 سيارة شهرياً",
         "خدمة مخصصة",
         "تقارير شهرية",
-        "دعم فني",
+        "خدمة عملاء",
         "إدارة الحساب"
       ]
     },
@@ -90,7 +90,7 @@ const Packages = () => {
         "غسيل 50 سيارة شهرياً",
         "خدمة مخصصة",
         "تقارير شهرية",
-        "دعم فني",
+        "خدمة عملاء",
         "إدارة الحساب",
         "API مخصص"
       ]
@@ -237,7 +237,7 @@ const Packages = () => {
               <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
                 <Clock className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">خدمة 24/7</h3>
+                              <h3 className="text-xl font-bold text-gray-800 mb-2">ساعات عمل مرنة</h3>
               <p className="text-gray-600">خدمة متاحة على مدار الساعة</p>
             </div>
             <div className="text-center">
@@ -245,7 +245,7 @@ const Packages = () => {
                 <Shield className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">ضمان الجودة</h3>
-              <p className="text-gray-600">ضمان 100% على جميع الخدمات</p>
+              <p className="text-gray-600">ضمان شامل على جميع الخدمات</p>
             </div>
             <div className="text-center">
               <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">

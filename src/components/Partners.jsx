@@ -71,7 +71,7 @@ const Partners = () => {
         'خصومات خاصة لمالكي تويوتا',
         'خدمات مخصصة للسيارات',
         'ضمان إضافي على الخدمات',
-        'دعم فني متخصص'
+        'خدمة عملاء متخصصة'
       ],
       image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&h=400&fit=crop',
       logo: 'https://via.placeholder.com/150x80/FF6B35/FFFFFF?text=Toyota',
@@ -81,7 +81,7 @@ const Partners = () => {
       location: 'الرياض، المملكة العربية السعودية',
       partnershipDate: '2024-01-15',
       featured: true,
-      stats: { customers: '10K+', satisfaction: '98%', services: '50+' }
+              stats: { customers: '+10K', satisfaction: '98%', services: '50+' }
     },
     {
       id: 2,
@@ -103,7 +103,7 @@ const Partners = () => {
       location: 'ميلانو، إيطاليا',
       partnershipDate: '2023-12-01',
       featured: true,
-      stats: { quality: '99%', products: '100+', support: '24/7' }
+              stats: { quality: '99%', products: '100+', support: '7-11' }
     },
     {
       id: 3,
@@ -114,7 +114,7 @@ const Partners = () => {
       benefits: [
         'خدمات دفع إلكتروني آمنة',
         'خصومات على العمولات',
-        'دعم فني متخصص',
+        'خدمة عملاء متخصصة',
         'تقارير مالية مفصلة'
       ],
       image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop',
@@ -125,7 +125,7 @@ const Partners = () => {
       location: 'الرياض، المملكة العربية السعودية',
       partnershipDate: '2023-11-15',
       featured: false,
-      stats: { transactions: '1M+', security: '100%', uptime: '99.9%' }
+      stats: { transactions: '1M+', security: 'مضمون', uptime: '99.9%' }
     },
     {
       id: 4,

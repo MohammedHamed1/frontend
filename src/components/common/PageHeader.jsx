@@ -33,7 +33,6 @@ const PageHeader = ({
     return (
       <div className="relative overflow-hidden bg-gradient-to-r from-green-700 via-green-600 to-emerald-500 pt-16 pb-20">
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-black/5"></div>
         
         <div className="relative max-w-6xl mx-auto px-4 text-center">
           {/* Chat Bubble Icon */}
@@ -87,7 +86,7 @@ const PageHeader = ({
             onMouseEnter={() => setHoveredItem('contact-description')}
             onMouseLeave={() => setHoveredItem(null)}
           >
-            فريق الدعم متاح 24/7 للإجابة على جميع استفساراتك ومساعدتك في حل أي مشكلة تواجهها
+            فريق الدعم متاح لمساعدتك في حل أي مشكلة تواجهها
           </p>
 
           {/* Support Statistics Cards */}
@@ -96,14 +95,14 @@ const PageHeader = ({
               className={`bg-white/15 backdrop-blur-sm rounded-xl p-6 border border-white/20 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
                 hoveredItem === 'support-24-7' ? 'bg-white/25 border-white/40' : ''
               }`}
-              onClick={() => handleItemClick('دعم 24/7')}
+                              onClick={() => handleItemClick('دعم')}
               onMouseEnter={() => setHoveredItem('support-24-7')}
               onMouseLeave={() => setHoveredItem(null)}
             >
               <div className={`text-3xl font-bold text-white mb-2 transition-all duration-300 ${
                 hoveredItem === 'support-24-7' ? 'scale-110' : ''
-              }`}>24/7</div>
-              <div className="text-white/90 text-sm">دعم متواصل</div>
+              }`}>7-11</div>
+              <div className="text-white/90 text-sm">ساعات العمل</div>
             </div>
             <div 
               className={`bg-white/15 backdrop-blur-sm rounded-xl p-6 border border-white/20 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
@@ -157,7 +156,6 @@ const PageHeader = ({
     return (
       <div className="relative overflow-hidden bg-gradient-to-r from-green-700 via-green-600 to-emerald-500 pt-16 pb-20">
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-black/5"></div>
         
         <div className="relative max-w-6xl mx-auto px-4 text-center">
           {/* Book Icon */}
@@ -220,14 +218,14 @@ const PageHeader = ({
               className={`bg-white/15 backdrop-blur-sm rounded-xl p-6 border border-white/20 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
                 hoveredItem === 'content-24-7' ? 'bg-white/25 border-white/40' : ''
               }`}
-              onClick={() => handleItemClick('محتوى 24/7')}
+                              onClick={() => handleItemClick('محتوى')}
               onMouseEnter={() => setHoveredItem('content-24-7')}
               onMouseLeave={() => setHoveredItem(null)}
             >
               <div className={`text-3xl font-bold text-white mb-2 transition-all duration-300 ${
                 hoveredItem === 'content-24-7' ? 'scale-110' : ''
-              }`}>24/7</div>
-              <div className="text-white/90 text-sm">محتوى متوفر</div>
+              }`}>7-11</div>
+              <div className="text-white/90 text-sm">ساعات العمل</div>
             </div>
             <div 
               className={`bg-white/15 backdrop-blur-sm rounded-xl p-6 border border-white/20 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
@@ -252,7 +250,7 @@ const PageHeader = ({
             >
               <div className={`text-3xl font-bold text-white mb-2 transition-all duration-300 ${
                 hoveredItem === 'monthly-readers' ? 'scale-110' : ''
-              }`}>+50K</div>
+              }`}>+10K</div>
               <div className="text-white/90 text-sm">قارئ شهرياً</div>
             </div>
             <div 
@@ -281,7 +279,6 @@ const PageHeader = ({
     return (
       <div className="relative overflow-hidden bg-gradient-to-r from-green-700 via-green-600 to-emerald-500 pt-16 pb-20">
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-black/5"></div>
         
         <div className="relative max-w-6xl mx-auto px-4 text-center">
           {/* Building/Office Icon */}
@@ -393,7 +390,6 @@ const PageHeader = ({
   return (
     <div className="relative overflow-hidden bg-gradient-to-r from-green-700 via-green-600 to-emerald-500 pt-16 pb-20">
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-black/5"></div>
       
       <div className="relative max-w-6xl mx-auto px-4 text-center">
         {/* PayPass Logo */}
@@ -455,14 +451,14 @@ const PageHeader = ({
             className={`bg-white/15 backdrop-blur-sm rounded-xl p-6 border border-white/20 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
               hoveredItem === 'service-24-7' ? 'bg-white/25 border-white/40' : ''
             }`}
-            onClick={() => handleItemClick('خدمة 24/7')}
+                            onClick={() => handleItemClick('خدمة')}
             onMouseEnter={() => setHoveredItem('service-24-7')}
             onMouseLeave={() => setHoveredItem(null)}
           >
             <div className={`text-3xl font-bold text-white mb-2 transition-all duration-300 ${
               hoveredItem === 'service-24-7' ? 'scale-110' : ''
-            }`}>24/7</div>
-            <div className="text-white/90 text-sm">خدمة</div>
+            }`}>7-11</div>
+            <div className="text-white/90 text-sm">ساعات العمل</div>
           </div>
           <div 
             className={`bg-white/15 backdrop-blur-sm rounded-xl p-6 border border-white/20 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 ${
@@ -487,7 +483,7 @@ const PageHeader = ({
           >
             <div className={`text-3xl font-bold text-white mb-2 transition-all duration-300 ${
               hoveredItem === 'customers' ? 'scale-110' : ''
-            }`}>+50K</div>
+            }`}>+10K</div>
             <div className="text-white/90 text-sm">عميل</div>
           </div>
           <div 
@@ -498,10 +494,10 @@ const PageHeader = ({
             onMouseEnter={() => setHoveredItem('branches')}
             onMouseLeave={() => setHoveredItem(null)}
           >
-            <div className={`text-3xl font-bold text-white mb-2 transition-all duration-300 ${
+            <div className={`text-lg font-bold text-white mb-2 transition-all duration-300 ${
               hoveredItem === 'branches' ? 'scale-110' : ''
-            }`}>+50</div>
-            <div className="text-white/90 text-sm">فرع</div>
+            }`}>فرع واحد</div>
+            <div className="text-white/90 text-xs">حالياً وقريباً في جميع أنحاء المملكة</div>
           </div>
         </div>
         
