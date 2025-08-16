@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import { getOrderHistory } from '../api'; // Uncomment when backend ready
 
 const OrderHistory = () => {
@@ -6,6 +6,12 @@ const OrderHistory = () => {
     { id: 1, package: 'الباقة الأساسية', date: '2024-05-01', price: 150, status: 'مكتمل' },
     { id: 2, package: 'الباقة المتقدمة', date: '2024-04-15', price: 280, status: 'مكتمل' },
   ]);
+  
+  // التمرير إلى أعلى الصفحة عند تحميل المكون
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   // useEffect(() => { getOrderHistory().then(setOrders); }, []);
 
   return (

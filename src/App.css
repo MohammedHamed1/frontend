@@ -1,21 +1,81 @@
-/* Light green color for the app */
-:root {
-  --light-green: #e6f9ec;
-  --light-green-text: #218a5a;
+/* App-specific styles */
+/* Flex layout for full-page height */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.bg-light-green {
-  background-color: var(--light-green) !important;
+/* Header spacing */
+.header-spacer {
+  height: 80px;
 }
 
-.text-light-green {
-  color: var(--light-green-text) !important;
+/* Footer styles */
+footer {
+  margin-top: auto !important;
+  position: relative !important;
+  z-index: 1000 !important;
+  clear: both !important;
+  background: #232c36 !important;
+  color: #bfc9d1 !important;
 }
 
-/* Example usage: add bg-light-green or text-light-green to any element */
-
-section, .main-section {
-  margin-top: 3.5rem;
+/* Section backgrounds */
+.section-light {
+  background-color: #f8fafc;
 }
 
-/* If using Tailwind, you can also add mt-16 or similar to section classes in JSX */
+.section-white {
+  background-color: white;
+}
+
+/* Custom gradients */
+.gradient-primary {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+}
+
+/* Text colors */
+.text-primary {
+  color: #059669;
+}
+
+.text-secondary {
+  color: #f59e0b;
+}
+
+/* Spacing utilities */
+.section-padding {
+  padding: 3rem 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 2rem 0;
+  }
+}
+
+/* إضافة CSS مخصص للودينج */
+@keyframes loading {
+  0%, 100% { width: 20%; }
+  50% { width: 80%; }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0,0,0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}

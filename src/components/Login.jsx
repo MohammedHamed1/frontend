@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login, setAuthToken } from '../api';
+import { login as loginApi } from '../api';
+import { useAuth } from '../useAuth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
+
+  useEffect(() => {
+    // التمرير إلى أعلى الصفحة عند تحميل المكون
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await login({ email, password });
+      const res = await loginApi({ email, password });
       const { token } = res.data;
-      localStorage.setItem('token', token);
-      setAuthToken(token);
+      login(token);
       navigate('/checkout');
     } catch {
       setError('فشل تسجيل الدخول. تحقق من البيانات.');

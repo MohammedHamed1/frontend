@@ -13,6 +13,9 @@ const Payment = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // التمرير إلى أعلى الصفحة عند تحميل المكون
+    window.scrollTo(0, 0);
+    
     const pkg = localStorage.getItem('selectedPackage');
     if (pkg) setSelectedPackage(JSON.parse(pkg));
     const token = localStorage.getItem('token');

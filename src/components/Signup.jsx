@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signup, setAuthToken } from '../api';
+import { signup as signupApi } from '../api';
+import { useAuth } from '../useAuth';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -8,14 +9,19 @@ const Signup = () => {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
+
+  useEffect(() => {
+    // التمرير إلى أعلى الصفحة عند تحميل المكون
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await signup({ email, password, name });
+      const res = await signupApi({ email, password, name });
       const { token } = res.data;
-      localStorage.setItem('token', token);
-      setAuthToken(token);
+      login(token);
       navigate('/checkout');
     } catch {
       setError('فشل التسجيل. تحقق من البيانات.');

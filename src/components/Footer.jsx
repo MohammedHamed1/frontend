@@ -1,237 +1,212 @@
-import React from 'react';
-import { Car, Phone, Mail, MapPin, Download, Facebook, Twitter, Instagram, Linkedin, MessageCircle, Star, Youtube } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { 
+  Phone, Mail, MapPin, Instagram, Twitter, Facebook, Star, Clock, Shield, Award,
+  Download, Globe, MessageCircle, HelpCircle, FileText, Users, Briefcase, Trophy,
+  Play, Apple, ExternalLink, ChevronRight, ArrowRight, Camera, Youtube
+} from 'lucide-react';
+import googlePlayBadge from '../assets/google-play-badge.png';
+import appStoreBadge from '../assets/app-store-badge.png';
+import logo from '../assets/logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const footerLinks = {
-    services: [
-      "غسيل خارجي شامل",
-      "غسيل داخلي",
-      "تلميع السيارات",
-      "تنظيف المحرك",
-      "خدمة VIP",
-      "معطر داخلي"
-    ],
-    packages: [
-      "الباقة الأساسية",
-      "الباقة المتقدمة", 
-      "الباقة الشاملة",
-      "باقات الشركات",
-      "باقات الجملة",
-      "باقات الاشتراك الشهري"
-    ],
-    company: [
-      "من نحن",
-      "فريق العمل",
-      "الوظائف الشاغرة",
-      "الأخبار والتحديثات",
-      "الشركاء",
-      "الشهادات والجوائز"
-    ],
-    support: [
-      "مركز المساعدة",
-      "الدعم الفني",
-      "الشكاوى والاقتراحات",
-      "الأسئلة الشائعة",
-      "تواصل معنا",
-      "دليل الاستخدام"
-    ]
-  };
-
-  const socialLinks = [
-    { icon: <Facebook className="h-5 w-5" />, href: "#", color: "hover:bg-blue-600", name: "Facebook" },
-    { icon: <Twitter className="h-5 w-5" />, href: "#", color: "hover:bg-blue-400", name: "Twitter" },
-    { icon: <Instagram className="h-5 w-5" />, href: "#", color: "hover:bg-pink-600", name: "Instagram" },
-    { icon: <MessageCircle className="h-5 w-5" />, href: "#", color: "hover:bg-green-600", name: "WhatsApp" },
-    { icon: <Star className="h-5 w-5" />, href: "#", color: "hover:bg-yellow-500", name: "Snapchat" },
-    { icon: <Youtube className="h-5 w-5" />, href: "#", color: "hover:bg-red-600", name: "YouTube" }
-  ];
-
-  const contactInfo = [
-    { icon: <Phone className="h-5 w-5" />, text: "920000000", href: "tel:920000000" },
-    { icon: <Mail className="h-5 w-5" />, text: "info@paypass.sa", href: "mailto:info@paypass.sa" },
-    { icon: <MapPin className="h-5 w-5" />, text: "الرياض، المملكة العربية السعودية", href: "#" }
-  ];
-
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-primary-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse-slow"></div>
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-green-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-      
-      <div className="container mx-auto px-4 py-16 relative z-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Company Info */}
-          <div className="lg:col-span-2 animate-fade-in-up">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="bg-gradient-to-r from-primary-500 to-primary-600 p-3 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-200">
-                <Car className="h-7 w-7 text-white" />
+    <footer className="bg-slate-900 text-white" dir="rtl">
+      {/* القسم الرئيسي */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          
+          {/* الجانب الأيمن - العلامة التجارية ومعلومات التواصل */}
+          <div className="space-y-6 flex flex-col justify-center h-full">
+            {/* العلامة التجارية */}
+            <div className="flex items-center gap-3 mb-4">
+              <div className="relative">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center">
+                  <img src={logo} alt="PayPass Logo" className="w-8 h-8 object-contain" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-md">
+                  <Phone className="w-3 h-3 text-green-600" />
+                </div>
               </div>
               <div>
-                <span className="text-2xl font-bold">PayPass</span>
-                <div className="text-sm text-primary-400 font-medium">غسيل السيارات الذكي</div>
+                <h2 className="text-white font-bold text-2xl" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>PayPass</h2>
+                <p className="text-green-400 font-semibold text-base" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  غسيل السيارات الذكي
+                </p>
               </div>
             </div>
             
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              نظام PayPass الذكي يوفر لك تجربة غسيل سيارات متطورة وسهلة. 
-              اشتر باقتك، امسح الكود، واستمتع بخدمة استثنائية مع ضمان الجودة.
-            </p>
-            
-            <div className="space-y-3 mb-6">
-              {contactInfo.map((contact, index) => (
-                <a
+            {/* وصف الشركة */}
+            <div className="mb-6">
+              <p className="text-gray-300 text-sm leading-relaxed" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                تجربة غسيل السيارات الذكية مع PayPass. سهولة الاستخدام، خدمات متقدمة، وضمان الجودة.
+              </p>
+            </div>
+
+            {/* معلومات التواصل */}
+            <div className="space-y-2">
+              <a href="tel:+966568909183" className="flex items-center gap-2 px-2 py-1 bg-slate-800 rounded-md border border-slate-700 min-w-0 max-w-xs w-auto hover:bg-slate-700 transition-colors">
+                <div className="w-5 h-5 bg-green-500 rounded-md flex items-center justify-center">
+                  <Phone className="w-3 h-3 text-white" />
+                </div>
+                <span className="text-white text-xs font-bold truncate w-full" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}} dir="ltr">+966 56 890 9183</span>
+              </a>
+              <a href="mailto:info@paypasss.com" className="flex items-center gap-2 px-2 py-1 bg-slate-800 rounded-md border border-slate-700 min-w-0 max-w-xs w-auto hover:bg-slate-700 transition-colors">
+                <div className="w-5 h-5 bg-green-500 rounded-md flex items-center justify-center">
+                  <Mail className="w-3 h-3 text-white" />
+                </div>
+                <span className="text-white text-xs font-bold truncate w-full" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}} dir="ltr">info@paypasss.com</span>
+              </a>
+              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-2 py-1 bg-slate-800 rounded-md border border-slate-700 min-w-0 max-w-xs w-auto hover:bg-slate-700 transition-colors">
+                <div className="w-5 h-5 bg-green-500 rounded-md flex items-center justify-center">
+                  <MapPin className="w-3 h-3 text-white" />
+                </div>
+                <span className="text-white text-xs font-bold truncate w-full" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>الرياض، المملكة العربية السعودية</span>
+              </a>
+              </div>
+
+            {/* الروابط الاجتماعية */}
+            <div className="flex gap-2 mt-2">
+              {[
+                { icon: Facebook, color: 'text-blue-500', url: 'https://facebook.com' },
+                { icon: Twitter, color: 'text-blue-400', url: 'https://twitter.com' },
+                { icon: Instagram, color: 'text-pink-500', url: 'https://instagram.com' },
+                { icon: Star, color: 'text-yellow-400', url: '#' },
+                { icon: Camera, color: 'text-yellow-300', url: '#' },
+                { icon: Youtube, color: 'text-red-500', url: 'https://youtube.com' }
+              ].map((social, index) => (
+                <a 
                   key={index}
-                  href={contact.href}
-                  className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800 transition-all duration-200 group"
+                  href={social.url} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center hover:bg-slate-700 transition-all duration-300 hover:scale-110"
                 >
-                  <div className="text-primary-400 group-hover:text-primary-300 transition-colors">
-                    {contact.icon}
-                  </div>
-                  <span className="text-gray-300 font-medium group-hover:text-white transition-colors">
-                    {contact.text}
-                  </span>
+                  <social.icon className={`w-4 h-4 ${social.color}`} />
                 </a>
               ))}
             </div>
+          </div>
 
-            {/* Social Media */}
-            <div className="flex flex-wrap gap-3">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className={`w-10 h-10 bg-gray-700 text-gray-300 rounded-lg flex items-center justify-center transition-all duration-300 ${social.color} hover:text-white hover:scale-110 transform`}
-                  title={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
+          {/* الجانب الأيسر - أعمدة التنقل والمعلومات */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-0 md:gap-0 lg:gap-0 relative">
+            {/* فاصل رأسي بين الأعمدة */}
+            <div className="hidden md:block absolute top-0 bottom-0 left-1/4 w-px bg-slate-800" style={{zIndex:1}}></div>
+            <div className="hidden md:block absolute top-0 bottom-0 left-2/4 w-px bg-slate-800" style={{zIndex:1}}></div>
+            <div className="hidden md:block absolute top-0 bottom-0 left-3/4 w-px bg-slate-800" style={{zIndex:1}}></div>
+            {/* الأعمدة */}
+            {[
+              {
+                title: 'الشركة والدعم',
+                links: [
+                  { label: 'من نحن', to: '/about' },
+                  { label: 'فريق العمل', to: '/team' },
+                  { label: 'الوظائف الشاغرة', to: '/careers' },
+                  { label: 'الأخبار والتحديثات', to: '/news' },
+                  { label: 'الشركاء', to: '/partners' },
+                  { label: 'الشهادات والجوائز', to: '/certificates' },
+                ]
+              },
+              {
+                title: 'الباقات',
+                links: [
+                  { label: 'الباقة الأساسية', to: '/packages' },
+                  { label: 'الباقة المتقدمة', to: '/packages' },
+                  { label: 'الباقة الشاملة', to: '/packages' },
+                ]
+              },
+              {
+                title: 'الخدمات',
+                links: [
+                  { label: 'غسيل خارجي شامل', to: '/services' },
+                  { label: 'غسيل داخلي وخارجي', to: '/services' },
+                  { label: 'تلميع احترافي', to: '/services' },
+                ]
+              },
+              {
+                title: 'الدعم',
+                links: [
+                  { label: 'مركز المساعدة', to: '/help-center' },
+                  { label: 'الدعم الفني', to: '/technical-support' },
+                  { label: 'الشكاوى والاقتراحات', to: '/complaints' },
+                  { label: 'الأسئلة الشائعة', to: '/faq' },
+                  { label: 'تواصل معنا', to: '/contact' },
+                  { label: 'دليل الاستخدام', to: '/user-guide' },
+                ]
+              }
+            ].map((col, idx) => (
+              <div key={idx} className="flex flex-col items-center md:items-start px-2 py-2">
+                <h3 className="text-green-400 font-bold text-base mb-3 mt-2 flex items-center gap-2 tracking-wide border-b-2 border-green-500 pb-1 w-full text-center md:text-right" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+                  {col.title}
+              </h3>
+                <div className="flex flex-col gap-1 w-full">
+                  {col.links.map((item, i) => (
+                    <Link
+                      key={i}
+                      to={item.to}
+                      className="block text-gray-300 hover:text-green-400 transition-colors text-xs md:text-sm py-1 px-1 rounded-md hover:bg-slate-800 focus:bg-slate-800 focus:text-green-400 outline-none"
+                      style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold', transition: 'all 0.2s'}}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+              </div>
             </div>
           </div>
 
-          {/* Services */}
-          <div className="animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            <h3 className="text-lg font-bold mb-6 text-primary-300 flex items-center">
-              <span className="w-2 h-2 bg-primary-500 rounded-full ml-2"></span>
-              الخدمات
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.services.map((service, index) => (
-                <li key={index}>
-                  <a 
-                    href="#" 
-                    className="text-gray-300 hover:text-primary-400 transition-all duration-300 font-medium hover:translate-x-1 transform block py-1"
-                  >
-                    {service}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Packages */}
-          <div className="animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-            <h3 className="text-lg font-bold mb-6 text-primary-300 flex items-center">
-              <span className="w-2 h-2 bg-primary-500 rounded-full ml-2"></span>
-              الباقات
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.packages.map((pkg, index) => (
-                <li key={index}>
-                  <a 
-                    href="#" 
-                    className="text-gray-300 hover:text-primary-400 transition-all duration-300 font-medium hover:translate-x-1 transform block py-1"
-                  >
-                    {pkg}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company & Support */}
-          <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-            <h3 className="text-lg font-bold mb-6 text-primary-300 flex items-center">
-              <span className="w-2 h-2 bg-primary-500 rounded-full ml-2"></span>
-              الشركة والدعم
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.company.map((item, index) => (
-                <li key={index}>
-                  <a 
-                    href="#" 
-                    className="text-gray-300 hover:text-primary-400 transition-all duration-300 font-medium hover:translate-x-1 transform block py-1"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            
-            <h3 className="text-lg font-bold mb-6 mt-8 text-primary-300 flex items-center">
-              <span className="w-2 h-2 bg-primary-500 rounded-full ml-2"></span>
-              الدعم
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.support.map((item, index) => (
-                <li key={index}>
-                  <a 
-                    href="#" 
-                    className="text-gray-300 hover:text-primary-400 transition-all duration-300 font-medium hover:translate-x-1 transform block py-1"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Download App Section */}
-        <div className="border-t border-gray-700 mt-12 pt-8 animate-fade-in-up" style={{animationDelay: '0.5s'}}>
-          <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4 text-primary-300">
+      {/* قسم التطبيقات وحقوق النشر */}
+      <div className="border-t border-slate-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          
+          {/* قسم التطبيقات */}
+          <div className="text-center mb-6">
+            <h3 className="text-green-400 font-bold text-xl mb-3" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
               حمل تطبيق PayPass الآن
-            </h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              استمتع بخدماتنا المميزة من خلال تطبيقنا الذكي. احصل على خصومات حصرية 
-              وتتبع غسلاتك بسهولة مع نظام الباركود المتطور.
+              </h3>
+            <p className="text-gray-300 text-sm mb-4 max-w-2xl mx-auto" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
+              استمتع بخصومات حصرية وتتبع غسيل سيارتك بسهولة
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-xl font-medium flex items-center justify-center space-x-2 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                <Download className="h-5 w-5" />
-                <span>تحميل للـ Android</span>
-              </button>
-              <button className="px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-xl font-medium flex items-center justify-center space-x-2 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                <Download className="h-5 w-5" />
-                <span>تحميل للـ iOS</span>
-              </button>
+            <div className="flex justify-center gap-3">
+              <a href="#" className="block hover:scale-105 transition-transform duration-300">
+                <img src={appStoreBadge} alt="App Store" className="h-10 w-auto" />
+              </a>
+              <a href="#" className="block hover:scale-105 transition-transform duration-300">
+                <img src={googlePlayBadge} alt="Google Play" className="h-10 w-auto" />
+              </a>
             </div>
           </div>
-        </div>
 
-        {/* Bottom Footer */}
-        <div className="border-t border-gray-700 mt-8 pt-8 animate-fade-in-up" style={{animationDelay: '0.6s'}}>
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-300 text-sm mb-4 md:mb-0">
+          {/* حقوق النشر والروابط */}
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-800">
+            <div className="text-gray-400 text-xs" style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}>
               © {currentYear} PayPass. جميع الحقوق محفوظة.
             </div>
             
-            <div className="flex flex-wrap gap-6">
-              <a href="#" className="text-gray-300 hover:text-primary-400 transition-colors font-medium">
-                سياسة الخصوصية
-              </a>
-              <a href="#" className="text-gray-300 hover:text-primary-400 transition-colors font-medium">
-                شروط الاستخدام
-              </a>
-              <a href="#" className="text-gray-300 hover:text-primary-400 transition-colors font-medium">
-                خريطة الموقع
-              </a>
-              <a href="#" className="text-gray-300 hover:text-primary-400 transition-colors font-medium">
-                الشروط والأحكام
-              </a>
+            <div className="flex gap-4 text-gray-400 text-xs flex-wrap justify-center">
+              {[
+                { name: 'سياسة الخصوصية', to: '/privacy' },
+                { name: 'شروط الاستخدام', to: '/terms' },
+                { name: 'الشروط والأحكام', to: '/terms' },
+                { name: 'خريطة الموقع', to: '/sitemap' }
+              ].map((link, index) => (
+                <Link 
+                  key={index}
+                  to={link.to} 
+                  className="hover:text-green-400 transition-colors" 
+                  style={{fontFamily: 'Cairo, sans-serif', fontWeight: 'bold'}}
+                >
+                  {link.name}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

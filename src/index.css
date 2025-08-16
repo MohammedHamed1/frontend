@@ -1,91 +1,352 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
 
-/* Global Theme Variables */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* النظام اللوني السعودي الجديد */
 :root {
-  --color-primary: #16a34a;
-  --color-primary-dark: #166534;
-  --color-secondary: #fbbf24;
-  --color-accent: #2563eb;
-  --color-bg: #f9fafb;
-  --color-bg-dark: #e5e7eb;
-  --color-text: #1e293b;
-  --color-text-light: #64748b;
+  --primary-green: #2E7D32;     /* أخضر المملكة */
+  --warm-white: #FEFEFE;        /* أبيض دافئ */
+  --soft-gray: #F8F9FA;         /* رمادي ناعم */
+  --black: #000000;             /* أسود */
+}
+
+/* تطبيق الخطوط */
+* {
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Basic Reset and Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--color-bg);
-  color: var(--color-text);
   font-family: 'Cairo', 'Tajawal', 'Segoe UI', Arial, sans-serif;
-  min-height: 100vh;
+  line-height: 1.6;
+  color: #1e293b;
+  background-color: #f8fafc;
+  direction: rtl;
+  text-align: right;
 }
 
-section {
-  background: var(--color-bg);
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--color-primary-dark);
-  font-family: inherit;
-}
-
-button, .btn {
-  font-family: inherit;
-  border-radius: 0.75rem;
-  font-weight: bold;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-
-button:active, .btn:active {
-  filter: brightness(0.95);
-}
-
-.bg-primary {
-  background: var(--color-primary);
-  color: #fff;
-}
-
-.bg-secondary {
-  background: var(--color-secondary);
-  color: #fff;
-}
-
-.bg-accent {
-  background: var(--color-accent);
-  color: #fff;
-}
-
-.text-primary {
-  color: var(--color-primary);
-}
-
-.text-secondary {
-  color: var(--color-secondary);
-}
-
-.text-accent {
-  color: var(--color-accent);
-}
-
-input, textarea, select {
-  border-radius: 0.5rem;
-  border: 1px solid var(--color-bg-dark);
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  background: #fff;
-  color: var(--color-text);
+  font-weight: 700;
+  line-height: 1.2;
   margin-bottom: 1rem;
 }
 
-input:focus, textarea:focus, select:focus {
-  outline: 2px solid var(--color-primary);
-  border-color: var(--color-primary);
+h1 {
+  font-size: 2.5rem;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  background: var(--color-bg-dark);
+h2 {
+  font-size: 2rem;
 }
-::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
-  border-radius: 8px;
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-green);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #1b5e20;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-green);
+  border: 2px solid var(--primary-green);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-green);
+  color: white;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Form Elements */
+input, textarea, select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+/* Sections */
+section {
+  padding: 4rem 0;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  section {
+    padding: 2rem 0;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease-out;
+}
+
+/* Header Spacer */
+.header-spacer {
+  height: 80px;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+/* Grid System */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+  .grid-cols-2,
+  .grid-cols-3 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Flexbox */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+/* Background Colors */
+.bg-primary {
+  background-color: var(--primary-green);
+}
+
+.bg-secondary {
+  background-color: var(--soft-gray);
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.bg-gray-50 {
+  background-color: #f9fafb;
+}
+
+/* Text Colors */
+.text-white {
+  color: white;
+}
+
+.text-gray-600 {
+  color: #6b7280;
+}
+
+.text-gray-800 {
+  color: #1f2937;
+}
+
+/* Shadows */
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+header {
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+/* Responsive Flex */
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+/* Text Alignment */
+.text-start {
+  text-align: start;
+}
+
+.text-end {
+  text-align: end;
+}
+
+/* Spacing */
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.pr-2 {
+  padding-right: 0.5rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
 }

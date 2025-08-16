@@ -37,6 +37,11 @@ const demoFeedbacks = [
 const Feedbacks = () => {
   const [feedbacks, setFeedbacks] = useState([]);
 
+  // التمرير إلى أعلى الصفحة عند تحميل المكون
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     getFeedbacks()
       .then(res => {

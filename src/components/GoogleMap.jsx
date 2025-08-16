@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const GoogleMap = () => {
+  // التمرير إلى أعلى الصفحة عند تحميل المكون
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const branches = [
     {
       id: 1,
@@ -47,12 +52,12 @@ const GoogleMap = () => {
               <h3 className="text-xl font-bold text-gray-800 mb-4">{branch.name}</h3>
               <p className="text-gray-600 mb-4">{branch.address}</p>
               <div className="space-y-2 text-sm text-gray-600">
-                <p>📞 {branch.phone}</p>
+                <p>📞 <span dir="ltr">{branch.phone}</span></p>
                 <p>🕒 {branch.hours}</p>
               </div>
               <button 
                 onClick={() => getDirections(branch)}
-                className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+                className="mt-4 w-full bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition-colors"
               >
                 احصل على الاتجاهات
               </button>
